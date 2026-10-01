@@ -9,3 +9,5 @@ venv/
 data/
 .vercel/
 .env.local
+backup_dados.json
+db.sqlite3.backup
