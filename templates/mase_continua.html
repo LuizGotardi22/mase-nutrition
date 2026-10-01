@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Programa Mase Contínua — Mase Nutrition{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Programa Mase Contínua</span>
+    <h1>Continuidade que acompanha o tratamento</h1>
+    <p class="lede">Compra recorrente com entrega programada e benefício comercial. Sempre amarrada ao profissional de saúde que indicou.</p>
+    <a class="btn btn-primary" href="{% url 'loja' %}">Ir para a loja</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="pilares" style="grid-template-columns:repeat(4,1fr);">
+      <div class="pilar" data-reveal><h3>Entrega programada</h3><p>Escolha receber a cada 30, 60 ou 90 dias.</p></div>
+      <div class="pilar" data-reveal><h3>Benefício comercial</h3><p>{{ CONTINUA_BENEFICIO|floatformat:"-2" }}% de desconto nos produtos das compras do programa.</p></div>
+      <div class="pilar" data-reveal><h3>Prescritor vinculado</h3><p>O cupom do profissional de saúde é mantido em todas as entregas.</p></div>
+      <div class="pilar" data-reveal><h3>Flexibilidade</h3><p>Pause, retome ou cancele quando quiser, em Minha conta.</p></div>
+    </div>
+    <p class="fine" style="margin-top:32px;">Para participar, marque a opção “Programa Mase Contínua” ao finalizar a compra. A cada entrega geramos o Pix do novo pedido e avisamos por e-mail.</p>
+  </div>
+</section>
+{% endblock %}

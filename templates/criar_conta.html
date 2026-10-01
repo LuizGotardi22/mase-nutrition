@@ -1,0 +1,19 @@
+{% extends "auth_base.html" %}
+{% block title %}Criar conta — Mase Nutrition{% endblock %}
+{% block card %}
+<h2>Criar conta</h2>
+<p class="sub">Leva menos de um minuto.</p>
+
+<form method="post" novalidate>
+  {% csrf_token %}
+  <input type="hidden" name="next" value="{{ proximo }}">
+  {% include "_campo.html" with campo=form.nome %}
+  {% include "_campo.html" with campo=form.email %}
+  {% include "_campo.html" with campo=form.senha %}
+  <p class="fine" style="margin:-8px 0 16px;">Mínimo de 8 caracteres, não pode ser só números nem uma senha comum.</p>
+  {% include "_campo.html" with campo=form.senha2 %}
+  <button class="btn btn-primary btn-full" type="submit">Criar conta</button>
+</form>
+
+<p class="auth-alt" style="text-align:center;">Já tem conta? <a href="{% url 'entrada' %}{% if proximo %}?next={{ proximo|urlencode }}{% endif %}">Entrar</a></p>
+{% endblock %}

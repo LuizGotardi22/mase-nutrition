@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load loja_extras %}
+{% block title %}{{ produto.nome }}{% if produto.sabor %} — {{ produto.sabor }}{% endif %} — Mase Nutrition{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:64px;">
+  <div class="container product-detail">
+    <div class="pd-visual">
+      <div class="pouch" style="background:linear-gradient(160deg, {{ produto.cor1 }}, {{ produto.cor2 }});">
+        <span class="pname">{{ produto.nome }}</span>
+        <span class="pflavor">{{ produto.sabor }}</span>
+        <span class="tag">MASE</span>
+      </div>
+    </div>
+    <div>
+      <span class="pd-cat">{% if produto.linha %}<a href="{{ produto.linha.get_absolute_url }}">{{ produto.linha.nome }}</a>{% else %}{{ produto.get_categoria_display|default:"Mase" }}{% endif %}{% if produto.tipo == 'kit' %} · Kit{% endif %}</span>
+      <h1>{{ produto.nome }}</h1>
+      {% if produto.sabor %}<p style="color:var(--ink-soft);">{{ produto.sabor }}</p>{% endif %}
+      <div class="product-badges" style="margin:18px 0;">{% for s in produto.selos_lista %}<span class="badge">{{ s }}</span>{% endfor %}</div>
+      <p class="pd-desc">{{ produto.descricao }}</p>
+      <p class="pd-price">{{ produto.preco|brl }}</p>
+
+      {% if produto.estoque > 0 %}
+      <form method="post" action="{% url 'carrinho_adicionar' produto.slug %}" class="buy-form">
+        {% csrf_token %}
+        <div class="field">
+          <label for="qtd">Quantidade</label>
+          <input id="qtd" type="number" name="quantidade" value="1" min="1" max="{{ produto.max_compra }}">
+        </div>
+        <button class="btn btn-primary" type="submit">Adicionar ao carrinho</button>
+      </form>
+      {% else %}
+      <p class="soldout">Produto esgotado no momento.</p>
+      {% endif %}
+      {% if PRESCRITOR_OBRIGATORIO %}<p class="fine" style="margin-top:16px;">A compra é vinculada ao profissional de saúde que indicou o produto (cupom informado no carrinho).</p>{% endif %}
+
+      <nav class="pd-nav" aria-label="Seções do produto">
+        <a href="#composicao">Composição</a><a href="#apresentacao">Apresentação</a><a href="#modo-de-uso">Modo de uso</a>
+        <a href="#informacao-nutricional">Informação nutricional</a><a href="#ingredientes">Ingredientes</a><a href="#alergenicos">Alergênicos</a>
+        <a href="#diferenciais">Diferenciais</a><a href="#perguntas">Perguntas frequentes</a><a href="#onde-comprar">Onde comprar</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container pd-sections">
+    <div class="pd-sec" id="composicao"><h2>Composição</h2>{% if produto.composicao %}<div class="conteudo">{{ produto.composicao }}</div>{% else %}<div class="conteudo vazio">Informação a ser disponibilizada.</div>{% endif %}</div>
+    <div class="pd-sec" id="apresentacao"><h2>Apresentação</h2>{% if produto.apresentacao %}<div class="conteudo">{{ produto.apresentacao }}</div>{% else %}<div class="conteudo vazio">{{ produto.sabor|default:"Informação a ser disponibilizada." }}</div>{% endif %}</div>
+    <div class="pd-sec" id="modo-de-uso"><h2>Modo de uso</h2>{% if produto.modo_uso %}<div class="conteudo">{{ produto.modo_uso }}</div>{% else %}<div class="conteudo vazio">Informação a ser disponibilizada.</div>{% endif %}</div>
+    <div class="pd-sec" id="informacao-nutricional"><h2>Informação nutricional</h2>{% if produto.informacao_nutricional %}<div class="conteudo">{{ produto.informacao_nutricional }}</div>{% else %}<div class="conteudo vazio">Informação a ser disponibilizada.</div>{% endif %}</div>
+    <div class="pd-sec" id="ingredientes"><h2>Ingredientes</h2>{% if produto.ingredientes %}<div class="conteudo">{{ produto.ingredientes }}</div>{% else %}<div class="conteudo vazio">Informação a ser disponibilizada.</div>{% endif %}</div>
+    <div class="pd-sec" id="alergenicos"><h2>Alergênicos</h2>{% if produto.alergenicos %}<div class="conteudo">{{ produto.alergenicos }}</div>{% else %}<div class="conteudo vazio">Informação a ser disponibilizada.</div>{% endif %}</div>
+    <div class="pd-sec" id="diferenciais"><h2>Diferenciais</h2>{% if produto.diferenciais %}<div class="conteudo">{{ produto.diferenciais }}</div>{% else %}<div class="conteudo vazio">Informação a ser disponibilizada.</div>{% endif %}</div>
+    <div class="pd-sec" id="perguntas"><h2>Perguntas frequentes</h2>
+      <div>{% for pergunta, resposta in produto.faq_lista %}<details><summary>{{ pergunta }}</summary><p>{{ resposta }}</p></details>{% empty %}<div class="conteudo vazio">Em breve.</div>{% endfor %}</div>
+    </div>
+    <div class="pd-sec" id="onde-comprar"><h2>Onde comprar</h2>
+      <div class="conteudo">Compre online nesta loja ou encontre um ponto de venda perto de você.
+<a class="ask-link" href="{% url 'onde_encontrar' %}">Onde encontrar Mase</a></div>
+    </div>
+  </div>
+</section>
+{% endblock %}

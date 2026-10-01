@@ -1,0 +1,24 @@
+{% extends "auth_base.html" %}
+{% block title %}Entrar — Mase Nutrition{% endblock %}
+{% block card %}
+<h2>Entrar</h2>
+<p class="sub">Acesse a sua conta para comprar ou para usar a área do profissional de saúde.</p>
+
+<form method="post" novalidate>
+  {% csrf_token %}
+  <input type="hidden" name="next" value="{{ proximo }}">
+  {% if form.non_field_errors %}<div class="msg msg-error" role="alert" style="margin:0 0 16px;">{{ form.non_field_errors.0 }}</div>{% endif %}
+  {% include "_campo.html" with campo=form.identificador %}
+  {% include "_campo.html" with campo=form.senha %}
+  <button class="btn btn-primary btn-full" type="submit">Entrar</button>
+</form>
+
+<p class="auth-alt" style="text-align:center;">Ainda não tem conta?</p>
+<a class="btn btn-outline btn-full" style="margin-top:10px;" href="{% url 'criar_conta' %}{% if proximo %}?next={{ proximo|urlencode }}{% endif %}">Criar conta</a>
+{% if not LOGIN_OBRIGATORIO %}<p class="auth-alt" style="text-align:center;"><a href="{% url 'index' %}">← Voltar ao site</a></p>{% endif %}
+
+<div class="auth-note">
+  <strong>Profissional de saúde?</strong><br>
+  Crie a sua conta e depois faça o cadastro profissional (CRM/CRN) para acessar materiais técnicos e ter o seu cupom.
+</div>
+{% endblock %}

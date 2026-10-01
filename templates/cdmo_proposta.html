@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Desenvolva sua marca — Mase CDMO{% endblock %}
+{% block content %}
+<section class="page-hero" style="border-top:4px solid var(--tech);">
+  <div class="container">
+    <span class="eyebrow">Mase CDMO</span>
+    <h1 class="normal-case">Conte sobre o seu projeto</h1>
+    <p class="lede">Quanto mais completas as informações, mais rápido a nossa equipe comercial chega à proposta certa.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="max-width:860px;">
+    <form method="post" novalidate>
+      {% csrf_token %}
+      <fieldset>
+        <legend>Sobre você e a empresa</legend>
+        <div class="field-row cols-2">
+          {% include "_campo.html" with campo=form.nome %}
+          {% include "_campo.html" with campo=form.empresa %}
+        </div>
+        <div class="field-row cols-2">
+          {% include "_campo.html" with campo=form.cnpj %}
+          {% include "_campo.html" with campo=form.estado %}
+        </div>
+        <div class="field-row cols-2">
+          {% include "_campo.html" with campo=form.telefone %}
+          {% include "_campo.html" with campo=form.email %}
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Sobre o projeto</legend>
+        {% include "_campo.html" with campo=form.segmento %}
+        {% include "_campo.html" with campo=form.produto_desejado %}
+        <div class="field-row cols-2">
+          {% include "_campo.html" with campo=form.forma_farmaceutica %}
+          {% include "_campo.html" with campo=form.quantidade_inicial %}
+        </div>
+        <div class="field-row cols-3">
+          {% include "_campo.html" with campo=form.possui_formulacao %}
+          {% include "_campo.html" with campo=form.possui_marca %}
+          {% include "_campo.html" with campo=form.prazo %}
+        </div>
+        {% include "_campo.html" with campo=form.mensagem %}
+      </fieldset>
+
+      {% include "_check.html" with campo=form.consentimento %}
+      <button class="btn btn-primary" type="submit">Fale com um consultor Mase</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

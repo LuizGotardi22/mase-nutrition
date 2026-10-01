@@ -1,0 +1,11 @@
+FOTOS DO SITE
+Coloque aqui as fotografias (JPG, de preferência largas e limpas). Se o arquivo não existir,
+o site mostra um fundo em degradê azul no lugar, então nada quebra.
+
+  hero.jpg       Home (imagem principal: ciência + nutrição + ambiente clínico + tecnologia)  ~1800x1200
+  clinical.jpg   Bloco "Clinical Care" da Home
+  cdmo.jpg       Bloco "CDMO" da Home
+  quem-somos.jpg Página Quem somos (indústria/laboratório)
+
+Use imagens de laboratório, indústria, profissionais de saúde, pacientes, famílias e tecnologia.
+Evite imagens de academia ou de suplemento esportivo (o briefing pede o oposto).

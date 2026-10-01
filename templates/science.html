@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Mase Science — Mase Nutrition{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Conhecimento</span>
+    <h1>Mase Science</h1>
+    <p class="lede">Conteúdo de qualidade sobre nutrição e ciência para quem quer entender melhor a relação entre alimentação, saúde e segurança.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="cat-tabs">
+      <a class="tab{% if not cat %} active{% endif %}" href="{% url 'science' %}">Todos</a>
+      {% for valor, nome in categorias %}<a class="tab{% if cat == valor %} active{% endif %}" href="{% url 'science' %}?cat={{ valor }}">{{ nome }}</a>{% endfor %}
+    </div>
+
+    <div class="artigos">
+      {% for a in artigos %}
+      <a class="artigo-card" href="{{ a.get_absolute_url }}" data-reveal>
+        <span class="cat">{{ a.get_categoria_display }}</span>
+        <h3>{{ a.titulo }}</h3>
+        <p>{{ a.resumo }}</p>
+        <span class="ask-link" style="align-self:flex-start;">Ler</span>
+      </a>
+      {% empty %}
+      <p class="fine">Os primeiros conteúdos desta categoria serão publicados em breve.</p>
+      {% endfor %}
+    </div>
+
+    {% if REDES_SOCIAIS %}
+    <div style="margin-top:72px;">
+      <h2 class="title-lg" style="font-size:1.6rem;">Acompanhe a Mase</h2>
+      <div class="redes">{% for nome, url in REDES_SOCIAIS %}<a href="{{ url }}" target="_blank" rel="noopener">{{ nome }}</a>{% endfor %}</div>
+    </div>
+    {% endif %}
+
+    <p class="aviso-geral">Conteúdo informativo e de caráter geral. Não substitui a orientação de um profissional de saúde. Materiais técnicos ficam na área exclusiva para profissionais de saúde.</p>
+  </div>
+</section>
+{% endblock %}

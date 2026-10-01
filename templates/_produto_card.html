@@ -1,0 +1,26 @@
+{% load loja_extras %}
+<div class="product-card">
+  <a href="{{ p.get_absolute_url }}" class="product-visual" aria-label="{{ p.nome }}">
+    <div class="pouch" style="background:linear-gradient(160deg, {{ p.cor1 }}, {{ p.cor2 }});">
+      <span class="pname">{{ p.nome }}</span>
+      <span class="pflavor">{{ p.sabor }}</span>
+      <span class="tag">MASE</span>
+    </div>
+  </a>
+  <div class="product-body">
+    <span class="product-cat">{% if p.tipo == 'kit' %}Kit{% else %}{{ p.rotulo|default:"Mase" }}{% endif %}</span>
+    <h3><a href="{{ p.get_absolute_url }}">{{ p.nome }}</a></h3>
+    <div class="product-badges">{% for s in p.selos_lista %}<span class="badge">{{ s }}</span>{% endfor %}</div>
+    <div class="product-foot">
+      <span class="price">{{ p.preco|brl }}</span>
+      {% if p.estoque > 0 %}
+      <form method="post" action="{% url 'carrinho_adicionar' p.slug %}">
+        {% csrf_token %}
+        <button class="btn btn-primary btn-sm" type="submit">Comprar</button>
+      </form>
+      {% else %}
+      <span class="soldout">Esgotado</span>
+      {% endif %}
+    </div>
+  </div>
+</div>

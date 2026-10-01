@@ -1,0 +1,29 @@
+{% load static %}<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Entrar — Mase Nutrition{% endblock %}</title>
+<script>document.documentElement.classList.add("js");</script>
+<link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+<div class="auth-layout">
+  <section class="auth-intro">
+    <a href="{% url 'entrada' %}" class="logo" aria-label="Mase Nutrition"><img src="{% static 'logo.png' %}" alt="Mase Nutrition" class="logo-img"></a>
+    <h1>Nutrição sem barreiras. Saúde sem riscos.</h1>
+    <p>Ciência, segurança e inovação em nutrição especializada.</p>
+  </section>
+
+  <main class="auth-main">
+    <div class="auth-card">
+      {% if messages %}
+      {% for m in messages %}<div class="msg msg-{{ m.level_tag }}" role="status" style="margin:0 0 18px;">{{ m }}</div>{% endfor %}
+      {% endif %}
+      {% block card %}{% endblock %}
+    </div>
+  </main>
+</div>
+<script src="{% static 'script.js' %}"></script>
+</body>
+</html>

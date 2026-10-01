@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% load loja_extras %}
+{% block title %}Painel do profissional — Mase Nutrition{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Profissionais de saúde</span>
+    <h1>Painel do profissional</h1>
+    <span class="status-pill{% if parceiro.status == 'aprovado' %} ok{% elif parceiro.status == 'recusado' %} off{% else %} warn{% endif %}" style="margin-top:20px;">{{ parceiro.get_status_display }}</span>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    {% if parceiro.status == 'pendente' %}
+    <div class="notice">
+      <h2>Cadastro em análise</h2>
+      <p>Estamos conferindo o seu registro profissional ({{ parceiro.registro_formatado }}). Quando for aprovado, esta página libera os seus cupons e a área exclusiva.</p>
+    </div>
+
+    {% elif parceiro.status == 'recusado' %}
+    <div class="notice">
+      <h2>Cadastro não aprovado</h2>
+      <p>Não conseguimos aprovar este cadastro. Se acha que houve engano, fale com a gente.</p>
+      <a class="btn btn-outline btn-sm" href="{% url 'contato' %}?assunto=profissional">Falar com a equipe</a>
+    </div>
+
+    {% else %}
+    <div class="stat-grid">
+      <div class="stat"><div class="n">{{ vendas }}</div><div class="l">Vendas com o seu cupom</div></div>
+      {% if com_comissao %}
+      <div class="stat"><div class="n">{{ a_receber|brl }}</div><div class="l">Comissão a receber</div></div>
+      <div class="stat"><div class="n">{{ recebido|brl }}</div><div class="l">Já recebido</div></div>
+      {% else %}
+      <div class="stat"><div class="n">{{ parceiro.desconto_percentual|floatformat:"-2" }}%</div><div class="l">Desconto do paciente</div></div>
+      <div class="stat"><a class="btn btn-primary btn-sm" href="{% url 'profissionais_area' %}">Área do profissional</a><div class="l" style="margin-top:10px;">Materiais técnicos</div></div>
+      {% endif %}
+    </div>
+
+    <div class="dash-grid">
+      <div>
+        <h2 class="dash-title">Seus cupons</h2>
+        {% if cupons %}
+        <div class="table-wrap">
+          <table class="tabela">
+            <thead><tr><th>Código</th><th>Situação</th><th class="num">Vendas</th><th></th></tr></thead>
+            <tbody>
+            {% for c in cupons %}
+              <tr>
+                <td><strong>{{ c.codigo }}</strong></td>
+                <td><span class="status-pill{% if c.ativo %} ok{% else %} off{% endif %}">{% if c.ativo %}Ativo{% else %}Desativado{% endif %}</span></td>
+                <td class="num">{{ c.usos }}</td>
+                <td class="num">
+                  <form method="post" action="{% url 'parceiro_cupom_alternar' c.pk %}">
+                    {% csrf_token %}
+                    <button class="link-btn" type="submit">{% if c.ativo %}Desativar{% else %}Ativar{% endif %}</button>
+                  </form>
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% else %}
+        <p class="fine">Você ainda não criou nenhum cupom.</p>
+        {% endif %}
+
+        {% if pode_criar %}
+        <form method="post" action="{% url 'parceiro_cupom_criar' %}" style="margin-top:24px;" novalidate>
+          {% csrf_token %}
+          {% include "_campo.html" with campo=form.codigo %}
+          <button class="btn btn-primary btn-sm" type="submit">Criar cupom</button>
+          <p class="fine">O paciente digita este código no carrinho. Seus pacientes ganham {{ parceiro.desconto_percentual|floatformat:"-2" }}% de desconto{% if com_comissao %} e você recebe {{ parceiro.comissao_percentual|floatformat:"-2" }}% de comissão sobre os produtos (sem frete){% endif %}.</p>
+        </form>
+        {% else %}
+        <p class="fine" style="margin-top:20px;">Limite de {{ max_cupons }} cupons atingido. Desative um para criar outro.</p>
+        {% endif %}
+      </div>
+
+      <div>
+        <h2 class="dash-title">Últimas vendas</h2>
+        {% if ultimas_vendas %}
+        <div class="table-wrap">
+          <table class="tabela">
+            <thead><tr><th>Pedido</th><th>Data</th><th class="num">Produtos</th>{% if com_comissao %}<th class="num">Comissão</th><th>Situação</th>{% endif %}</tr></thead>
+            <tbody>
+            {% for p in ultimas_vendas %}
+              <tr>
+                <td>{{ p.numero_curto }}</td>
+                <td>{{ p.pago_em|date:"d/m/Y" }}</td>
+                <td class="num">{{ p.valor_produtos|brl }}</td>
+                {% if com_comissao %}
+                <td class="num">{{ p.comissao.valor|brl }}</td>
+                <td>{% if p.comissao %}<span class="status-pill{% if p.comissao.status == 'paga' %} ok{% elif p.comissao.status == 'cancelada' %} off{% else %} warn{% endif %}">{{ p.comissao.get_status_display }}</span>{% endif %}</td>
+                {% endif %}
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% else %}
+        <p class="fine">Ainda não há vendas com o seu cupom.</p>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

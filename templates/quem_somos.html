@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Quem somos — Mase Nutrition{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Institucional</span>
+    <h1>Uma nova visão sobre nutrição especializada</h1>
+    <p class="lede">A Mase Nutrition nasce com o propósito de desenvolver soluções nutricionais seguras, rastreáveis e cientificamente fundamentadas para consumidores, profissionais de saúde e parceiros industriais, todas “Allergen Free”.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Propósito</span>
+      <h2 class="title-lg">Nutrição sem barreiras. Saúde sem riscos.</h2>
+    </div>
+    <div class="mvv">
+      <div data-reveal>
+        <h3>Missão</h3>
+        <p>Desenvolver e fabricar soluções nutricionais seguras, rastreáveis e cientificamente fundamentadas, com rigoroso controle de alergênicos.</p>
+      </div>
+      <div data-reveal>
+        <h3>Visão</h3>
+        <p>Ser referência brasileira em nutrição especializada, reconhecida por um padrão próximo ao farmacêutico.</p>
+      </div>
+      <div data-reveal>
+        <h3>Valores</h3>
+        <ul>
+          <li>Ciência</li><li>Segurança</li><li>Rastreabilidade</li><li>Inovação</li><li>Responsabilidade</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Verticalização e controle</span>
+      <h2 class="title-lg">Do conhecimento científico ao paciente</h2>
+    </div>
+    <div class="flow">
+      <div class="flow-step" data-reveal><span class="n"></span><strong>Ciência</strong></div>
+      <div class="flow-step" data-reveal><span class="n"></span><strong>P&amp;D</strong></div>
+      <div class="flow-step" data-reveal><span class="n"></span><strong>Matéria-prima</strong></div>
+      <div class="flow-step" data-reveal><span class="n"></span><strong>Produção</strong></div>
+      <div class="flow-step" data-reveal><span class="n"></span><strong>Controle de qualidade</strong></div>
+      <div class="flow-step" data-reveal><span class="n"></span><strong>Produto</strong></div>
+      <div class="flow-step" data-reveal><span class="n"></span><strong>Paciente</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>Conheça como aplicamos a segurança Allergen Free</h2>
+    <a class="btn btn-light" href="{% url 'allergen_free' %}">Allergen Free</a>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Profissionais de saúde — Mase Nutrition{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Área do profissional</span>
+    <h1>Mase para profissionais de saúde</h1>
+    <p class="lede">Ciência, informação técnica e suporte para quem prescreve e acompanha pacientes.</p>
+    {% if parceiro and parceiro.status == 'aprovado' %}
+    <a class="btn btn-primary" href="{% url 'profissionais_area' %}">Acessar a área do profissional</a>
+    {% elif parceiro %}
+    <a class="btn btn-primary" href="{% url 'parceiro_painel' %}">Acompanhar o meu cadastro</a>
+    {% else %}
+    <a class="btn btn-primary" href="{% url 'parceiro_cadastro' %}">Cadastre-se como profissional de saúde</a>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Para quem é</span>
+      <h2 class="title-lg">Profissionais que acompanham pacientes com necessidades nutricionais específicas</h2>
+    </div>
+    <ul class="lista-espec" data-reveal>
+      <li>Nutricionistas clínicos</li><li>Alergistas e imunologistas</li><li>Nutrólogos</li>
+      <li>Gastroenterologistas</li><li>Pediatras e alergopediatras</li><li>Endocrinologistas</li>
+      <li>Bariátricos</li><li>Oncologistas</li><li>Geriatras</li>
+      <li>Hospitais e clínicas (CNPJ)</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Conteúdo exclusivo</span>
+      <h2 class="title-lg">O que você encontra na área do profissional</h2>
+      <p>O acesso é liberado após a conferência do registro no conselho profissional (CRM ou CRN).</p>
+    </div>
+    <ul class="conteudos" data-reveal>
+      <li>Literatura científica</li><li>Fichas técnicas</li><li>Informações nutricionais</li>
+      <li>Materiais para pacientes</li><li>Webinars</li><li>Eventos</li>
+      <li>Aulas</li><li>Protocolos educacionais, quando apropriados</li><li>Contato com a área científica</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Indicação e recompra</span>
+      <h2 class="title-lg">Cada compra fica vinculada ao profissional que indicou</h2>
+      <p>Você recebe um cupom próprio. O paciente informa o cupom na compra e o vínculo é mantido, inclusive no Programa Mase Contínua.</p>
+    </div>
+    <a class="arrow-link" href="{% url 'mase_continua' %}">Conheça o Mase Contínua →</a>
+  </div>
+</section>
+{% endblock %}

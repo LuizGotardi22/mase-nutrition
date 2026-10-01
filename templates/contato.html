@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Fale conosco — Mase Nutrition{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Fale conosco</span>
+    <h1>Como podemos ajudar?</h1>
+    <p class="lede">Escolha o assunto e encaminhamos o seu contato direto ao responsável.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="assuntos">
+      {% for valor, rotulo in opcoes %}
+      <a class="assunto{% if assunto_atual == valor %} active{% endif %}" href="{% url 'contato' %}?assunto={{ valor }}">{{ rotulo }}</a>
+      {% endfor %}
+    </div>
+
+    <div class="contato-grid">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% if assunto_atual == 'comprar' %}<div class="dica">Para comprar direto pelo site, <a class="ask-link" href="{% url 'loja' %}">acesse a loja</a>. Se preferir, deixe sua mensagem abaixo.</div>{% endif %}
+        {% if assunto_atual == 'profissional' %}<div class="dica">Para acessar materiais técnicos e ter o seu cupom, <a class="ask-link" href="{% url 'parceiro_cadastro' %}">faça o cadastro de profissional de saúde</a>.</div>{% endif %}
+        {% if assunto_atual == 'hospital' %}<div class="dica">Hospitais e clínicas podem se cadastrar com CNPJ na <a class="ask-link" href="{% url 'profissionais' %}">área do profissional</a>. Você também pode deixar sua mensagem abaixo.</div>{% endif %}
+        {% if assunto_atual == 'cdmo' %}<div class="dica">Para projetos de marca própria, o <a class="ask-link" href="{% url 'cdmo_proposta' %}">formulário CDMO</a> agiliza o atendimento.</div>{% endif %}
+        {% include "_campo.html" with campo=form.assunto %}
+        <div class="field-row cols-2">
+          {% include "_campo.html" with campo=form.nome %}
+          {% include "_campo.html" with campo=form.email %}
+        </div>
+        <div class="field-row cols-2">
+          {% include "_campo.html" with campo=form.telefone %}
+          {% include "_campo.html" with campo=form.empresa %}
+        </div>
+        {% include "_campo.html" with campo=form.mensagem %}
+        {% include "_check.html" with campo=form.consentimento %}
+        <button class="btn btn-primary" type="submit">Enviar mensagem</button>
+      </form>
+
+      <aside>
+        <h2 class="title-lg" style="font-size:1.5rem;margin-bottom:16px;">Prefere falar direto?</h2>
+        <p class="prose">Atendimento comercial de segunda a sexta, em horário comercial.</p>
+        <p style="margin-top:20px;"><a class="btn btn-outline btn-sm" href="https://wa.me/{{ WHATSAPP_NUMBER }}" target="_blank" rel="noopener">WhatsApp</a></p>
+        <p class="fine" style="margin-top:20px;">contato@masenutrition.com.br<br>(11) 99999-9999</p>
+      </aside>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Mase Clinical Care — Mase Nutrition{% endblock %}
+{% block content %}
+<section class="page-hero" style="border-top:4px solid var(--green);">
+  <div class="container">
+    <span class="eyebrow" style="color:var(--green);">Unidade de negócio</span>
+    <h1>Mase Clinical Care</h1>
+    <p class="lede">Nutrição especializada para necessidades específicas. Produtos e soluções nutricionais desenvolvidos com segurança, ciência e controle de alergênicos, para pacientes com restrição e/ou alergia alimentar e para quem busca qualidade de vida.</p>
+    <a class="arrow-link" href="{% url 'loja' %}">Ir para a loja →</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Linhas Mase</span>
+      <h2 class="title-lg">Estamos desenvolvendo produtos para estas áreas</h2>
+      <p>A cada lançamento, a linha ganha uma página própria com produtos, informações técnicas e onde comprar.</p>
+    </div>
+    <div class="linhas">
+      {% for l in linhas %}
+      <a class="linha-card" href="{{ l.get_absolute_url }}" data-reveal>
+        <span class="status-pill{% if l.status == 'lancada' %} ok{% endif %}">{{ l.get_status_display }}</span>
+        <h3>{{ l.nome }}</h3>
+        <p>{{ l.foco }}</p>
+        <span class="go">Ver linha →</span>
+      </a>
+      {% empty %}
+      <p class="fine">As linhas serão publicadas em breve.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Para profissionais de saúde</span>
+      <h2 class="title-lg">Materiais técnicos em área exclusiva</h2>
+      <p>Fichas técnicas, literatura científica e materiais de apoio ficam em uma área restrita a profissionais de saúde cadastrados, separada da comunicação ao consumidor.</p>
+    </div>
+    <a class="btn btn-primary" href="{% url 'profissionais' %}">Mase para profissionais de saúde</a>
+  </div>
+</section>
+{% endblock %}

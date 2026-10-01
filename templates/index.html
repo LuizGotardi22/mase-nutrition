@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">Mase Nutrition</span>
+    <h1>Nutrição especializada.<em>Ciência que protege.</em></h1>
+    <p class="lede">Desenvolvemos soluções nutricionais com ciência, tecnologia, rastreabilidade e rigoroso controle de alergênicos.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="{% url 'quem_somos' %}">Conheça a Mase</a>
+      <a class="btn btn-outline" href="#unidades">Nossas soluções</a>
+    </div>
+  </div>
+  <div class="hero-visual" role="img" aria-label="Rede molecular estilizada representando ciência e nutrição">
+    <svg viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g fill="none" stroke="rgba(255,255,255,0.20)" stroke-width="1.2">
+        <polygon class="rede" style="--len:900" points="560,140 700,220 700,380 560,460 420,380 420,220"/>
+        <polygon class="rede" style="--len:600" points="560,220 630,260 630,340 560,380 490,340 490,260"/>
+        <path class="rede" style="--len:500" d="M560 140 L560 220 M700 220 L630 260 M700 380 L630 340 M560 460 L560 380 M420 380 L490 340 M420 220 L490 260"/>
+      </g>
+      <g fill="none" stroke="rgba(255,255,255,0.42)" stroke-width="1.4">
+        <path class="rede" style="--len:1100" d="M90 640 L230 540 L360 610 L500 500 L640 590 L720 520"/>
+        <path class="rede" style="--len:700" d="M230 540 L210 400 L340 330 L420 220"/>
+        <path class="rede" style="--len:600" d="M360 610 L400 720 M500 500 L560 460 M640 590 L690 700"/>
+        <path class="rede" style="--len:500" d="M210 400 L100 330 M340 330 L360 180"/>
+      </g>
+      <g class="no" fill="#FFFFFF">
+        <circle cx="90" cy="640" r="5" opacity=".7"/><circle cx="230" cy="540" r="8" opacity=".9"/>
+        <circle cx="360" cy="610" r="5" opacity=".7"/><circle cx="500" cy="500" r="9" opacity=".95"/>
+        <circle cx="640" cy="590" r="6" opacity=".8"/><circle cx="720" cy="520" r="4" opacity=".6"/>
+        <circle cx="210" cy="400" r="6" opacity=".8"/><circle cx="340" cy="330" r="7" opacity=".85"/>
+        <circle cx="420" cy="220" r="5" opacity=".7"/><circle cx="560" cy="140" r="6" opacity=".7"/>
+        <circle cx="700" cy="220" r="5" opacity=".6"/><circle cx="700" cy="380" r="5" opacity=".6"/>
+        <circle cx="560" cy="460" r="6" opacity=".8"/><circle cx="420" cy="380" r="5" opacity=".6"/>
+        <circle cx="560" cy="300" r="10" fill="#7FD1B0" opacity=".9"/>
+        <circle cx="400" cy="720" r="4" opacity=".5"/><circle cx="690" cy="700" r="4" opacity=".5"/>
+        <circle cx="100" cy="330" r="4" opacity=".5"/><circle cx="360" cy="180" r="4" opacity=".5"/>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<section class="manifesto">
+  <div class="container">
+    <p>Mase é a empresa que proporciona Nutrição sem barreiras. Saúde sem riscos.</p>
+    <p>Ciência, segurança e inovação em nutrição especializada</p>
+  </div>
+</section>
+
+<section class="unidades" id="unidades">
+  <article class="unidade unidade-clinical">
+    <span class="eyebrow">Mase Clinical Care</span>
+    <h2>Clinical Care</h2>
+    <p class="sub">Nutrição especializada para diferentes necessidades clínicas.</p>
+    <p class="txt">Para pacientes com restrição e/ou alergia alimentar e para aqueles que buscam qualidade de vida. Produtos e soluções nutricionais desenvolvidos com segurança, ciência e controle de alergênicos.</p>
+    <a class="arrow-link" href="{% url 'clinical_care' %}">Conhecer Clinical Care →</a>
+  </article>
+  <article class="unidade unidade-cdmo">
+    <span class="eyebrow">Mase CDMO</span>
+    <h2>CDMO</h2>
+    <p class="sub">Sua marca. Nossa ciência, tecnologia, estrutura isenta de alergênicos.</p>
+    <p class="txt">Desenvolvimento, fabricação e suporte completo para empresas que desejam criar sua própria linha de suplementos com rótulo limpo.</p>
+    <a class="arrow-link" href="{% url 'cdmo' %}">Desenvolva sua marca →</a>
+  </article>
+</section>
+
+<div class="beneficios-strip">
+  <div class="container beneficios-row">
+    <div class="beneficio"><span class="ico">✓</span> Compra 100% segura</div>
+    <div class="beneficio"><span class="ico">✓</span> Pagamento via Pix</div>
+    <div class="beneficio"><span class="ico">✓</span> Frete calculado pelo seu CEP</div>
+    <div class="beneficio"><span class="ico">✓</span> Vinculado ao seu profissional de saúde</div>
+  </div>
+</div>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Loja Mase</span>
+      <h2 class="title-lg">Mais vendidos</h2>
+      <p>Produtos com a segurança Allergen Free, prontos para comprar com Pix.</p>
+    </div>
+    <div class="product-grid">
+      {% for p in destaques %}<div data-reveal>{% include "_produto_card.html" %}</div>{% empty %}<p class="fine">Os produtos aparecem aqui assim que forem cadastrados.</p>{% endfor %}
+    </div>
+    <div style="margin-top:40px;"><a class="arrow-link" href="{% url 'loja' %}">Ver todos os produtos →</a></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Como podemos ajudar</span>
+      <h2 class="title-lg">Encontre o seu caminho na Mase</h2>
+    </div>
+    <div class="perfis">
+      <a class="perfil" href="{% url 'loja' %}" data-reveal><span class="n">01</span><strong>Sou consumidor</strong><span class="go">Ir para a loja →</span></a>
+      <a class="perfil" href="{% url 'profissionais' %}" data-reveal><span class="n">02</span><strong>Sou profissional de saúde</strong><span class="go">Área do profissional →</span></a>
+      <a class="perfil" href="{% url 'cdmo' %}" data-reveal><span class="n">03</span><strong>Quero desenvolver minha marca</strong><span class="go">CDMO →</span></a>
+      <a class="perfil" href="{% url 'contato' %}?assunto=distribuidor" data-reveal><span class="n">04</span><strong>Quero distribuir a Mase</strong><span class="go">Falar com a equipe →</span></a>
+    </div>
+  </div>
+</section>
+{% endblock %}

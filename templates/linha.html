@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}{{ linha.nome }} — Mase Clinical Care{% endblock %}
+{% block content %}
+<section class="page-hero" style="border-top:4px solid var(--green);">
+  <div class="container">
+    <span class="eyebrow" style="color:var(--green);">Mase Clinical Care</span>
+    <h1>{{ linha.nome }}</h1>
+    <p class="lede">{{ linha.foco }}</p>
+    <span class="status-pill{% if linha.status == 'lancada' %} ok{% endif %}" style="margin-top:24px;">{{ linha.get_status_display }}</span>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {% if linha.descricao %}<div class="prose" style="margin-bottom:56px;"><p>{{ linha.descricao|linebreaksbr }}</p></div>{% endif %}
+    {% if produtos %}
+    <div class="product-grid">{% for p in produtos %}{% include "_produto_card.html" %}{% endfor %}</div>
+    {% else %}
+    <div class="notice">
+      <h2>Novidades a caminho</h2>
+      <p>Ainda não há produtos publicados na linha {{ linha.nome }}. Profissionais de saúde cadastrados recebem os lançamentos em primeira mão.</p>
+      <a class="btn btn-outline btn-sm" href="{% url 'clinical_care' %}">Ver todas as linhas</a>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

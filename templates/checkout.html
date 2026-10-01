@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% load loja_extras l10n %}
+{% block title %}Finalizar compra — Mase Nutrition{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container"><span class="eyebrow">Loja</span><h1>Finalizar compra</h1></div>
+</section>
+
+<section class="section">
+  <div class="container checkout-layout">
+    <form method="post" class="checkout-form" novalidate>
+      {% csrf_token %}
+      {% if form.non_field_errors %}<div class="msg msg-error" role="alert" style="margin:0 0 24px;">{{ form.non_field_errors.0 }}</div>{% endif %}
+
+      <fieldset>
+        <legend>Seus dados</legend>
+        {% include "_campo.html" with campo=form.nome %}
+        <div class="field-row cols-2">
+          {% include "_campo.html" with campo=form.email %}
+          {% include "_campo.html" with campo=form.telefone %}
+        </div>
+        {% include "_campo.html" with campo=form.cpf %}
+      </fieldset>
+
+      <fieldset>
+        <legend>Endereço de entrega</legend>
+        {% include "_campo.html" with campo=form.cep %}
+        <div class="field-row cols-street">
+          {% include "_campo.html" with campo=form.rua %}
+          {% include "_campo.html" with campo=form.numero %}
+        </div>
+        <div class="field-row cols-2">
+          {% include "_campo.html" with campo=form.complemento %}
+          {% include "_campo.html" with campo=form.bairro %}
+        </div>
+        <div class="field-row cols-city">
+          {% include "_campo.html" with campo=form.cidade %}
+          {% include "_campo.html" with campo=form.uf %}
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Forma de pagamento</legend>
+        <div class="pagamento-opcoes">
+          {% for radio in form.forma_pagamento %}
+          <label class="pagamento-opcao">
+            {{ radio.tag }}
+            <span class="pagamento-opcao-texto">
+              <strong>{{ radio.choice_label }}</strong>
+              <span class="fine" style="margin:2px 0 0;">{% if radio.data.value == 'pix' %}Aprovação imediata, pague pelo app do seu banco.{% else %}Você será levado para a página segura do Mercado Pago.{% endif %}</span>
+            </span>
+          </label>
+          {% endfor %}
+        </div>
+      </fieldset>
+
+      {% if pode_assinar %}
+      <div class="continua-box">
+        {% include "_check.html" with campo=form.assinar %}
+        {% include "_campo.html" with campo=form.frequencia %}
+        <p class="fine">Programa Mase Contínua: entrega programada com {{ CONTINUA_BENEFICIO|floatformat:"-2" }}% de benefício nos produtos, mantendo o cupom do profissional de saúde. Você pode pausar ou cancelar em Minha conta. <a class="ask-link" href="{% url 'mase_continua' %}" target="_blank" rel="noopener">Saiba mais</a></p>
+      </div>
+      {% endif %}
+
+      <button class="btn btn-primary btn-full" type="submit" id="btn-pagar">Pagar com Pix — <span id="btn-total">{{ total|brl }}</span></button>
+      <p class="fine">Ao continuar, você gera um Pix para pagamento imediato. O QR Code aparece na próxima tela.</p>
+    </form>
+
+    <aside class="summary">
+      <h2>Resumo do pedido</h2>
+      {% for i in itens %}
+      <div class="row"><span>{{ i.quantidade }}× {{ i.produto.nome }}</span><span class="val">{{ i.subtotal|brl }}</span></div>
+      {% endfor %}
+      <div class="row"><span>Subtotal</span><span class="val">{{ subtotal|brl }}</span></div>
+      {% if cupom %}<div class="row desc"><span>Cupom {{ cupom.codigo }}</span><span class="val">− {{ desconto|brl }}</span></div>{% endif %}
+      <div class="row desc" id="linha-continua"{% if not querendo %} hidden{% endif %}><span>Mase Contínua</span><span class="val">− {{ beneficio_previsto|brl }}</span></div>
+      <div class="row"><span id="frete-nome">{% if frete.pendente %}Frete{% elif frete.nome == 'Frete grátis' %}Frete grátis{% else %}Frete ({{ frete.nome }}{% if frete.prazo %} · {{ frete.prazo }}{% endif %}){% endif %}</span><span class="val" id="frete-valor">{% if frete.pendente %}informe o CEP{% else %}{{ frete.valor|brl }}{% endif %}</span></div>
+      <div class="row total"><span>Total</span><span class="val" id="total-valor" data-sem-frete="{{ base_sem_frete|unlocalize }}" data-frete="{{ frete.valor|unlocalize }}" data-beneficio="{{ beneficio_previsto|unlocalize }}">{{ total|brl }}</span></div>
+      {% if cupom %}
+      <div class="prescritor">Indicado por <strong>{{ cupom.parceiro.nome }}</strong>{% if cupom.parceiro.registro_formatado %}{{ cupom.parceiro.registro_formatado }}{% endif %}</div>
+      {% endif %}
+    </aside>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const fmt = (v) => v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  const totalEl = document.getElementById("total-valor");
+  const botao = document.getElementById("btn-total");
+  const btnPagar = document.getElementById("btn-pagar");
+  const radiosPagamento = document.querySelectorAll('input[name="forma_pagamento"]');
+  function atualizarRotuloBotao() {
+    const marcado = document.querySelector('input[name="forma_pagamento"]:checked');
+    const label = marcado && marcado.value === "cartao" ? "Continuar para pagamento — " : "Pagar com Pix — ";
+    btnPagar.childNodes[0].textContent = label;
+  }
+  radiosPagamento.forEach((r) => r.addEventListener("change", atualizarRotuloBotao));
+  atualizarRotuloBotao();
+  const chk = document.getElementById("id_assinar");
+  const linhaContinua = document.getElementById("linha-continua");
+  const freteNome = document.getElementById("frete-nome");
+  const freteValor = document.getElementById("frete-valor");
+  const semFrete = parseFloat(totalEl.dataset.semFrete);
+  const beneficio = parseFloat(totalEl.dataset.beneficio);
+  let frete = parseFloat(totalEl.dataset.frete);
+
+  // total = produtos com desconto + frete - benefício do Mase Contínua (se marcado)
+  function atualizar() {
+    const assinando = chk && chk.checked;
+    if (linhaContinua) linhaContinua.hidden = !assinando;
+    const total = semFrete + frete - (assinando ? beneficio : 0);
+    totalEl.textContent = fmt(total);
+    botao.textContent = fmt(total);
+  }
+  if (chk) chk.addEventListener("change", atualizar);
+  atualizar();
+
+  // Ao digitar o CEP: calcula o frete e preenche o endereço (ViaCEP)
+  const cep = document.getElementById("id_cep");
+  async function calcularFrete(digitos) {
+    freteValor.textContent = "calculando…";
+    try {
+      const r = await fetch(`{% url 'frete_calcular' %}?cep=${digitos}`, { headers: { Accept: "application/json" } });
+      const d = await r.json();
+      if (d.ok) {
+        frete = parseFloat(d.valor);
+        freteNome.textContent = d.nome === "Frete grátis" ? "Frete grátis" : `Frete (${d.nome}${d.prazo ? " · " + d.prazo : ""})`;
+        freteValor.textContent = fmt(frete);
+      } else {
+        frete = 0;
+        freteNome.textContent = "Frete";
+        freteValor.textContent = "informe o CEP";
+      }
+    } catch (e) {
+      frete = 0;
+      freteValor.textContent = "não foi possível calcular";
+    }
+    atualizar();
+  }
+  if (cep) {
+    let ultimo = "";
+    cep.addEventListener("input", async () => {
+      const digitos = cep.value.replace(/\D/g, "");
+      if (digitos.length !== 8 || digitos === ultimo) return;
+      ultimo = digitos;
+      calcularFrete(digitos);
+      try {
+        const r = await fetch(`https://viacep.com.br/ws/${digitos}/json/`);
+        const d = await r.json();
+        if (d.erro) return;
+        document.getElementById("id_rua").value = d.logradouro || "";
+        document.getElementById("id_bairro").value = d.bairro || "";
+        document.getElementById("id_cidade").value = d.localidade || "";
+        document.getElementById("id_uf").value = d.uf || "";
+        document.getElementById("id_numero").focus();
+      } catch (e) { /* o cliente preenche manualmente */ }
+    });
+  }
+</script>
+{% endblock %}

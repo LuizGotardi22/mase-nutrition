@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load loja_extras %}
+{% block title %}Carrinho — Mase Nutrition{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container"><span class="eyebrow">Loja</span><h1>Carrinho</h1></div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {% if itens %}
+    <div class="cart-layout">
+      <div class="cart-list">
+        {% for i in itens %}
+        <div class="cart-item">
+          <a href="{{ i.produto.get_absolute_url }}" class="cart-thumb" style="background:linear-gradient(160deg, {{ i.produto.cor1 }}, {{ i.produto.cor2 }});" aria-label="{{ i.produto.nome }}"></a>
+          <div class="cart-info">
+            <h3><a href="{{ i.produto.get_absolute_url }}">{{ i.produto.nome }}</a></h3>
+            <span>{{ i.produto.sabor }}</span>
+            <span class="price">{{ i.produto.preco|brl }}</span>
+            {% if i.indisponivel %}<span class="field-error">Temos só {{ i.produto.estoque }} em estoque. Ajuste a quantidade.</span>{% endif %}
+          </div>
+          <form method="post" action="{% url 'carrinho_atualizar' i.produto.slug %}" class="qty-form">
+            {% csrf_token %}
+            <input type="number" name="quantidade" value="{{ i.quantidade }}" min="0" max="{{ i.produto.max_compra }}" aria-label="Quantidade de {{ i.produto.nome }}">
+            <button class="btn btn-outline btn-sm" type="submit">Atualizar</button>
+          </form>
+          <div class="cart-side">
+            <div class="cart-sub">{{ i.subtotal|brl }}</div>
+            <form method="post" action="{% url 'carrinho_remover' i.produto.slug %}">
+              {% csrf_token %}
+              <button class="link-btn" type="submit">Remover</button>
+            </form>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <aside class="summary">
+        <h2>Resumo do pedido</h2>
+        <div class="row"><span>Subtotal</span><span class="val">{{ subtotal|brl }}</span></div>
+        {% if cupom %}<div class="row desc"><span>Cupom {{ cupom.codigo }}</span><span class="val">− {{ desconto|brl }}</span></div>{% endif %}
+        <div class="row"><span>Frete</span><span class="val">na finalização</span></div>
+
+        {% if cupom %}
+        <div class="prescritor">
+          Indicado por
+          <strong>{{ cupom.parceiro.nome }}</strong>
+          {{ cupom.parceiro.get_tipo_display }}{% if cupom.parceiro.registro_formatado %} · {{ cupom.parceiro.registro_formatado }}{% endif %}
+          <form method="post" action="{% url 'cupom_remover' %}">
+            {% csrf_token %}
+            <button class="link-btn" type="submit" style="margin-top:8px;">Remover cupom</button>
+          </form>
+        </div>
+        {% else %}
+        {% if PRESCRITOR_OBRIGATORIO %}<div class="prescritor-aviso"><strong>Informe o cupom do profissional de saúde</strong> que indicou o produto. Ele é necessário para finalizar a compra.</div>{% endif %}
+        <form method="post" action="{% url 'cupom_aplicar' %}" class="coupon-form">
+          {% csrf_token %}
+          <input type="text" name="codigo" placeholder="Cupom do profissional" aria-label="Cupom do profissional de saúde" autocomplete="off">
+          <button class="btn btn-outline btn-sm" type="submit">Aplicar</button>
+        </form>
+        {% endif %}
+
+        {% if PRESCRITOR_OBRIGATORIO and not cupom %}
+        <span class="btn btn-primary btn-full is-disabled" style="margin-top:18px;" aria-disabled="true">Finalizar compra</span>
+        {% else %}
+        <a class="btn btn-primary btn-full" href="{% url 'checkout' %}" style="margin-top:18px;">Finalizar compra</a>
+        {% endif %}
+        <a class="link-btn" href="{% url 'loja' %}" style="display:block;text-align:center;margin-top:14px;">Continuar comprando</a>
+      </aside>
+    </div>
+    {% else %}
+    <div class="empty">
+      <h2>Seu carrinho está vazio</h2>
+      <p>Escolha um produto para começar.</p>
+      <a class="btn btn-primary" href="{% url 'loja' %}">Ver a loja</a>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

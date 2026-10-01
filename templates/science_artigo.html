@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{{ artigo.titulo }} — Mase Science{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">{{ artigo.get_categoria_display }}</span>
+    <h1 class="normal-case">{{ artigo.titulo }}</h1>
+    <p class="lede">{{ artigo.publicado_em|date:"d/m/Y" }}</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="artigo-corpo">{{ artigo.corpo|linebreaks }}</div>
+    <p class="aviso-geral">Conteúdo informativo e de caráter geral. Não substitui a orientação de um profissional de saúde.</p>
+    <p style="margin-top:32px;"><a class="arrow-link" href="{% url 'science' %}">← Voltar ao Mase Science</a></p>
+  </div>
+</section>
+{% endblock %}

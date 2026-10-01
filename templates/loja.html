@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Loja — Mase Nutrition{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Loja Mase</span>
+    <h1>Loja</h1>
+    <p class="lede">Compre online os produtos Mase, com a indicação do seu profissional de saúde.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {% if PRESCRITOR_OBRIGATORIO %}
+    <div class="aviso-prescritor"><strong>Como comprar:</strong> as compras são vinculadas ao profissional de saúde que indicou o produto. No carrinho, informe o cupom que ele lhe passou.</div>
+    {% endif %}
+
+    <div class="loja-filtros">
+      <div class="filtro-grupo">
+        <span class="rotulo">Por produto</span>
+        <a class="tab{% if not linha_ativa and not objetivo_ativo and not kits_ativo %} active{% endif %}" href="{% url 'loja' %}">Todos os produtos</a>
+      </div>
+      {% if linhas %}
+      <div class="filtro-grupo">
+        <span class="rotulo">Por linha Mase</span>
+        {% for l in linhas %}<a class="tab{% if linha_ativa == l.slug %} active{% endif %}" href="{% url 'loja' %}?linha={{ l.slug }}">{{ l.nome }}</a>{% endfor %}
+      </div>
+      {% endif %}
+      {% if objetivos %}
+      <div class="filtro-grupo">
+        <span class="rotulo">Por objetivo</span>
+        {% for o in objetivos %}<a class="tab{% if objetivo_ativo == o %} active{% endif %}" href="{% url 'loja' %}?objetivo={{ o|urlencode }}">{{ o }}</a>{% endfor %}
+      </div>
+      {% endif %}
+      <div class="filtro-grupo">
+        <span class="rotulo">Mais opções</span>
+        {% if tem_kits %}<a class="tab{% if kits_ativo %} active{% endif %}" href="{% url 'loja' %}?kits=1">Kits</a>{% endif %}
+        <a class="tab" href="{% url 'mase_continua' %}">Programa Mase Contínua</a>
+      </div>
+    </div>
+
+    <div class="product-grid">
+      {% for p in produtos %}<div data-reveal>{% include "_produto_card.html" %}</div>{% empty %}<p class="fine">Nenhum produto nesta seleção por enquanto.</p>{% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

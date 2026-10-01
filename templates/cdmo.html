@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Mase CDMO — Private Label — Mase Nutrition{% endblock %}
+{% block content %}
+<section class="page-hero" style="border-top:4px solid var(--tech);">
+  <div class="container">
+    <span class="eyebrow">Mase CDMO · Private Label</span>
+    <h1>Sua marca pode ser diferente.</h1>
+    <p class="lede">Muitas empresas que operam com Private Label acabam oferecendo mais do mesmo. Na Mase Nutrition, cada projeto pode nascer com identidade própria.</p>
+    <a class="btn btn-primary" href="{% url 'cdmo_proposta' %}">Quero desenvolver minha marca</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="pilares">
+      <div class="pilar" data-reveal><h3>Customização</h3><p>Desenvolvimento de formulações alinhadas ao posicionamento do cliente.</p></div>
+      <div class="pilar" data-reveal><h3>Exclusividade</h3><p>Projetos desenvolvidos para criar diferenciação.</p></div>
+      <div class="pilar" data-reveal><h3>Segurança</h3><p>Controle de matérias-primas, processos e qualidade.</p></div>
+      <div class="pilar" data-reveal><h3>Estabilidade de suprimentos</h3><p>Gestão estruturada da cadeia de fornecimento.</p></div>
+      <div class="pilar" data-reveal><h3>Allergen Free</h3><p>Plataforma produtiva com rigoroso controle de alergênicos.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Como funciona</span>
+      <h2 class="title-lg">Da ideia à entrega</h2>
+    </div>
+    <div class="flow">
+      <div class="flow-step" data-reveal><span class="n"></span><strong>Ideia</strong></div>
+      <div class="flow-step" data-reveal><span class="n"></span><strong>Briefing</strong></div>
+      <div class="flow-step" data-reveal><span class="n"></span><strong>Formulação</strong></div>
+      <div class="flow-step" data-reveal><span class="n"></span><strong>P&amp;D</strong></div>
+      <div class="flow-step" data-reveal><span class="n"></span><strong>Testes</strong></div>
+      <div class="flow-step" data-reveal><span class="n"></span><strong>Regulatório</strong></div>
+      <div class="flow-step" data-reveal><span class="n"></span><strong>Produção</strong></div>
+      <div class="flow-step" data-reveal><span class="n"></span><strong>Embalagem</strong></div>
+      <div class="flow-step" data-reveal><span class="n"></span><strong>Entrega</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>Quero desenvolver minha marca</h2>
+    <p>Conte sobre o seu projeto. O formulário qualifica a sua demanda e nos ajuda a direcionar você ao consultor certo.</p>
+    <a class="btn btn-light" href="{% url 'cdmo_proposta' %}">Quero desenvolver minha marca</a>
+  </div>
+</section>
+{% endblock %}

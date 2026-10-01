@@ -1,0 +1,244 @@
+{% extends "base.html" %}
+{% load loja_extras %}
+{% block title %}Pedido {{ pedido.numero_curto }} — MASE NUTRITION{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="status-pill{% if pedido.status == 'pago' or pedido.status == 'enviado' %} ok{% endif %}">{{ pedido.get_status_display }}</span>
+    <h1 style="margin-top:12px;">Pedido {{ pedido.numero_curto }}</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container order-layout">
+    <div>
+      {% if pedido.status == 'aguardando' %}
+
+        {% if pedido.forma_pagamento == 'cartao' %}
+        <div class="cartao-box" id="cartao-box">
+          <h2>Pagamento com cartão</h2>
+
+          {% if cartao_disponivel %}
+          <div id="cartao-erro" class="msg msg-error" role="alert" hidden></div>
+          <form id="form-checkout">
+            <div class="field">
+              <label for="form-checkout__cardholderName">Nome impresso no cartão</label>
+              <input type="text" id="form-checkout__cardholderName" autocomplete="cc-name">
+            </div>
+            <div class="field-row cols-2">
+              <div class="field">
+                <label for="form-checkout__cardNumber">Número do cartão</label>
+                <div id="form-checkout__cardNumber" class="campo-seguro"></div>
+              </div>
+              <div class="field">
+                <label for="form-checkout__securityCode">CVV</label>
+                <div id="form-checkout__securityCode" class="campo-seguro"></div>
+              </div>
+            </div>
+            <div class="field-row cols-2">
+              <div class="field">
+                <label for="form-checkout__expirationDate">Validade (MM/AA)</label>
+                <div id="form-checkout__expirationDate" class="campo-seguro"></div>
+              </div>
+              <div class="field">
+                <label for="form-checkout__installments">Parcelas</label>
+                <select id="form-checkout__installments"></select>
+              </div>
+            </div>
+            <div class="field-row cols-2">
+              <div class="field">
+                <label for="form-checkout__identificationType">Tipo de documento</label>
+                <select id="form-checkout__identificationType"></select>
+              </div>
+              <div class="field">
+                <label for="form-checkout__identificationNumber">CPF do titular do cartão</label>
+                <input type="text" id="form-checkout__identificationNumber" inputmode="numeric" value="{{ pedido.cpf }}">
+              </div>
+            </div>
+            <input type="hidden" id="form-checkout__cardholderEmail" value="{{ pedido.email }}">
+            <select id="form-checkout__issuer" hidden></select>
+            <button type="submit" id="form-checkout__submit" class="btn btn-primary btn-full">Pagar {{ pedido.total|brl }}</button>
+            <p class="fine">Seus dados de cartão são enviados direto e com segurança para o Mercado Pago — não passam pelo servidor da Mase Nutrition.</p>
+          </form>
+          {% else %}
+          <p>Estamos confirmando o pagamento do seu cartão. Esta página atualiza sozinha quando for aprovado.</p>
+          {% endif %}
+        </div>
+        {% else %}
+        <div class="pix-box">
+          {% if pedido.pix_qr_base64 %}
+          <img class="pix-qr" src="data:image/png;base64,{{ pedido.pix_qr_base64 }}" alt="QR Code do Pix">
+          {% else %}
+          <div class="pix-qr pix-qr-vazio">QR Code de teste</div>
+          {% endif %}
+          <div>
+            <h2>Pague com Pix</h2>
+            <ol class="pix-steps">
+              <li>Abra o app do seu banco e escolha pagar com Pix.</li>
+              <li>Escaneie o QR Code ou use o código copia e cola abaixo.</li>
+              <li>Confirme. Esta página atualiza sozinha quando o pagamento for aprovado.</li>
+            </ol>
+            <label class="sr-only" for="pix-code">Código Pix copia e cola</label>
+            <textarea id="pix-code" class="pix-code" readonly>{{ pedido.pix_copia_cola }}</textarea>
+            <button type="button" id="copiar" class="btn btn-primary btn-sm">Copiar código</button>
+            <span id="copiado" class="fine" hidden>Código copiado.</span>
+            {% if pedido.pix_expira_em %}<p class="fine">Este Pix vale até {{ pedido.pix_expira_em|date:"d/m \à\s H:i" }}.</p>{% endif %}
+          </div>
+        </div>
+        {% endif %}
+
+      {% if simulacao and pedido.forma_pagamento != 'cartao' %}
+      <form method="post" action="{% url 'pedido_simular' pedido.codigo %}" class="msg" style="margin-top:20px;">
+        {% csrf_token %}
+        Modo de teste: este QR Code é demonstrativo e não recebe pagamento de verdade.
+        <button class="btn btn-outline btn-sm" type="submit">Simular pagamento aprovado</button>
+      </form>
+      {% elif pedido.forma_pagamento == 'cartao' and not cartao_disponivel %}
+      <form method="post" action="{% url 'pedido_simular' pedido.codigo %}" class="msg" style="margin-top:20px;">
+        {% csrf_token %}
+        Modo de teste: o pagamento com cartão ainda não está configurado (faltam as chaves do Mercado Pago).
+        <button class="btn btn-outline btn-sm" type="submit">Simular pagamento aprovado</button>
+      </form>
+      {% endif %}
+
+      {% elif pedido.status == 'pago' or pedido.status == 'enviado' %}
+      <div class="notice ok">
+        <h2>Pagamento confirmado</h2>
+        <p>Recebemos o seu pagamento e vamos preparar o envio. Guarde o número do pedido: <strong>{{ pedido.numero_curto }}</strong>.</p>
+        {% if pedido.codigo_rastreio %}<p>Código de rastreio: <strong>{{ pedido.codigo_rastreio }}</strong></p>{% endif %}
+        <a class="btn btn-outline btn-sm" href="https://wa.me/{{ WHATSAPP_NUMBER }}?text={% filter urlencode %}Olá! Preciso de ajuda com o pedido {{ pedido.numero_curto }}{% endfilter %}" target="_blank" rel="noopener">Falar sobre este pedido</a>
+      </div>
+
+      {% elif pedido.status == 'expirado' %}
+      <div class="notice">
+        <h2>O Pix expirou</h2>
+        <p>O tempo para pagar acabou. Gere um novo Pix para este mesmo pedido.</p>
+        {% if pedido.forma_pagamento != 'cartao' %}
+        <form method="post" action="{% url 'pedido_novo_pix' pedido.codigo %}">
+          {% csrf_token %}
+          <button class="btn btn-primary" type="submit">Gerar novo Pix</button>
+        </form>
+        {% endif %}
+      </div>
+
+      {% else %}
+      <div class="notice">
+        <h2>Pedido cancelado</h2>
+        <p>Este pedido não foi concluído. Você pode fazer um novo pedido quando quiser.</p>
+        <a class="btn btn-primary" href="{% url 'loja' %}">Ver produtos</a>
+      </div>
+      {% endif %}
+    </div>
+
+    <aside class="summary">
+      <h2>Resumo do pedido</h2>
+      {% for i in itens %}
+      <div class="row"><span>{{ i.quantidade }}× {{ i.nome }}</span><span class="val">{{ i.subtotal|brl }}</span></div>
+      {% endfor %}
+      <div class="row"><span>Subtotal</span><span class="val">{{ pedido.subtotal|brl }}</span></div>
+      {% if pedido.desconto %}<div class="row desc"><span>Cupom {{ pedido.cupom_codigo }}</span><span class="val">− {{ pedido.desconto|brl }}</span></div>{% endif %}
+      {% if pedido.desconto_continua %}<div class="row desc"><span>Mase Contínua</span><span class="val">− {{ pedido.desconto_continua|brl }}</span></div>{% endif %}
+      <div class="row"><span>Frete ({{ pedido.frete_nome }})</span><span class="val">{{ pedido.frete|brl }}</span></div>
+      <div class="row total"><span>Total</span><span class="val">{{ pedido.total|brl }}</span></div>
+      <p class="fine" style="margin-top:14px;"><strong>Entrega em</strong><br>{{ pedido.endereco_completo }}</p>
+    </aside>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+{% if pedido.status == 'aguardando' %}
+{% if pedido.forma_pagamento != 'cartao' or not cartao_disponivel %}
+<script>
+  // Atualiza sozinho quando o pagamento (Pix ou simulação) for confirmado
+  const statusUrl = "{% url 'pedido_status' pedido.codigo %}";
+  setInterval(async () => {
+    try {
+      const r = await fetch(statusUrl, { cache: "no-store" });
+      const d = await r.json();
+      if (d.status !== "aguardando") location.reload();
+    } catch (e) { /* tenta de novo no próximo ciclo */ }
+  }, 5000);
+</script>
+{% endif %}
+
+{% if pedido.forma_pagamento == 'cartao' %}
+  {% if cartao_disponivel %}
+  <script src="https://sdk.mercadopago.com/js/v2"></script>
+  <script>
+    const mp = new MercadoPago("{{ MP_PUBLIC_KEY }}", { locale: "pt-BR" });
+    const caixaErro = document.getElementById("cartao-erro");
+    const botaoPagar = document.getElementById("form-checkout__submit");
+
+    function mostrarErro(msg) {
+      caixaErro.textContent = msg;
+      caixaErro.hidden = false;
+      botaoPagar.disabled = false;
+      botaoPagar.textContent = "Pagar {{ pedido.total|brl }}";
+    }
+
+    const cardForm = mp.cardForm({
+      amount: "{{ pedido.total|stringformat:'0.2f' }}",
+      iframe: true,
+      form: {
+        id: "form-checkout",
+        cardholderName: { id: "form-checkout__cardholderName", placeholder: "Nome como está no cartão" },
+        cardholderEmail: { id: "form-checkout__cardholderEmail" },
+        cardNumber: { id: "form-checkout__cardNumber", placeholder: "0000 0000 0000 0000" },
+        expirationDate: { id: "form-checkout__expirationDate", placeholder: "MM/AA" },
+        securityCode: { id: "form-checkout__securityCode", placeholder: "CVV" },
+        installments: { id: "form-checkout__installments", placeholder: "Parcelas" },
+        identificationType: { id: "form-checkout__identificationType" },
+        identificationNumber: { id: "form-checkout__identificationNumber", placeholder: "Somente números" },
+        issuer: { id: "form-checkout__issuer", placeholder: "Banco emissor" },
+      },
+      callbacks: {
+        onFormMounted: (erro) => { if (erro) mostrarErro("Não foi possível carregar o formulário de cartão. Atualize a página."); },
+        onSubmit: (evento) => {
+          evento.preventDefault();
+          caixaErro.hidden = true;
+          botaoPagar.disabled = true;
+          botaoPagar.textContent = "Processando…";
+
+          const dados = cardForm.getCardFormData();
+          const corpo = new URLSearchParams({
+            token: dados.token,
+            installments: dados.installments,
+            payment_method_id: dados.paymentMethodId,
+            issuer_id: dados.issuerId,
+            identification_type: dados.identificationType,
+            identification_number: dados.identificationNumber,
+            email: dados.cardholderEmail,
+          });
+
+          fetch("{% url 'cartao_pagar' pedido.codigo %}", {
+            method: "POST",
+            headers: { "X-CSRFToken": "{{ csrf_token }}" },
+            body: corpo,
+          })
+            .then((r) => r.json())
+            .then((resultado) => {
+              if (resultado.status === "approved" || resultado.status === "in_process") {
+                location.reload();
+              } else {
+                mostrarErro(resultado.mensagem || "Não foi possível processar o cartão.");
+              }
+            })
+            .catch(() => mostrarErro("Falha de conexão. Confira sua internet e tente de novo."));
+        },
+      },
+    });
+  </script>
+  {% endif %}
+{% else %}
+<script>
+  document.getElementById("copiar").addEventListener("click", async () => {
+    const campo = document.getElementById("pix-code");
+    try { await navigator.clipboard.writeText(campo.value); }
+    catch (e) { campo.select(); document.execCommand("copy"); }
+    document.getElementById("copiado").hidden = false;
+  });
+</script>
+{% endif %}
+{% endif %}
+{% endblock %}

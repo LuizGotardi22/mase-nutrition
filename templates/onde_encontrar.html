@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Onde encontrar Mase — Mase Nutrition{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Onde comprar</span>
+    <h1>Onde encontrar Mase</h1>
+    <p class="lede">Informe o seu CEP, cidade ou estado e veja onde encontrar os produtos Mase perto de você.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <form method="get" class="busca">
+      <div class="field"><label for="cep">CEP</label><input id="cep" name="cep" value="{{ cep }}" inputmode="numeric" placeholder="00000-000" autocomplete="postal-code"></div>
+      <div class="field"><label for="cidade">Cidade</label><input id="cidade" name="cidade" value="{{ cidade }}" autocomplete="address-level2"></div>
+      <div class="field">
+        <label for="uf">Estado</label>
+        <select id="uf" name="uf">
+          <option value="">UF</option>
+          {% for u in ufs %}<option value="{{ u }}"{% if u == uf %} selected{% endif %}>{{ u }}</option>{% endfor %}
+        </select>
+      </div>
+      <button class="btn btn-primary" type="submit" style="margin-bottom:18px;">Buscar</button>
+    </form>
+
+    {% if buscou %}
+      {% if grupos_cidade %}
+        <h2 class="title-lg" style="margin-top:48px;">Em {{ cidade }}</h2>
+        {% for rotulo, pontos in grupos_cidade %}
+        <div class="resultado-grupo">
+          <h3>{{ rotulo }}</h3>
+          {% for p in pontos %}
+          <div class="ponto"><div><strong>{{ p.nome }}</strong><span>{{ p.endereco }} — {{ p.cidade }}/{{ p.uf }}</span></div><div>{% if p.telefone %}<span>{{ p.telefone }}</span>{% endif %}{% if p.site %}<a class="ask-link" href="{{ p.site }}" target="_blank" rel="noopener">Site</a>{% endif %}</div></div>
+          {% endfor %}
+        </div>
+        {% endfor %}
+      {% endif %}
+      {% if grupos_regiao %}
+        <h2 class="title-lg" style="margin-top:56px;">{% if grupos_cidade %}Outras cidades de {{ uf }}{% else %}Em {{ uf }}{% endif %}</h2>
+        {% for rotulo, pontos in grupos_regiao %}
+        <div class="resultado-grupo">
+          <h3>{{ rotulo }}</h3>
+          {% for p in pontos %}
+          <div class="ponto"><div><strong>{{ p.nome }}</strong><span>{{ p.endereco }} — {{ p.cidade }}/{{ p.uf }}</span></div><div>{% if p.telefone %}<span>{{ p.telefone }}</span>{% endif %}{% if p.site %}<a class="ask-link" href="{{ p.site }}" target="_blank" rel="noopener">Site</a>{% endif %}</div></div>
+          {% endfor %}
+        </div>
+        {% endfor %}
+      {% endif %}
+      {% if not grupos_cidade and not grupos_regiao %}
+      <p class="fine" style="margin-top:32px;">Ainda não temos pontos de venda cadastrados nesta região. Você pode comprar online ou falar com a nossa equipe.</p>
+      {% endif %}
+    {% endif %}
+
+    <div class="online-card">
+      <div>
+        <h3>Compra online</h3>
+        <p class="fine" style="margin:6px 0 0;">Receba em casa, com a indicação do seu profissional de saúde.</p>
+      </div>
+      <a class="btn btn-primary" href="{% url 'loja' %}">Ir para a loja</a>
+    </div>
+    <p class="fine" style="margin-top:24px;">Quer vender ou distribuir a Mase na sua região? <a class="ask-link" href="{% url 'contato' %}?assunto=distribuidor">Fale com a nossa equipe</a>.</p>
+  </div>
+</section>
+{% endblock %}

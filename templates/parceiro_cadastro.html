@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Cadastro de profissional de saúde — Mase Nutrition{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Profissionais de saúde</span>
+    <h1>Cadastro profissional</h1>
+    <p class="lede">O acesso à área exclusiva e ao seu cupom é liberado após a conferência do registro no conselho profissional.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container checkout-layout">
+    <form method="post" novalidate>
+      {% csrf_token %}
+      <fieldset>
+        <legend>Dados profissionais</legend>
+        {% include "_campo.html" with campo=form.tipo %}
+        <div class="field-row cols-3">
+          {% include "_campo.html" with campo=form.conselho %}
+          {% include "_campo.html" with campo=form.registro_profissional %}
+          {% include "_campo.html" with campo=form.registro_uf %}
+        </div>
+        {% include "_campo.html" with campo=form.sobre %}
+      </fieldset>
+      <fieldset>
+        <legend>Hospital ou clínica</legend>
+        <div class="field-row cols-2">
+          {% include "_campo.html" with campo=form.instituicao %}
+          {% include "_campo.html" with campo=form.cnpj %}
+        </div>
+        {% include "_campo.html" with campo=form.telefone %}
+      </fieldset>
+      {% include "_check.html" with campo=form.consentimento %}
+      <button class="btn btn-primary btn-full" type="submit">Enviar cadastro</button>
+    </form>
+
+    <aside class="summary">
+      <h2>Como funciona</h2>
+      <div class="row"><span>1. Você envia o cadastro</span></div>
+      <div class="row"><span>2. Conferimos o registro (CRM/CRN)</span></div>
+      <div class="row"><span>3. Acesso liberado à área exclusiva</span></div>
+      <div class="row"><span>4. Você cria o seu cupom</span></div>
+      <p class="fine" style="margin-top:14px;">O paciente informa o seu cupom na compra e o vínculo fica registrado, inclusive nas entregas do Programa Mase Contínua.</p>
+    </aside>
+  </div>
+</section>
+{% endblock %}

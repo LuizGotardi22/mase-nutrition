@@ -1,0 +1,137 @@
+{% load static %}<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Mase Nutrition — Nutrição especializada. Ciência que protege.{% endblock %}</title>
+{% block meta %}<meta name="description" content="Soluções nutricionais com ciência, tecnologia, rastreabilidade e rigoroso controle de alergênicos.">{% endblock %}
+<script>document.documentElement.classList.add("js");</script>
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% block extra_head %}{% endblock %}
+</head>
+<body>
+
+{% with n=request.resolver_match.url_name %}
+<header class="site-header">
+  <div class="container header-top">
+    <a href="{% url 'index' %}" class="logo" aria-label="Mase Nutrition — página inicial"><img src="{% static 'logo.png' %}" alt="Mase Nutrition" class="logo-img"></a>
+    <div class="header-actions">
+      <div class="account-menu">
+        <button type="button" class="icon-link account-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Minha conta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <span class="account-label">Minha Conta</span>
+        </button>
+        <div class="account-panel">
+          {% if user.is_authenticated %}
+          <span class="account-hello">Olá, {{ user.first_name|default:user.username }}</span>
+          <a href="{% url 'minha_conta' %}">Minha conta e pedidos</a>
+          {% if not user.parceiro %}<a href="{% url 'parceiro_cadastro' %}">Sou profissional de saúde</a>{% else %}<a href="{% url 'parceiro_painel' %}">Painel do profissional</a>{% endif %}
+          <form method="post" action="{% url 'sair' %}"><button type="submit">Sair</button></form>
+          {% else %}
+          <a href="{% url 'entrada' %}">Entrar</a>
+          <a href="{% url 'criar_conta' %}">Criar conta</a>
+          <a class="account-prof" href="{% url 'entrada' %}?next={% url 'parceiro_cadastro' %}">Login profissionais</a>
+          {% endif %}
+        </div>
+      </div>
+      <a class="icon-link" href="{% url 'carrinho' %}" aria-label="Carrinho ({{ carrinho_qtd }} item(ns))">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+        {% if carrinho_qtd %}<span class="cart-count">{{ carrinho_qtd }}</span>{% endif %}
+      </a>
+      <a class="btn btn-primary btn-sm" href="{% url 'contato' %}">Fale conosco</a>
+      <button class="nav-toggle" aria-label="Abrir menu" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="header-nav">
+    <div class="container">
+      <nav class="main-nav" aria-label="Principal">
+        <a href="{% url 'quem_somos' %}"{% if n == 'quem_somos' %} class="ativo"{% endif %}>Institucional</a>
+        <a href="{% url 'clinical_care' %}"{% if n == 'clinical_care' or n == 'linha' %} class="ativo"{% endif %}>Clinical Care</a>
+        <a href="{% url 'cdmo' %}"{% if n == 'cdmo' or n == 'cdmo_proposta' %} class="ativo"{% endif %}>CDMO</a>
+        <a href="{% url 'allergen_free' %}"{% if n == 'allergen_free' %} class="ativo"{% endif %}>Allergen Free</a>
+        <a href="{% url 'profissionais' %}"{% if n == 'profissionais' or n == 'profissionais_area' or n == 'parceiro_cadastro' or n == 'parceiro_painel' %} class="ativo"{% endif %}>Profissionais de saúde</a>
+        <a href="{% url 'science' %}"{% if n == 'science' or n == 'science_artigo' %} class="ativo"{% endif %}>Mase Science</a>
+        <a href="{% url 'onde_encontrar' %}"{% if n == 'onde_encontrar' %} class="ativo"{% endif %}>Onde comprar</a>
+        <a href="{% url 'loja' %}"{% if n == 'loja' or n == 'produto' or n == 'carrinho' or n == 'checkout' or n == 'mase_continua' %} class="ativo"{% endif %}>Loja</a>
+        <a href="{% url 'contato' %}" class="nav-cta">Fale conosco</a>
+      </nav>
+    </div>
+  </div>
+</header>
+{% endwith %}
+
+{% if messages %}
+<div class="container">
+  {% for m in messages %}<div class="msg msg-{{ m.level_tag }}" role="status">{{ m }}</div>{% endfor %}
+</div>
+{% endif %}
+
+{% block content %}{% endblock %}
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand-col">
+        <div class="footer-brand">Mase Nutrition</div>
+        <p>A marca de nutrição especializada com padrão próximo ao farmacêutico, recomendada por profissionais de saúde.</p>
+        {% if REDES_SOCIAIS %}
+        <div class="footer-redes">{% for nome, url in REDES_SOCIAIS %}<a href="{{ url }}" target="_blank" rel="noopener">{{ nome }}</a>{% endfor %}</div>
+        {% endif %}
+      </div>
+      <div>
+        <h4>Institucional</h4>
+        <ul>
+          <li><a href="{% url 'quem_somos' %}">Quem somos</a></li>
+          <li><a href="{% url 'allergen_free' %}">Allergen Free</a></li>
+          <li><a href="{% url 'clinical_care' %}">Mase Clinical Care</a></li>
+          <li><a href="{% url 'cdmo' %}">Mase CDMO</a></li>
+          <li><a href="{% url 'science' %}">Mase Science</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Minha conta</h4>
+        <ul>
+          <li><a href="{% if user.is_authenticated %}{% url 'minha_conta' %}{% else %}{% url 'entrada' %}{% endif %}">Minha conta e pedidos</a></li>
+          <li><a href="{% url 'mase_continua' %}">Programa Mase Contínua</a></li>
+          <li><a href="{% url 'parceiro_cadastro' %}">Login profissionais</a></li>
+          <li><a href="{% url 'loja' %}">Loja</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Atendimento</h4>
+        <ul>
+          <li><a href="{% url 'onde_encontrar' %}">Onde encontrar</a></li>
+          <li><a href="{% url 'contato' %}">Trocas e devoluções</a></li>
+          <li><a href="{% url 'contato' %}">Perguntas frequentes</a></li>
+          <li><a href="{% url 'contato' %}">Política de privacidade</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>SAC</h4>
+        <ul>
+          <li>contato@masenutrition.com.br</li>
+          <li>(11) 99999-9999</li>
+          <li><a href="https://wa.me/{{ WHATSAPP_NUMBER }}" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li>Segunda a sexta, 9h às 18h</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-pay">
+      <span>Pagamento</span>
+      <span class="pay-badge">Pix</span>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Mase Nutrition. Todos os direitos reservados.</span>
+      <span>CNPJ 00.000.000/0001-00</span>
+    </div>
+  </div>
+</footer>
+
+<script src="{% static 'script.js' %}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Allergen Free — Mase Nutrition{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Allergen Free</span>
+    <h1>Allergen Free não é apenas uma característica.</h1>
+    <p class="lede" style="font-family:var(--font-display);font-size:clamp(1.5rem,2.6vw,2.2rem);color:var(--ink);line-height:1.25;">É uma plataforma de segurança.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="chain">
+      <div class="chain-item" data-reveal><div class="num">01</div><div><h3>Seleção de fornecedores</h3><p>Critérios técnicos para escolher e aprovar quem fornece à Mase.</p></div></div>
+      <div class="chain-item" data-reveal><div class="num">02</div><div><h3>Qualificação de matérias-primas</h3><p>Avaliação da composição e do risco de alergênicos de cada matéria-prima.</p></div></div>
+      <div class="chain-item" data-reveal><div class="num">03</div><div><h3>Controle de recebimento</h3><p>Verificação e liberação dos materiais na chegada à fábrica.</p></div></div>
+      <div class="chain-item" data-reveal><div class="num">04</div><div><h3>Processos produtivos controlados</h3><p>Etapas de produção definidas, monitoradas e registradas.</p></div></div>
+      <div class="chain-item" data-reveal><div class="num">05</div><div><h3>Prevenção de contaminação cruzada</h3><p>Medidas para evitar o contato com alergênicos ao longo de todo o processo.</p></div></div>
+      <div class="chain-item" data-reveal><div class="num">06</div><div><h3>Controle de qualidade</h3><p>Critérios de análise e liberação aplicados a cada lote.</p></div></div>
+      <div class="chain-item" data-reveal><div class="num">07</div><div><h3>Rastreabilidade</h3><p>Registro do caminho de cada ingrediente até o produto final.</p></div></div>
+      <div class="chain-item final" data-reveal><div class="num">08</div><div><h3>Produto final</h3><p>Nutrição especializada com a segurança Allergen Free como plataforma.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Uma plataforma, duas unidades</span>
+      <h2 class="title-lg">A mesma segurança em toda a Mase</h2>
+    </div>
+    <div class="hero-actions" style="display:flex;gap:14px;flex-wrap:wrap;">
+      <a class="btn btn-primary" href="{% url 'clinical_care' %}">Mase Clinical Care</a>
+      <a class="btn btn-outline" href="{% url 'cdmo' %}">Mase CDMO</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

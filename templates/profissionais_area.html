@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Área do profissional — Mase Nutrition{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Área exclusiva</span>
+    <h1>Área do profissional de saúde</h1>
+    <p class="lede">Conteúdo técnico destinado exclusivamente a profissionais de saúde cadastrados.</p>
+    <a class="btn btn-outline btn-sm" href="{% url 'parceiro_painel' %}">Meus cupons e vendas</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {% if not liberado %}
+    <div class="notice">
+      <h2>{% if parceiro.status == 'pendente' %}Cadastro em análise{% else %}Acesso não liberado{% endif %}</h2>
+      <p>{% if parceiro.status == 'pendente' %}Estamos conferindo o seu registro profissional. Assim que for aprovado, os materiais aparecem aqui.{% else %}O seu cadastro não foi aprovado. Se acha que houve engano, fale com a gente.{% endif %}</p>
+      <a class="btn btn-outline btn-sm" href="{% url 'contato' %}?assunto=profissional">Falar com a equipe</a>
+    </div>
+    {% else %}
+      {% for rotulo, itens in grupos %}
+      <div class="grupo-material" data-reveal>
+        <h2>{{ rotulo }}</h2>
+        {% for m in itens %}
+        <div class="material">
+          <div>
+            <h3>{{ m.titulo }}</h3>
+            {% if m.descricao %}<p>{{ m.descricao }}</p>{% endif %}
+          </div>
+          <a class="btn btn-outline btn-sm" href="{% url 'material_abrir' m.pk %}"{% if m.link and not m.arquivo %} target="_blank" rel="noopener"{% endif %}>{% if m.arquivo %}Abrir{% else %}Acessar{% endif %}</a>
+        </div>
+        {% endfor %}
+      </div>
+      {% empty %}
+      <div class="notice">
+        <h2>Materiais em preparação</h2>
+        <p>Assim que os primeiros materiais forem publicados, eles aparecem aqui. Para falar com a área científica, use o contato.</p>
+        <a class="btn btn-outline btn-sm" href="{% url 'contato' %}?assunto=profissional">Contato com a área científica</a>
+      </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
