@@ -37,30 +37,16 @@ document.addEventListener("DOMContentLoaded", () => {
   aoRolar();
   window.addEventListener("scroll", aoRolar, { passive: true });
 
-  // revelar blocos marcados com data-reveal ao entrar na tela (com pequeno escalonamento entre irmãos)
-  const alvos = document.querySelectorAll("[data-reveal]");
-  const contagem = new Map();
-  alvos.forEach((el) => {
-    const n = contagem.get(el.parentElement) || 0;
-    contagem.set(el.parentElement, n + 1);
-    el.style.setProperty("--d", Math.min(n, 6) * 70 + "ms");
-  });
-  if ("IntersectionObserver" in window) {
-    const obs = new IntersectionObserver(
-      (entradas) => {
-        entradas.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("in");
-            obs.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -30px 0px" }
-    );
-    alvos.forEach((el) => obs.observe(el));
-  } else {
-    alvos.forEach((el) => el.classList.add("in"));
-  }
+// revelar blocos marcados com data-reveal
+const alvos = document.querySelectorAll("[data-reveal]");
+const contagem = new Map();
+
+alvos.forEach((el) => {
+  const n = contagem.get(el.parentElement) || 0;
+  contagem.set(el.parentElement, n + 1);
+  el.style.setProperty("--d", Math.min(n, 6) * 70 + "ms");
+  el.classList.add("in");
+});
 
   // número do carrinho pulsa quando aumenta
   const badge = document.querySelector(".cart-count");

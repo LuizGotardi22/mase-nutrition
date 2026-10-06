@@ -11,3 +11,5 @@ data/
 .env.local
 backup_dados.json
 db.sqlite3.backup
+
+backup_dados_corrigido.json
