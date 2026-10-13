@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Mase Science — Mase Nutrition{% endblock %}
+{% block title %}Mase Nutrition Science — Mase Nutrition{% endblock %}
 {% block content %}
 <section class="page-hero">
   <div class="container">
@@ -11,11 +11,6 @@
 
 <section class="section">
   <div class="container">
-    <div class="cat-tabs">
-      <a class="tab{% if not cat %} active{% endif %}" href="{% url 'science' %}">Todos</a>
-      {% for valor, nome in categorias %}<a class="tab{% if cat == valor %} active{% endif %}" href="{% url 'science' %}?cat={{ valor }}">{{ nome }}</a>{% endfor %}
-    </div>
-
     <div class="artigos">
       {% for a in artigos %}
       <a class="artigo-card" href="{{ a.get_absolute_url }}" data-reveal>
