@@ -58,7 +58,7 @@
       <div class="continua-box">
         {% include "_check.html" with campo=form.assinar %}
         {% include "_campo.html" with campo=form.frequencia %}
-        <p class="fine">Programa Mase Contínua: entrega programada com {{ CONTINUA_BENEFICIO|floatformat:"-2" }}% de benefício nos produtos, mantendo o cupom do profissional de saúde. Você pode pausar ou cancelar em Minha conta. <a class="ask-link" href="{% url 'mase_continua' %}" target="_blank" rel="noopener">Saiba mais</a></p>
+        <p class="fine">Programa Mase Nutrition Contínua: entrega programada com {{ CONTINUA_BENEFICIO|floatformat:"-2" }}% de benefício nos produtos, mantendo o cupom do profissional de saúde. Você pode pausar ou cancelar em Minha conta. <a class="ask-link" href="{% url 'mase_continua' %}" target="_blank" rel="noopener">Saiba mais</a></p>
       </div>
       {% endif %}
 
@@ -73,7 +73,7 @@
       {% endfor %}
       <div class="row"><span>Subtotal</span><span class="val">{{ subtotal|brl }}</span></div>
       {% if cupom %}<div class="row desc"><span>Cupom {{ cupom.codigo }}</span><span class="val">− {{ desconto|brl }}</span></div>{% endif %}
-      <div class="row desc" id="linha-continua"{% if not querendo %} hidden{% endif %}><span>Mase Contínua</span><span class="val">− {{ beneficio_previsto|brl }}</span></div>
+      <div class="row desc" id="linha-continua"{% if not querendo %} hidden{% endif %}><span>Mase Nutrition Contínua</span><span class="val">− {{ beneficio_previsto|brl }}</span></div>
       <div class="row"><span id="frete-nome">{% if frete.pendente %}Frete{% elif frete.nome == 'Frete grátis' %}Frete grátis{% else %}Frete ({{ frete.nome }}{% if frete.prazo %} · {{ frete.prazo }}{% endif %}){% endif %}</span><span class="val" id="frete-valor">{% if frete.pendente %}informe o CEP{% else %}{{ frete.valor|brl }}{% endif %}</span></div>
       <div class="row total"><span>Total</span><span class="val" id="total-valor" data-sem-frete="{{ base_sem_frete|unlocalize }}" data-frete="{{ frete.valor|unlocalize }}" data-beneficio="{{ beneficio_previsto|unlocalize }}">{{ total|brl }}</span></div>
       {% if cupom %}

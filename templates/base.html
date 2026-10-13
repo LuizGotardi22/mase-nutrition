@@ -52,7 +52,7 @@
         <a href="{% url 'cdmo' %}"{% if n == 'cdmo' or n == 'cdmo_proposta' %} class="ativo"{% endif %}>CDMO</a>
         <a href="{% url 'allergen_free' %}"{% if n == 'allergen_free' %} class="ativo"{% endif %}>Allergen Free</a>
         <a href="{% url 'profissionais' %}"{% if n == 'profissionais' or n == 'profissionais_area' or n == 'parceiro_cadastro' or n == 'parceiro_painel' %} class="ativo"{% endif %}>Profissionais de saúde</a>
-        <a href="{% url 'science' %}"{% if n == 'science' or n == 'science_artigo' %} class="ativo"{% endif %}>Mase Science</a>
+        <a href="{% url 'science' %}"{% if n == 'science' or n == 'science_artigo' %} class="ativo"{% endif %}>Mase Nutrition Science</a>
         <a href="{% url 'onde_encontrar' %}"{% if n == 'onde_encontrar' %} class="ativo"{% endif %}>Onde comprar</a>
         <a href="{% url 'loja' %}"{% if n == 'loja' or n == 'produto' or n == 'carrinho' or n == 'checkout' or n == 'mase_continua' %} class="ativo"{% endif %}>Loja</a>
         <a href="{% url 'contato' %}" class="nav-cta">Fale conosco</a>
@@ -85,16 +85,16 @@
         <ul>
           <li><a href="{% url 'quem_somos' %}">Quem somos</a></li>
           <li><a href="{% url 'allergen_free' %}">Allergen Free</a></li>
-          <li><a href="{% url 'clinical_care' %}">Mase Clinical Care</a></li>
-          <li><a href="{% url 'cdmo' %}">Mase CDMO</a></li>
-          <li><a href="{% url 'science' %}">Mase Science</a></li>
+          <li><a href="{% url 'clinical_care' %}">Mase Nutrition Clinical Care</a></li>
+          <li><a href="{% url 'cdmo' %}">Mase Nutrition CDMO</a></li>
+          <li><a href="{% url 'science' %}">Mase Nutrition Science</a></li>
         </ul>
       </div>
       <div>
         <h4>Minha conta</h4>
         <ul>
           <li><a href="{% if user.is_authenticated %}{% url 'minha_conta' %}{% else %}{% url 'entrada' %}{% endif %}">Minha conta e pedidos</a></li>
-          <li><a href="{% url 'mase_continua' %}">Programa Mase Contínua</a></li>
+          <li><a href="{% url 'mase_continua' %}">Programa Mase Nutrition Contínua</a></li>
           <li><a href="{% url 'parceiro_cadastro' %}">Login profissionais</a></li>
           <li><a href="{% url 'loja' %}">Loja</a></li>
         </ul>

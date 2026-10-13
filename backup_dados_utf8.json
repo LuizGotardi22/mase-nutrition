@@ -1,0 +1,969 @@
+[
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "!pAQCX8g34LFtcJB7MSyDtQzZWeL95nMMNd4zyYEu",
+    "last_login": "2026-10-01T02:40:17.258Z",
+    "is_superuser": false,
+    "username": "luiz@gmail.com",
+    "first_name": "Jose",
+    "last_name": "Luiz",
+    "email": "luiz@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-10-01T02:40:17.226Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "loja.linha",
+  "pk": 1,
+  "fields": {
+    "slug": "neurocare",
+    "nome": "Neurocare",
+    "foco": "NutriþÒo especializada para necessidades neurol¾gicas.",
+    "descricao": "A linha Neurocare re·ne f¾rmulas pensadas para pacientes com necessidades neurol¾gicas, como disfagia e demandas especÝficas de consistÛncia e densidade cal¾rica. Desenvolvida com rigoroso controle de alergÛnicos e composiþÒo adequada ao acompanhamento nutricional desses pacientes.",
+    "status": "lancada",
+    "ordem": 0,
+    "ativa": true
+  }
+},
+{
+  "model": "loja.linha",
+  "pk": 2,
+  "fields": {
+    "slug": "immunocare",
+    "nome": "Immunocare",
+    "foco": "NutriþÒo especializada para necessidades imunol¾gicas.",
+    "descricao": "A linha Immunocare foi desenvolvida para apoiar pacientes com alergias e intolerÔncias alimentares, com f¾rmulas isentas dos alergÛnicos mais comuns e voltadas ao suporte nutricional em quadros de restriþÒo imunol¾gica, sempre sob a plataforma de seguranþa Allergen Free.",
+    "status": "lancada",
+    "ordem": 1,
+    "ativa": true
+  }
+},
+{
+  "model": "loja.linha",
+  "pk": 3,
+  "fields": {
+    "slug": "oncocare",
+    "nome": "Oncocare",
+    "foco": "NutriþÒo especializada para pacientes oncol¾gicos.",
+    "descricao": "A linha Oncocare atende Ós necessidades nutricionais de pacientes em tratamento oncol¾gico, com f¾rmulas hipercal¾ricas e hiperproteicas voltadas Ó manutenþÒo de peso e massa muscular durante o tratamento, desenvolvidas em conjunto com a equipe de nutriþÒo clÝnica.",
+    "status": "lancada",
+    "ordem": 2,
+    "ativa": true
+  }
+},
+{
+  "model": "loja.linha",
+  "pk": 4,
+  "fields": {
+    "slug": "bariacare",
+    "nome": "Bariacare",
+    "foco": "NutriþÒo especializada para o paciente barißtrico.",
+    "descricao": "A linha Bariacare acompanha o paciente barißtrico nas diferentes fases do p¾s-operat¾rio, com f¾rmulas de alta densidade proteica e baixo volume, adequadas Ós restriþ§es digestivas tÝpicas dessa fase de tratamento.",
+    "status": "lancada",
+    "ordem": 3,
+    "ativa": true
+  }
+},
+{
+  "model": "loja.linha",
+  "pk": 5,
+  "fields": {
+    "slug": "metabolicare",
+    "nome": "Metabolicare",
+    "foco": "NutriþÒo especializada para necessidades metab¾licas.",
+    "descricao": "A linha Metabolicare foi desenvolvida para necessidades metab¾licas especÝficas, como diabetes e sÝndrome metab¾lica, com controle de carga glicÛmica e perfil nutricional adequado ao acompanhamento desses pacientes.",
+    "status": "lancada",
+    "ordem": 4,
+    "ativa": true
+  }
+},
+{
+  "model": "loja.linha",
+  "pk": 6,
+  "fields": {
+    "slug": "seniorcare",
+    "nome": "Seniorcare",
+    "foco": "NutriþÒo especializada para a longevidade.",
+    "descricao": "A linha Seniorcare foi criada para apoiar a nutriþÒo do paciente idoso, com foco na prevenþÒo e no manejo da sarcopenia, oferecendo alta densidade proteica em porþ§es reduzidas, mais fßceis de consumir por quem tem baixo apetite.",
+    "status": "lancada",
+    "ordem": 5,
+    "ativa": true
+  }
+},
+{
+  "model": "loja.produto",
+  "pk": 1,
+  "fields": {
+    "slug": "neurocare-espessante",
+    "nome": "Espessante Alimentar Neurocare",
+    "sabor": "300g À Sem sabor",
+    "tipo": "produto",
+    "linha": 1,
+    "categoria": "",
+    "objetivo": "Disfagia",
+    "descricao": "Espessante instantÔneo para ajuste de consistÛncia de lÝquidos e alimentos em pacientes com disfagia, sem alterar o sabor.",
+    "selos": "Sem lactose, Sem gl·ten",
+    "composicao": "Amido modificado de milho, goma xantana.",
+    "apresentacao": "Pote de 300g, com colher medidora.",
+    "modo_uso": "Adicione aos poucos atÚ atingir a consistÛncia recomendada pelo profissional de sa·de (nÚctar, mel ou pudim). Misture bem e aguarde 1 a 2 minutos.",
+    "informacao_nutricional": "",
+    "ingredientes": "",
+    "alergenicos": "NÒo contÚm lactose nem gl·ten.",
+    "diferenciais": "NÒo altera cor nem sabor do alimento. Dilui sem formar grumos.",
+    "perguntas": "",
+    "preco": "79.90",
+    "estoque": 15,
+    "permite_assinatura": true,
+    "peso_kg": "0.300",
+    "largura_cm": 9,
+    "altura_cm": 12,
+    "comprimento_cm": 9,
+    "cor1": "#0D2356",
+    "cor2": "#1B4A9C",
+    "ativo": true,
+    "ordem": 0
+  }
+},
+{
+  "model": "loja.produto",
+  "pk": 2,
+  "fields": {
+    "slug": "immunocare-formula-livre",
+    "nome": "Immunocare F¾rmula Livre",
+    "sabor": "Baunilha À 400g",
+    "tipo": "produto",
+    "linha": 2,
+    "categoria": "",
+    "objetivo": "Alergia alimentar",
+    "descricao": "F¾rmula nutricional isenta dos alergÛnicos mais comuns, para suporte nutricional em quadros de restriþÒo imunol¾gica e alergia alimentar m·ltipla.",
+    "selos": "Sem lactose, Sem gl·ten, Sem soja, Sem ovo",
+    "composicao": "ProteÝna isolada de ervilha, maltodextrina, ¾leos vegetais, vitaminas e minerais.",
+    "apresentacao": "Lata de 400g.",
+    "modo_uso": "Diluir conforme orientaþÒo do profissional de sa·de. Uso sob acompanhamento nutricional.",
+    "informacao_nutricional": "",
+    "ingredientes": "",
+    "alergenicos": "Formulado sem os alergÛnicos alimentares mais comuns (leite, gl·ten, soja, ovo).",
+    "diferenciais": "Cada lote Ú testado em laborat¾rio terceirizado antes da liberaþÒo.",
+    "perguntas": "",
+    "preco": "129.90",
+    "estoque": 15,
+    "permite_assinatura": true,
+    "peso_kg": "0.400",
+    "largura_cm": 10,
+    "altura_cm": 15,
+    "comprimento_cm": 10,
+    "cor1": "#12306F",
+    "cor2": "#2F6FBF",
+    "ativo": true,
+    "ordem": 1
+  }
+},
+{
+  "model": "loja.produto",
+  "pk": 3,
+  "fields": {
+    "slug": "oncocare-hiperproteico",
+    "nome": "Oncocare Hiperproteico",
+    "sabor": "Baunilha À 380g",
+    "tipo": "produto",
+    "linha": 3,
+    "categoria": "",
+    "objetivo": "Suporte oncol¾gico",
+    "descricao": "F¾rmula hipercal¾rica e hiperproteica para suporte nutricional durante o tratamento oncol¾gico, voltada Ó manutenþÒo de peso e massa muscular.",
+    "selos": "Sem lactose, Sem gl·ten",
+    "composicao": "ProteÝna isolada, maltodextrina, ¾leos vegetais (TCM), vitaminas e minerais.",
+    "apresentacao": "Lata de 380g.",
+    "modo_uso": "Uso conforme orientaþÒo do profissional de sa·de responsßvel pelo acompanhamento oncol¾gico.",
+    "informacao_nutricional": "",
+    "ingredientes": "",
+    "alergenicos": "Sem lactose e sem gl·ten.",
+    "diferenciais": "Alta densidade cal¾rica em baixo volume, para menor esforþo na ingestÒo.",
+    "perguntas": "",
+    "preco": "139.90",
+    "estoque": 15,
+    "permite_assinatura": true,
+    "peso_kg": "0.380",
+    "largura_cm": 10,
+    "altura_cm": 15,
+    "comprimento_cm": 10,
+    "cor1": "#0D2356",
+    "cor2": "#24508F",
+    "ativo": true,
+    "ordem": 2
+  }
+},
+{
+  "model": "loja.produto",
+  "pk": 4,
+  "fields": {
+    "slug": "bariacare-proteina",
+    "nome": "Bariacare ProteÝna Concentrada",
+    "sabor": "Neutro À 300g",
+    "tipo": "produto",
+    "linha": 4,
+    "categoria": "",
+    "objetivo": "P¾s-barißtrica",
+    "descricao": "ProteÝna concentrada de baixo volume para as diferentes fases do p¾s-operat¾rio barißtrico, adequada Ós restriþ§es digestivas desse perÝodo.",
+    "selos": "Sem lactose, Sem gl·ten, Baixo volume",
+    "composicao": "ProteÝna isolada do soro do leite (whey isolado) ou blend vegetal, conforme apresentaþÒo.",
+    "apresentacao": "Pote de 300g, com colher medidora.",
+    "modo_uso": "Diluir 1 dose em ßgua ou lÝquido de preferÛncia, conforme orientaþÒo nutricional da fase p¾s-cir·rgica.",
+    "informacao_nutricional": "",
+    "ingredientes": "",
+    "alergenicos": "Sem gl·ten. Confira a apresentaþÒo para presenþa de derivados do leite.",
+    "diferenciais": "Alta concentraþÒo proteica em pequeno volume, adequada Ó capacidade gßstrica reduzida.",
+    "perguntas": "",
+    "preco": "119.90",
+    "estoque": 15,
+    "permite_assinatura": true,
+    "peso_kg": "0.300",
+    "largura_cm": 9,
+    "altura_cm": 13,
+    "comprimento_cm": 9,
+    "cor1": "#12306F",
+    "cor2": "#1B4A9C",
+    "ativo": true,
+    "ordem": 3
+  }
+},
+{
+  "model": "loja.produto",
+  "pk": 5,
+  "fields": {
+    "slug": "metabolicare-diabetes",
+    "nome": "Metabolicare Controle GlicÛmico",
+    "sabor": "Chocolate À 380g",
+    "tipo": "produto",
+    "linha": 5,
+    "categoria": "",
+    "objetivo": "Diabetes / sÝndrome metab¾lica",
+    "descricao": "F¾rmula nutricional com controle de carga glicÛmica, desenvolvida para pacientes com diabetes e sÝndrome metab¾lica.",
+    "selos": "Sem lactose, Sem gl·ten, Baixo Ýndice glicÛmico",
+    "composicao": "Carboidratos de absorþÒo lenta, proteÝna isolada, fibras, vitaminas e minerais.",
+    "apresentacao": "Lata de 380g.",
+    "modo_uso": "Uso conforme orientaþÒo do profissional de sa·de, considerando o plano alimentar individual.",
+    "informacao_nutricional": "",
+    "ingredientes": "",
+    "alergenicos": "Sem lactose e sem gl·ten.",
+    "diferenciais": "Perfil de carboidratos formulado para menor impacto glicÛmico.",
+    "perguntas": "",
+    "preco": "134.90",
+    "estoque": 15,
+    "permite_assinatura": true,
+    "peso_kg": "0.380",
+    "largura_cm": 10,
+    "altura_cm": 15,
+    "comprimento_cm": 10,
+    "cor1": "#0D2356",
+    "cor2": "#2F6FBF",
+    "ativo": true,
+    "ordem": 4
+  }
+},
+{
+  "model": "loja.produto",
+  "pk": 6,
+  "fields": {
+    "slug": "seniorcare-antissarcopenia",
+    "nome": "Seniorcare ProteÝna SÛnior",
+    "sabor": "Baunilha À 350g",
+    "tipo": "produto",
+    "linha": 6,
+    "categoria": "",
+    "objetivo": "PrevenþÒo da sarcopenia",
+    "descricao": "F¾rmula com alta densidade proteica em porþ§es reduzidas, desenvolvida para apoiar a prevenþÒo e o manejo da sarcopenia em pacientes idosos com baixo apetite.",
+    "selos": "Sem lactose, Sem gl·ten, Alta proteÝna",
+    "composicao": "ProteÝna isolada, leucina, vitamina D, cßlcio.",
+    "apresentacao": "Pote de 350g, com colher medidora.",
+    "modo_uso": "Diluir 1 dose em ßgua, suco ou outro lÝquido de preferÛncia, entre as refeiþ§es.",
+    "informacao_nutricional": "",
+    "ingredientes": "",
+    "alergenicos": "Sem lactose e sem gl·ten.",
+    "diferenciais": "Enriquecido com leucina e vitamina D para apoio Ó massa muscular.",
+    "perguntas": "",
+    "preco": "124.90",
+    "estoque": 15,
+    "permite_assinatura": true,
+    "peso_kg": "0.350",
+    "largura_cm": 9,
+    "altura_cm": 14,
+    "comprimento_cm": 9,
+    "cor1": "#12306F",
+    "cor2": "#24508F",
+    "ativo": true,
+    "ordem": 5
+  }
+},
+{
+  "model": "loja.produto",
+  "pk": 7,
+  "fields": {
+    "slug": "whey-iso-baunilha",
+    "nome": "Whey Isolado Zero Lactose",
+    "sabor": "Baunilha",
+    "tipo": "produto",
+    "linha": null,
+    "categoria": "whey",
+    "objetivo": "",
+    "descricao": "Whey protein isolado com processo de filtraþÒo que remove praticamente toda a lactose ù feito para quem sente desconforto com whey comum.",
+    "selos": "Sem lactose, Sem gl·ten",
+    "composicao": "",
+    "apresentacao": "",
+    "modo_uso": "",
+    "informacao_nutricional": "",
+    "ingredientes": "",
+    "alergenicos": "Formulado sem lactose, sem gl·ten.",
+    "diferenciais": "",
+    "perguntas": "",
+    "preco": "149.90",
+    "estoque": 20,
+    "permite_assinatura": true,
+    "peso_kg": "0.950",
+    "largura_cm": 12,
+    "altura_cm": 20,
+    "comprimento_cm": 12,
+    "cor1": "#0D2356",
+    "cor2": "#1B4A9C",
+    "ativo": true,
+    "ordem": 6
+  }
+},
+{
+  "model": "loja.produto",
+  "pk": 8,
+  "fields": {
+    "slug": "whey-iso-chocolate",
+    "nome": "Whey Isolado Zero Lactose",
+    "sabor": "Chocolate",
+    "tipo": "produto",
+    "linha": null,
+    "categoria": "whey",
+    "objetivo": "",
+    "descricao": "Mesma f¾rmula do isolado zero lactose, no sabor chocolate. 25g de proteÝna por dose, sem adiþÒo de corantes artificiais.",
+    "selos": "Sem lactose, Sem gl·ten",
+    "composicao": "",
+    "apresentacao": "",
+    "modo_uso": "",
+    "informacao_nutricional": "",
+    "ingredientes": "",
+    "alergenicos": "Formulado sem lactose, sem gl·ten.",
+    "diferenciais": "",
+    "perguntas": "",
+    "preco": "149.90",
+    "estoque": 20,
+    "permite_assinatura": true,
+    "peso_kg": "0.950",
+    "largura_cm": 12,
+    "altura_cm": 20,
+    "comprimento_cm": 12,
+    "cor1": "#0D2356",
+    "cor2": "#1B4A9C",
+    "ativo": true,
+    "ordem": 7
+  }
+},
+{
+  "model": "loja.produto",
+  "pk": 9,
+  "fields": {
+    "slug": "whey-vegano-neutro",
+    "nome": "Whey Vegano Ervilha + Arroz",
+    "sabor": "Sabor Neutro",
+    "tipo": "produto",
+    "linha": null,
+    "categoria": "whey",
+    "objetivo": "",
+    "descricao": "Blend de proteÝna de ervilha e arroz para quem tem restriþÒo a soja e derivados do leite. Perfil de aminoßcidos completo.",
+    "selos": "Sem soja, Sem lactose, Vegano",
+    "composicao": "",
+    "apresentacao": "",
+    "modo_uso": "",
+    "informacao_nutricional": "",
+    "ingredientes": "",
+    "alergenicos": "Formulado sem soja, sem lactose, vegano.",
+    "diferenciais": "",
+    "perguntas": "",
+    "preco": "139.90",
+    "estoque": 20,
+    "permite_assinatura": true,
+    "peso_kg": "0.950",
+    "largura_cm": 12,
+    "altura_cm": 20,
+    "comprimento_cm": 12,
+    "cor1": "#12306F",
+    "cor2": "#2F6FBF",
+    "ativo": true,
+    "ordem": 8
+  }
+},
+{
+  "model": "loja.produto",
+  "pk": 10,
+  "fields": {
+    "slug": "creatina-pura",
+    "nome": "Creatina Monohidratada Pura",
+    "sabor": "300g À Sem sabor",
+    "tipo": "produto",
+    "linha": null,
+    "categoria": "creatina",
+    "objetivo": "",
+    "descricao": "Creatina monohidratada micronizada, sem misturas nem excipientes ù s¾ o ativo, testado em laborat¾rio terceirizado.",
+    "selos": "Ingrediente ·nico, Sem aditivos",
+    "composicao": "",
+    "apresentacao": "",
+    "modo_uso": "",
+    "informacao_nutricional": "",
+    "ingredientes": "",
+    "alergenicos": "Formulado ingrediente ·nico, sem aditivos.",
+    "diferenciais": "",
+    "perguntas": "",
+    "preco": "89.90",
+    "estoque": 20,
+    "permite_assinatura": true,
+    "peso_kg": "0.400",
+    "largura_cm": 10,
+    "altura_cm": 14,
+    "comprimento_cm": 10,
+    "cor1": "#0D2356",
+    "cor2": "#24508F",
+    "ativo": true,
+    "ordem": 9
+  }
+},
+{
+  "model": "loja.produto",
+  "pk": 11,
+  "fields": {
+    "slug": "creatina-capsulas",
+    "nome": "Creatina em Cßpsulas",
+    "sabor": "120 cßpsulas",
+    "tipo": "produto",
+    "linha": null,
+    "categoria": "creatina",
+    "objetivo": "",
+    "descricao": "Mesma creatina monohidratada pura, encapsulada sem corantes ou conservantes ù prßtica para quem viaja ou treina fora de casa.",
+    "selos": "Sem corantes, Fßcil de viajar",
+    "composicao": "",
+    "apresentacao": "",
+    "modo_uso": "",
+    "informacao_nutricional": "",
+    "ingredientes": "",
+    "alergenicos": "Formulado sem corantes, fßcil de viajar.",
+    "diferenciais": "",
+    "perguntas": "",
+    "preco": "99.90",
+    "estoque": 20,
+    "permite_assinatura": true,
+    "peso_kg": "0.200",
+    "largura_cm": 8,
+    "altura_cm": 12,
+    "comprimento_cm": 8,
+    "cor1": "#12306F",
+    "cor2": "#2F6FBF",
+    "ativo": true,
+    "ordem": 10
+  }
+},
+{
+  "model": "loja.produto",
+  "pk": 12,
+  "fields": {
+    "slug": "colageno-neutro",
+    "nome": "Colßgeno Hidrolisado",
+    "sabor": "Sabor Neutro",
+    "tipo": "produto",
+    "linha": null,
+    "categoria": "colageno",
+    "objetivo": "",
+    "descricao": "PeptÝdeos de colßgeno hidrolisado, sol·veis a frio, sem sabor residual. Livre de gl·ten e lactose.",
+    "selos": "Sem gl·ten, Sem lactose",
+    "composicao": "",
+    "apresentacao": "",
+    "modo_uso": "",
+    "informacao_nutricional": "",
+    "ingredientes": "",
+    "alergenicos": "Formulado sem gl·ten, sem lactose.",
+    "diferenciais": "",
+    "perguntas": "",
+    "preco": "79.90",
+    "estoque": 20,
+    "permite_assinatura": true,
+    "peso_kg": "0.450",
+    "largura_cm": 10,
+    "altura_cm": 16,
+    "comprimento_cm": 10,
+    "cor1": "#0D2356",
+    "cor2": "#1B4A9C",
+    "ativo": true,
+    "ordem": 11
+  }
+},
+{
+  "model": "loja.produto",
+  "pk": 13,
+  "fields": {
+    "slug": "multivitaminico",
+    "nome": "MultivitamÝnico Dißrio",
+    "sabor": "60 cßpsulas",
+    "tipo": "produto",
+    "linha": null,
+    "categoria": "colageno",
+    "objetivo": "",
+    "descricao": "CombinaþÒo de vitaminas e minerais essenciais, formulada sem corantes artificiais para quem tem sensibilidade a aditivos.",
+    "selos": "Sem corantes artificiais, Sem gl·ten",
+    "composicao": "",
+    "apresentacao": "",
+    "modo_uso": "",
+    "informacao_nutricional": "",
+    "ingredientes": "",
+    "alergenicos": "Formulado sem corantes artificiais, sem gl·ten.",
+    "diferenciais": "",
+    "perguntas": "",
+    "preco": "69.90",
+    "estoque": 20,
+    "permite_assinatura": true,
+    "peso_kg": "0.150",
+    "largura_cm": 7,
+    "altura_cm": 11,
+    "comprimento_cm": 7,
+    "cor1": "#12306F",
+    "cor2": "#2F6FBF",
+    "ativo": true,
+    "ordem": 12
+  }
+},
+{
+  "model": "loja.produto",
+  "pk": 14,
+  "fields": {
+    "slug": "bcaa-limao",
+    "nome": "BCAA 2:1:1",
+    "sabor": "LimÒo",
+    "tipo": "produto",
+    "linha": null,
+    "categoria": "outros",
+    "objetivo": "",
+    "descricao": "Aminoßcidos de cadeia ramificada na proporþÒo 2:1:1, adoþado com estÚvia, sem derivados de soja na f¾rmula.",
+    "selos": "Sem soja, Sem corantes",
+    "composicao": "",
+    "apresentacao": "",
+    "modo_uso": "",
+    "informacao_nutricional": "",
+    "ingredientes": "",
+    "alergenicos": "Formulado sem soja, sem corantes.",
+    "diferenciais": "",
+    "perguntas": "",
+    "preco": "74.90",
+    "estoque": 20,
+    "permite_assinatura": true,
+    "peso_kg": "0.350",
+    "largura_cm": 10,
+    "altura_cm": 14,
+    "comprimento_cm": 10,
+    "cor1": "#0D2356",
+    "cor2": "#24508F",
+    "ativo": true,
+    "ordem": 13
+  }
+},
+{
+  "model": "loja.produto",
+  "pk": 15,
+  "fields": {
+    "slug": "barra-proteica",
+    "nome": "Barra Proteica",
+    "sabor": "Caixa com 12 un.",
+    "tipo": "produto",
+    "linha": null,
+    "categoria": "outros",
+    "objetivo": "",
+    "descricao": "Barra de 20g de proteÝna, sem gl·ten e sem lactose, adoþada naturalmente ù boa opþÒo de lanche p¾s-treino.",
+    "selos": "Sem gl·ten, Sem lactose",
+    "composicao": "",
+    "apresentacao": "",
+    "modo_uso": "",
+    "informacao_nutricional": "",
+    "ingredientes": "",
+    "alergenicos": "Formulado sem gl·ten, sem lactose.",
+    "diferenciais": "",
+    "perguntas": "",
+    "preco": "89.90",
+    "estoque": 20,
+    "permite_assinatura": true,
+    "peso_kg": "0.350",
+    "largura_cm": 20,
+    "altura_cm": 8,
+    "comprimento_cm": 15,
+    "cor1": "#12306F",
+    "cor2": "#1B4A9C",
+    "ativo": true,
+    "ordem": 14
+  }
+},
+{
+  "model": "loja.pedido",
+  "pk": 1,
+  "fields": {
+    "codigo": "96b0b581-da33-410e-9e22-eb29795ada2e",
+    "usuario": [
+      "luiz@gmail.com"
+    ],
+    "status": "aguardando",
+    "forma_pagamento": "cartao",
+    "nome": "Jose Luiz",
+    "email": "luiz@gmail.com",
+    "cpf": "16419471877",
+    "telefone": "11996786370",
+    "cep": "01546040",
+    "rua": "Rua Laurindo Rabelo",
+    "numero": "171",
+    "complemento": "",
+    "bairro": "Jardim da Gl¾ria",
+    "cidade": "SÒo Paulo",
+    "uf": "SP",
+    "subtotal": "299.80",
+    "cupom": null,
+    "cupom_codigo": "",
+    "desconto": "0.00",
+    "desconto_continua": "0.00",
+    "assinatura": null,
+    "comissao_percentual": "0.00",
+    "comissao_valor": "0.00",
+    "frete": "14.90",
+    "frete_nome": "Entrega para SP À 3 dias ·teis",
+    "total": "314.70",
+    "mp_payment_id": "",
+    "pix_copia_cola": "",
+    "pix_qr_base64": "",
+    "pix_expira_em": null,
+    "parcelas": 1,
+    "cartao_final": "",
+    "cartao_bandeira": "",
+    "tentativas": 0,
+    "codigo_rastreio": "",
+    "criado_em": "2026-10-01T02:40:36.317Z",
+    "pago_em": null
+  }
+},
+{
+  "model": "loja.itempedido",
+  "pk": 1,
+  "fields": {
+    "pedido": 1,
+    "produto": 7,
+    "nome": "Whey Isolado Zero Lactose ù Baunilha",
+    "preco_unitario": "149.90",
+    "quantidade": 2
+  }
+},
+{
+  "model": "loja.rotacontato",
+  "pk": 1,
+  "fields": {
+    "tipo": "comprar",
+    "responsavel": "",
+    "email": ""
+  }
+},
+{
+  "model": "loja.rotacontato",
+  "pk": 2,
+  "fields": {
+    "tipo": "profissional",
+    "responsavel": "",
+    "email": ""
+  }
+},
+{
+  "model": "loja.rotacontato",
+  "pk": 3,
+  "fields": {
+    "tipo": "cdmo",
+    "responsavel": "",
+    "email": ""
+  }
+},
+{
+  "model": "loja.rotacontato",
+  "pk": 4,
+  "fields": {
+    "tipo": "ingredientes",
+    "responsavel": "",
+    "email": ""
+  }
+},
+{
+  "model": "loja.rotacontato",
+  "pk": 5,
+  "fields": {
+    "tipo": "distribuidor",
+    "responsavel": "",
+    "email": ""
+  }
+},
+{
+  "model": "loja.rotacontato",
+  "pk": 6,
+  "fields": {
+    "tipo": "hospital",
+    "responsavel": "",
+    "email": ""
+  }
+},
+{
+  "model": "loja.rotacontato",
+  "pk": 7,
+  "fields": {
+    "tipo": "outros",
+    "responsavel": "",
+    "email": ""
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 1,
+  "fields": {
+    "uf": "SP",
+    "valor": "14.90",
+    "prazo_dias": 3
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 2,
+  "fields": {
+    "uf": "RJ",
+    "valor": "19.90",
+    "prazo_dias": 4
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 3,
+  "fields": {
+    "uf": "MG",
+    "valor": "19.90",
+    "prazo_dias": 4
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 4,
+  "fields": {
+    "uf": "ES",
+    "valor": "21.90",
+    "prazo_dias": 5
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 5,
+  "fields": {
+    "uf": "PR",
+    "valor": "24.90",
+    "prazo_dias": 5
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 6,
+  "fields": {
+    "uf": "SC",
+    "valor": "24.90",
+    "prazo_dias": 5
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 7,
+  "fields": {
+    "uf": "RS",
+    "valor": "26.90",
+    "prazo_dias": 6
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 8,
+  "fields": {
+    "uf": "DF",
+    "valor": "27.90",
+    "prazo_dias": 6
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 9,
+  "fields": {
+    "uf": "GO",
+    "valor": "27.90",
+    "prazo_dias": 6
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 10,
+  "fields": {
+    "uf": "MT",
+    "valor": "29.90",
+    "prazo_dias": 7
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 11,
+  "fields": {
+    "uf": "MS",
+    "valor": "27.90",
+    "prazo_dias": 6
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 12,
+  "fields": {
+    "uf": "BA",
+    "valor": "32.90",
+    "prazo_dias": 8
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 13,
+  "fields": {
+    "uf": "SE",
+    "valor": "32.90",
+    "prazo_dias": 8
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 14,
+  "fields": {
+    "uf": "AL",
+    "valor": "32.90",
+    "prazo_dias": 8
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 15,
+  "fields": {
+    "uf": "PE",
+    "valor": "32.90",
+    "prazo_dias": 8
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 16,
+  "fields": {
+    "uf": "PB",
+    "valor": "32.90",
+    "prazo_dias": 8
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 17,
+  "fields": {
+    "uf": "RN",
+    "valor": "34.90",
+    "prazo_dias": 9
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 18,
+  "fields": {
+    "uf": "CE",
+    "valor": "34.90",
+    "prazo_dias": 9
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 19,
+  "fields": {
+    "uf": "PI",
+    "valor": "34.90",
+    "prazo_dias": 9
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 20,
+  "fields": {
+    "uf": "MA",
+    "valor": "34.90",
+    "prazo_dias": 9
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 21,
+  "fields": {
+    "uf": "PA",
+    "valor": "39.90",
+    "prazo_dias": 10
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 22,
+  "fields": {
+    "uf": "AM",
+    "valor": "44.90",
+    "prazo_dias": 12
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 23,
+  "fields": {
+    "uf": "AC",
+    "valor": "44.90",
+    "prazo_dias": 12
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 24,
+  "fields": {
+    "uf": "RO",
+    "valor": "42.90",
+    "prazo_dias": 11
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 25,
+  "fields": {
+    "uf": "RR",
+    "valor": "44.90",
+    "prazo_dias": 12
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 26,
+  "fields": {
+    "uf": "AP",
+    "valor": "44.90",
+    "prazo_dias": 12
+  }
+},
+{
+  "model": "loja.faixafrete",
+  "pk": 27,
+  "fields": {
+    "uf": "TO",
+    "valor": "37.90",
+    "prazo_dias": 9
+  }
+}
+]
