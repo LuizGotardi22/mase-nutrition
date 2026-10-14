@@ -53,7 +53,6 @@
         <a href="{% url 'allergen_free' %}"{% if n == 'allergen_free' %} class="ativo"{% endif %}>Allergen Free</a>
         <a href="{% url 'profissionais' %}"{% if n == 'profissionais' or n == 'profissionais_area' or n == 'parceiro_cadastro' or n == 'parceiro_painel' %} class="ativo"{% endif %}>Profissionais de saúde</a>
         <a href="{% url 'science' %}"{% if n == 'science' or n == 'science_artigo' %} class="ativo"{% endif %}>Mase Nutrition Science</a>
-        <a href="{% url 'onde_encontrar' %}"{% if n == 'onde_encontrar' %} class="ativo"{% endif %}>Onde comprar</a>
         <a href="{% url 'loja' %}"{% if n == 'loja' or n == 'produto' or n == 'carrinho' or n == 'checkout' or n == 'mase_continua' %} class="ativo"{% endif %}>Loja</a>
         <a href="{% url 'contato' %}" class="nav-cta">Fale conosco</a>
       </nav>
