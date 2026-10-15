@@ -19,7 +19,7 @@ def validar_cupom(codigo, usuario=None, email=""):
 
     cupom = Cupom.objects.select_related("parceiro__usuario").filter(codigo=codigo).first()
     # Mesma mensagem para inexistente/inativo, para não revelar quais códigos existem.
-    if not cupom or not cupom.ativo or cupom.parceiro.status != Parceiro.Status.APROVADO:
+    if not cupom or not cupom.ativo:
         return None, "Cupom inválido ou indisponível."
 
     dono = cupom.parceiro.usuario

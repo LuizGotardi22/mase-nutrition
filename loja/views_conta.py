@@ -139,23 +139,25 @@ def parceiro_cadastro(request):
         parceiro = form.save(commit=False)
         parceiro.usuario = request.user
         parceiro.save()
+        parceiro.status = Parceiro.Status.APROVADO
+        parceiro.save(update_fields=["status"])
         if settings.EMAIL_COMERCIAL:
             leads.avisar(
                 settings.EMAIL_COMERCIAL,
-                "[Site Mase] Novo profissional de saúde aguardando aprovação",
+                "[Site Mase] Novo profissional de saúde cadastrado",
                 f"{parceiro.nome} — {parceiro.get_tipo_display()}\n"
                 f"Registro: {parceiro.registro_formatado}\nCNPJ: {parceiro.cnpj or '-'}\n"
                 f"Instituição: {parceiro.instituicao or '-'}\nTelefone: {parceiro.telefone}\n\n"
-                "Confira o registro no site do conselho e aprove em /painel/ > Profissionais de saúde.",
+                "Cadastro aprovado automaticamente pelo site.",
             )
-        messages.success(request, "Cadastro enviado! Vamos conferir o seu registro profissional.")
+        messages.success(request, "Cadastro realizado! Agora configure seu cupom de desconto.")
         return redirect("parceiro_painel")
     return render(request, "parceiro_cadastro.html", {"form": form})
 
 
 def _contexto_painel(parceiro, form=None):
     ctx = {"parceiro": parceiro}
-    if parceiro.status == Parceiro.Status.APROVADO:
+    if True:
         def soma(status):
             total = parceiro.comissoes.filter(status=status).aggregate(t=Sum("valor"))["t"]
             return total or Decimal("0.00")
@@ -197,8 +199,8 @@ def parceiro_painel(request):
 @require_POST
 def parceiro_cupom_criar(request):
     parceiro = Parceiro.objects.filter(usuario=request.user).first()
-    if not parceiro or parceiro.status != Parceiro.Status.APROVADO:
-        return redirect("parceiro_painel")
+    if not parceiro:
+        return redirect("parceiro_cadastro")
     if parceiro.cupons.count() >= MAX_CUPONS:
         messages.error(request, f"Você já tem {MAX_CUPONS} cupons. Desative um para criar outro.")
         return redirect("parceiro_painel")

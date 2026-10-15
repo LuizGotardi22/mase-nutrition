@@ -26,7 +26,10 @@
           <span class="account-hello">Olá, {{ user.first_name|default:user.username }}</span>
           <a href="{% url 'minha_conta' %}">Minha conta e pedidos</a>
           {% if not user.parceiro %}<a href="{% url 'parceiro_cadastro' %}">Sou profissional de saúde</a>{% else %}<a href="{% url 'parceiro_painel' %}">Painel do profissional</a>{% endif %}
-          <form method="post" action="{% url 'sair' %}"><button type="submit">Sair</button></form>
+          <form method="post" action="{% url 'sair' %}">
+            {% csrf_token %}
+            <button type="submit">Sair</button>
+          </form>
           {% else %}
           <a href="{% url 'entrada' %}">Entrar</a>
           <a href="{% url 'criar_conta' %}">Criar conta</a>
