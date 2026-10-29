@@ -1172,6 +1172,190 @@
     }
 }
 
+/* === ANIMAÇÕES PREMIUM: CLINICAL CARE + CDMO === */
+
+/* Entrada suave dos dois painéis */
+@keyframes mase-panel-enter {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mase-clinical,
+.mase-cdmo {
+    animation: mase-panel-enter .85s cubic-bezier(.2, .7, .2, 1) both;
+}
+
+.mase-cdmo {
+    animation-delay: .15s;
+}
+
+/* Títulos entram ligeiramente depois dos painéis */
+.mase-clinical .mase-eyebrow,
+.mase-cdmo .mase-eyebrow {
+    animation: mase-text-enter .7s ease-out .15s both;
+}
+
+.mase-panel h2 {
+    animation: mase-text-enter .8s ease-out .22s both;
+}
+
+.mase-panel .mase-lead {
+    animation: mase-text-enter .8s ease-out .3s both;
+}
+
+.mase-panel .mase-description,
+.mase-panel .mase-link {
+    animation: mase-text-enter .8s ease-out .4s both;
+}
+
+@keyframes mase-text-enter {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ícones da Clinical Care aparecem em sequência */
+.mase-clinical .clinical-feature {
+    animation: mase-feature-enter .65s ease-out both;
+}
+
+.mase-clinical .clinical-feature:nth-child(1) {
+    animation-delay: .3s;
+}
+
+.mase-clinical .clinical-feature:nth-child(2) {
+    animation-delay: .45s;
+}
+
+.mase-clinical .clinical-feature:nth-child(3) {
+    animation-delay: .6s;
+}
+
+@keyframes mase-feature-enter {
+    from {
+        opacity: 0;
+        transform: translateX(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Ícones ganham vida ao passar o rato */
+.mase-clinical .feature-icon {
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        box-shadow .3s ease;
+}
+
+.mase-clinical .clinical-feature:hover .feature-icon {
+    transform: translateY(-4px) scale(1.06);
+    background: #fff;
+    box-shadow: 0 8px 22px rgb(37 130 239 / 15%);
+}
+
+/* Esferas da CDMO flutuam lentamente */
+.mase-cdmo .molecule-one {
+    animation: mase-float-one 6s ease-in-out infinite;
+}
+
+.mase-cdmo .molecule-two {
+    animation: mase-float-two 8s ease-in-out infinite;
+}
+
+.mase-cdmo .molecule-three {
+    animation: mase-float-one 5s ease-in-out infinite reverse;
+}
+
+@keyframes mase-float-one {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-13px);
+    }
+}
+
+@keyframes mase-float-two {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+    }
+    50% {
+        transform: translateY(12px) translateX(-7px);
+    }
+}
+
+/* Órbitas movem-se lentamente */
+.mase-cdmo .orbit-one {
+    animation: mase-orbit-one 18s linear infinite;
+    transform-origin: center;
+}
+
+.mase-cdmo .orbit-two {
+    animation: mase-orbit-two 24s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes mase-orbit-one {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@keyframes mase-orbit-two {
+    from { transform: rotate(360deg); }
+    to   { transform: rotate(0deg); }
+}
+
+/* Links reagem ao rato */
+.mase-link {
+    transition:
+        gap .25s ease,
+        opacity .25s ease,
+        color .25s ease;
+}
+
+.mase-link span {
+    display: inline-block;
+    transition: transform .25s ease;
+}
+
+.mase-link:hover span {
+    transform: translate(4px, -4px);
+}
+
+/* Acessibilidade: respeita quem prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+    .mase-clinical,
+    .mase-cdmo,
+    .mase-panel h2,
+    .mase-panel .mase-eyebrow,
+    .mase-panel .mase-lead,
+    .mase-panel .mase-description,
+    .mase-panel .mase-link,
+    .mase-clinical .clinical-feature,
+    .mase-cdmo .molecule-one,
+    .mase-cdmo .molecule-two,
+    .mase-cdmo .molecule-three,
+    .mase-cdmo .orbit-one,
+    .mase-cdmo .orbit-two {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
 </style>
 
 {% endblock %}
