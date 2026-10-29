@@ -1,45 +1,479 @@
+
 {% extends "base.html" %}
-{% block title %}Mase Nutrition Clinical Care — Mase Nutrition{% endblock %}
+
+{% block title %}Clinical Care — Mase Nutrition{% endblock %}
+
 {% block content %}
-<section class="page-hero" style="border-top:4px solid var(--green);">
-  <div class="container">
-    <span class="eyebrow" style="color:var(--green);">Unidade de negócio</span>
-    <h1>Mase Clinical Care</h1>
-    <p class="lede">Nutrição especializada para necessidades específicas. Produtos e soluções nutricionais desenvolvidos com segurança, ciência e controle de alergênicos, para pacientes com restrição e/ou alergia alimentar e para quem busca qualidade de vida.</p>
-    <a class="arrow-link" href="{% url 'loja' %}">Ir para a loja →</a>
-  </div>
+
+<section class="clinical-page">
+    <div class="clinical-container">
+
+        <header class="clinical-hero">
+            <span class="clinical-eyebrow">
+                MASE NUTRITION · CLINICAL CARE
+            </span>
+
+            <h1>
+                Nutrição especializada.<br>
+                <span>Ciência que protege.</span>
+            </h1>
+
+            <p>
+                Desenvolvemos soluções nutricionais para diferentes
+                necessidades clínicas, com foco na segurança, na ciência
+                e no controlo rigoroso de alergénicos.
+            </p>
+
+            <div class="clinical-hero-actions">
+                <a class="clinical-primary-link" href="{% url 'contato' %}">
+                    FALAR COM A NOSSA EQUIPE <span>↗</span>
+                </a>
+
+                <a class="clinical-secondary-link" href="{% url 'profissionais' %}">
+                    ÁREA DE PROFISSIONAIS
+                </a>
+            </div>
+
+            <div class="clinical-hero-note">
+                <span class="clinical-note-dot"></span>
+                Nutrição especializada com foco na qualidade e segurança
+            </div>
+        </header>
+
+        <section class="clinical-focus">
+            <div class="clinical-section-heading">
+                <div>
+                    <span class="clinical-eyebrow">A NOSSA ABORDAGEM</span>
+                    <h2>Conhecimento em cada detalhe.</h2>
+                </div>
+
+                <p>
+                    Ciência, segurança e informação para apoiar
+                    uma abordagem nutricional especializada.
+                </p>
+            </div>
+
+            <div class="clinical-grid">
+
+                <a class="clinical-card" href="{% url 'allergen_free' %}">
+                    <span class="clinical-card-number">01 / SEGURANÇA</span>
+
+                    <div class="clinical-icon">✓</div>
+
+                    <h3>Controlo de alergénicos</h3>
+
+                    <p>
+                        Uma abordagem orientada para o controlo
+                        de alergénicos e a segurança alimentar.
+                    </p>
+
+                    <span class="clinical-card-link">
+                        CONHECER ALLERGEN FREE <span>↗</span>
+                    </span>
+                </a>
+
+                <a class="clinical-card" href="{% url 'science' %}">
+                    <span class="clinical-card-number">02 / CIÊNCIA</span>
+
+                    <div class="clinical-icon">⌘</div>
+
+                    <h3>Conhecimento científico</h3>
+
+                    <p>
+                        Explore conteúdos e informação sobre nutrição
+                        especializada e ciência dos ingredientes.
+                    </p>
+
+                    <span class="clinical-card-link">
+                        EXPLORAR CONTEÚDOS <span>↗</span>
+                    </span>
+                </a>
+
+                <a class="clinical-card" href="{% url 'profissionais' %}">
+                    <span class="clinical-card-number">03 / PROFISSIONAIS</span>
+
+                    <div class="clinical-icon">✳</div>
+
+                    <h3>Profissionais de saúde</h3>
+
+                    <p>
+                        Conheça a nossa área dedicada à informação
+                        e às soluções para profissionais de saúde.
+                    </p>
+
+                    <span class="clinical-card-link">
+                        CONHECER A ÁREA <span>↗</span>
+                    </span>
+                </a>
+
+            </div>
+        </section>
+
+        <section class="clinical-contact">
+            <div class="clinical-contact-copy">
+                <span class="clinical-eyebrow">FALE CONNOSCO</span>
+                <h2>Vamos encontrar a solução certa.</h2>
+                <p>
+                    Tem alguma questão sobre a Mase Clinical Care?
+                    Entre em contacto com a nossa equipa.
+                </p>
+            </div>
+
+            <a class="clinical-contact-button" href="{% url 'contato' %}">
+                ENTRAR EM CONTACTO <span>↗</span>
+            </a>
+        </section>
+
+    </div>
 </section>
 
-<section class="section">
-  <div class="container">
-    <div class="section-head" data-reveal>
-      <span class="eyebrow">Linhas Mase Nutrition</span>
-      <h2 class="title-lg">Estamos desenvolvendo produtos para estas áreas</h2>
-      <p>A cada lançamento, a linha ganha uma página própria com produtos, informações técnicas e onde comprar.</p>
-    </div>
-    <div class="linhas">
-      {% for l in linhas %}
-      <a class="linha-card" href="{{ l.get_absolute_url }}" data-reveal>
-        <span class="status-pill{% if l.status == 'lancada' %} ok{% endif %}">{{ l.get_status_display }}</span>
-        <h3>{{ l.nome }}</h3>
-        <p>{{ l.foco }}</p>
-        <span class="go">Ver linha →</span>
-      </a>
-      {% empty %}
-      <p class="fine">As linhas serão publicadas em breve.</p>
-      {% endfor %}
-    </div>
-  </div>
-</section>
+<style>
+.clinical-page {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 76px 24px 90px;
+    background: #f3f6fb;
+    color: #102653;
+}
 
-<section class="section section-alt">
-  <div class="container">
-    <div class="section-head" data-reveal>
-      <span class="eyebrow">Para profissionais de saúde</span>
-      <h2 class="title-lg">Materiais técnicos em área exclusiva</h2>
-      <p>Fichas técnicas, literatura científica e materiais de apoio ficam em uma área restrita a profissionais de saúde cadastrados, separada da comunicação ao consumidor.</p>
-    </div>
-    <a class="btn btn-primary" href="{% url 'profissionais' %}">Mase para profissionais de saúde</a>
-  </div>
-</section>
+.clinical-container {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+.clinical-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 22px 0 76px;
+}
+
+.clinical-eyebrow {
+    display: block;
+    margin-bottom: 20px;
+    color: #1978e8;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    line-height: 1.8;
+}
+
+.clinical-hero h1 {
+    margin: 0 0 24px;
+    color: #102653;
+    font-size: clamp(40px, 5.2vw, 70px);
+    font-weight: 400;
+    letter-spacing: -2px;
+    line-height: 1.13;
+}
+
+.clinical-hero h1 span {
+    color: #347fdf;
+}
+
+.clinical-hero > p {
+    max-width: 720px;
+    margin: 0 0 30px;
+    color: #60718d;
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+.clinical-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 28px;
+}
+
+.clinical-primary-link,
+.clinical-secondary-link,
+.clinical-contact-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    padding: 14px 0;
+    border-bottom: 1px solid #155db8;
+    color: #155db8;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.1px;
+    line-height: 1.7;
+    text-decoration: none;
+}
+
+.clinical-primary-link span,
+.clinical-contact-button span {
+    font-size: 20px;
+    transition: transform .2s ease;
+}
+
+.clinical-primary-link:hover span,
+.clinical-contact-button:hover span {
+    transform: translate(3px, -3px);
+}
+
+.clinical-secondary-link {
+    border-bottom-color: #cbd7e8;
+    color: #526985;
+}
+
+.clinical-hero-note {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 42px;
+    color: #71819a;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.clinical-note-dot {
+    width: 8px;
+    height: 8px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #347fdf;
+    box-shadow: 0 0 0 5px #e1edfc;
+}
+
+.clinical-focus {
+    padding-top: 28px;
+}
+
+.clinical-section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 36px;
+    margin-bottom: 34px;
+}
+
+.clinical-section-heading .clinical-eyebrow {
+    margin-bottom: 12px;
+}
+
+.clinical-section-heading h2,
+.clinical-contact h2 {
+    margin: 0;
+    color: #102653;
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 400;
+    letter-spacing: -1px;
+    line-height: 1.2;
+}
+
+.clinical-section-heading > p {
+    max-width: 390px;
+    margin: 0;
+    color: #60718d;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.clinical-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    align-items: stretch;
+}
+
+.clinical-card {
+    box-sizing: border-box;
+    display: flex;
+    min-width: 0;
+    min-height: 320px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px;
+    border: 1px solid #e0e7f1;
+    border-radius: 5px;
+    background: #fff;
+    color: inherit;
+    text-decoration: none;
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+}
+
+.clinical-card:hover {
+    transform: translateY(-5px);
+    border-color: #b8d5fa;
+    box-shadow: 0 18px 40px rgb(16 38 83 / 8%);
+}
+
+.clinical-card-number {
+    color: #7b8ca7;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    line-height: 1.7;
+}
+
+.clinical-icon {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    margin: 27px 0 20px;
+    place-items: center;
+    border: 1px solid #d8e8fc;
+    border-radius: 50%;
+    background: #eff6ff;
+    color: #2178e5;
+    font-size: 24px;
+}
+
+.clinical-card h3 {
+    margin: 0 0 12px;
+    color: #102653;
+    font-size: clamp(20px, 1.8vw, 25px);
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.clinical-card > p {
+    margin: 0 0 24px;
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.clinical-card-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: auto;
+    padding-top: 17px;
+    border-top: 1px solid #e5ebf3;
+    color: #155db8;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    line-height: 1.7;
+}
+
+.clinical-card-link > span {
+    flex-shrink: 0;
+    font-size: 18px;
+    transition: transform .2s ease;
+}
+
+.clinical-card:hover .clinical-card-link > span {
+    transform: translate(3px, -3px);
+}
+
+.clinical-contact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    margin-top: 28px;
+    padding: 36px;
+    border: 1px solid #dce6f3;
+    border-radius: 5px;
+    background: #eaf1fa;
+}
+
+.clinical-contact .clinical-eyebrow {
+    margin-bottom: 12px;
+}
+
+.clinical-contact h2 {
+    font-size: clamp(27px, 3vw, 36px);
+}
+
+.clinical-contact p {
+    max-width: 580px;
+    margin: 12px 0 0;
+    color: #60718d;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.clinical-contact-button {
+    flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+    .clinical-section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .clinical-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .clinical-card:last-child {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 600px) {
+    .clinical-page {
+        padding: 45px 20px 60px;
+    }
+
+    .clinical-hero {
+        padding: 10px 0 58px;
+    }
+
+    .clinical-hero h1 {
+        font-size: clamp(36px, 9.5vw, 50px);
+        letter-spacing: -1.3px;
+    }
+
+    .clinical-hero > p {
+        font-size: 14px;
+    }
+
+    .clinical-hero-actions {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .clinical-section-heading h2 {
+        font-size: 31px;
+    }
+
+    .clinical-section-heading > p {
+        font-size: 14px;
+    }
+
+    .clinical-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .clinical-card,
+    .clinical-card:last-child {
+        grid-column: auto;
+        min-height: 280px;
+        padding: 25px;
+    }
+
+    .clinical-contact {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 18px;
+        padding: 26px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .clinical-card,
+    .clinical-primary-link span,
+    .clinical-contact-button span,
+    .clinical-card-link > span {
+        transition: none;
+    }
+}
+</style>
+
 {% endblock %}

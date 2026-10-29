@@ -1,39 +1,585 @@
+
 {% extends "base.html" %}
+
 {% block title %}Allergen Free — Mase Nutrition{% endblock %}
+
 {% block content %}
-<section class="page-hero">
-  <div class="container">
-    <span class="eyebrow">Allergen Free</span>
-    <h1>Allergen Free não é apenas uma característica.</h1>
-    <p class="lede" style="font-family:var(--font-display);font-size:clamp(1.5rem,2.6vw,2.2rem);color:var(--ink);line-height:1.25;">É uma plataforma de segurança.</p>
-  </div>
+
+<section class="allergen-page">
+    <div class="allergen-container">
+
+        <header class="allergen-hero">
+            <span class="allergen-eyebrow">
+                MASE NUTRITION · ALLERGEN FREE
+            </span>
+
+            <h1>
+                Segurança em cada detalhe.<br>
+                <span>Confiança em cada escolha.</span>
+            </h1>
+
+            <p>
+                Uma abordagem focada no controlo de alergénicos,
+                na segurança alimentar e na qualidade das soluções
+                nutricionais desenvolvidas pela Mase Nutrition.
+            </p>
+
+            <div class="allergen-hero-actions">
+                <a class="allergen-primary-link" href="{% url 'contato' %}">
+                    FALAR COM A NOSSA EQUIPE <span>↗</span>
+                </a>
+
+                <a class="allergen-secondary-link" href="{% url 'clinical_care' %}">
+                    CONHECER CLINICAL CARE
+                </a>
+            </div>
+
+            <div class="allergen-hero-note">
+                <span class="allergen-note-dot"></span>
+                Qualidade, segurança e atenção aos alergénicos
+            </div>
+        </header>
+
+        <section class="allergen-focus">
+            <div class="allergen-section-heading">
+                <div>
+                    <span class="allergen-eyebrow">A NOSSA ABORDAGEM</span>
+                    <h2>Qualidade que começa nos processos.</h2>
+                </div>
+
+                <p>
+                    Conheça os princípios que orientam a nossa
+                    abordagem à segurança e à informação nutricional.
+                </p>
+            </div>
+
+            <div class="allergen-grid">
+
+                <article class="allergen-card">
+                    <span class="allergen-card-number">01 / CONTROLO</span>
+
+                    <div class="allergen-icon">✓</div>
+
+                    <h3>Controlo de alergénicos</h3>
+
+                    <p>
+                        Atenção ao controlo de alergénicos e aos
+                        processos associados à segurança alimentar.
+                    </p>
+
+                    <span class="allergen-card-label">
+                        FOCO NA SEGURANÇA
+                    </span>
+                </article>
+
+                <article class="allergen-card">
+                    <span class="allergen-card-number">02 / QUALIDADE</span>
+
+                    <div class="allergen-icon">◈</div>
+
+                    <h3>Qualidade dos processos</h3>
+
+                    <p>
+                        Uma abordagem orientada para a qualidade
+                        e para o acompanhamento dos processos.
+                    </p>
+
+                    <span class="allergen-card-label">
+                        ATENÇÃO AO DETALHE
+                    </span>
+                </article>
+
+                <article class="allergen-card">
+                    <span class="allergen-card-number">03 / INFORMAÇÃO</span>
+
+                    <div class="allergen-icon">⌘</div>
+
+                    <h3>Ciência e conhecimento</h3>
+
+                    <p>
+                        Explore informação sobre nutrição especializada
+                        e conheça melhor a abordagem científica da marca.
+                    </p>
+
+                    <span class="allergen-card-link">
+                        <a href="{% url 'science' %}">
+                            EXPLORAR CONTEÚDOS <span>↗</span>
+                        </a>
+                    </span>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="allergen-principles">
+            <div class="allergen-principles-copy">
+                <span class="allergen-eyebrow">O NOSSO COMPROMISSO</span>
+
+                <h2>Uma abordagem consciente à nutrição.</h2>
+
+                <p>
+                    A segurança alimentar exige atenção, informação
+                    e processos adequados. A Mase Nutrition coloca
+                    estes princípios no centro da sua abordagem
+                    às soluções nutricionais.
+                </p>
+            </div>
+
+            <div class="allergen-principles-side">
+                <div class="allergen-principle">
+                    <span>01</span>
+                    <div>
+                        <h3>Segurança</h3>
+                        <p>Atenção ao controlo de alergénicos.</p>
+                    </div>
+                </div>
+
+                <div class="allergen-principle">
+                    <span>02</span>
+                    <div>
+                        <h3>Qualidade</h3>
+                        <p>Foco na qualidade dos processos.</p>
+                    </div>
+                </div>
+
+                <div class="allergen-principle">
+                    <span>03</span>
+                    <div>
+                        <h3>Conhecimento</h3>
+                        <p>Informação sobre nutrição especializada.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="allergen-contact">
+            <div>
+                <span class="allergen-eyebrow">FALE CONNOSCO</span>
+                <h2>Quer saber mais?</h2>
+                <p>
+                    Entre em contacto com a nossa equipa para
+                    esclarecer dúvidas sobre a Mase Nutrition.
+                </p>
+            </div>
+
+            <a class="allergen-contact-button" href="{% url 'contato' %}">
+                ENTRAR EM CONTATO <span>↗</span>
+            </a>
+        </section>
+
+    </div>
 </section>
 
-<section class="section">
-  <div class="container">
-    <div class="chain">
-      <div class="chain-item" data-reveal><div class="num">01</div><div><h3>Seleção de fornecedores</h3><p>Critérios técnicos para escolher e aprovar quem fornece à Mase Nutrition.</p></div></div>
-      <div class="chain-item" data-reveal><div class="num">02</div><div><h3>Qualificação de matérias-primas</h3><p>Avaliação da composição e do risco de alergênicos de cada matéria-prima.</p></div></div>
-      <div class="chain-item" data-reveal><div class="num">03</div><div><h3>Controle de recebimento</h3><p>Verificação e liberação dos materiais na chegada à fábrica.</p></div></div>
-      <div class="chain-item" data-reveal><div class="num">04</div><div><h3>Processos produtivos controlados</h3><p>Etapas de produção definidas, monitoradas e registradas.</p></div></div>
-      <div class="chain-item" data-reveal><div class="num">05</div><div><h3>Prevenção de contaminação cruzada</h3><p>Medidas para evitar o contato com alergênicos ao longo de todo o processo.</p></div></div>
-      <div class="chain-item" data-reveal><div class="num">06</div><div><h3>Controle de qualidade</h3><p>Critérios de análise e liberação aplicados a cada lote.</p></div></div>
-      <div class="chain-item" data-reveal><div class="num">07</div><div><h3>Rastreabilidade</h3><p>Registro do caminho de cada ingrediente até o produto final.</p></div></div>
-      <div class="chain-item final" data-reveal><div class="num">08</div><div><h3>Produto final</h3><p>Nutrição especializada com a segurança Allergen Free como plataforma.</p></div></div>
-    </div>
-  </div>
-</section>
+<style>
+.allergen-page {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 76px 24px 90px;
+    background: #f3f6fb;
+    color: #102653;
+}
 
-<section class="section section-alt">
-  <div class="container">
-    <div class="section-head" data-reveal>
-      <span class="eyebrow">Uma plataforma, duas unidades</span>
-      <h2 class="title-lg">A mesma segurança em toda a Mase Nutrition</h2>
-    </div>
-    <div class="hero-actions" style="display:flex;gap:14px;flex-wrap:wrap;">
-      <a class="btn btn-primary" href="{% url 'clinical_care' %}">Mase Nutrition Clinical Care</a>
-      <a class="btn btn-outline" href="{% url 'cdmo' %}">Mase Nutrition CDMO</a>
-    </div>
-  </div>
-</section>
+.allergen-container {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+.allergen-hero {
+    padding: 22px 0 76px;
+}
+
+.allergen-eyebrow {
+    display: block;
+    margin-bottom: 20px;
+    color: #1978e8;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    line-height: 1.8;
+}
+
+.allergen-hero h1 {
+    margin: 0 0 24px;
+    color: #102653;
+    font-size: clamp(38px, 5.2vw, 70px);
+    font-weight: 400;
+    letter-spacing: -2px;
+    line-height: 1.15;
+}
+
+.allergen-hero h1 span {
+    color: #347fdf;
+}
+
+.allergen-hero > p {
+    max-width: 740px;
+    margin: 0 0 30px;
+    color: #60718d;
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+.allergen-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 28px;
+}
+
+.allergen-primary-link,
+.allergen-secondary-link,
+.allergen-contact-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 14px 0;
+    border-bottom: 1px solid #155db8;
+    color: #155db8;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    line-height: 1.7;
+    text-decoration: none;
+}
+
+.allergen-primary-link span,
+.allergen-contact-button span {
+    font-size: 20px;
+    transition: transform .2s ease;
+}
+
+.allergen-primary-link:hover span,
+.allergen-contact-button:hover span {
+    transform: translate(3px, -3px);
+}
+
+.allergen-secondary-link {
+    border-bottom-color: #cbd7e8;
+    color: #526985;
+}
+
+.allergen-hero-note {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 42px;
+    color: #71819a;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.allergen-note-dot {
+    width: 8px;
+    height: 8px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #347fdf;
+    box-shadow: 0 0 0 5px #e1edfc;
+}
+
+.allergen-section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 36px;
+    margin-bottom: 34px;
+}
+
+.allergen-section-heading .allergen-eyebrow {
+    margin-bottom: 12px;
+}
+
+.allergen-section-heading h2,
+.allergen-principles h2,
+.allergen-contact h2 {
+    margin: 0;
+    color: #102653;
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 400;
+    letter-spacing: -1px;
+    line-height: 1.2;
+}
+
+.allergen-section-heading > p {
+    max-width: 390px;
+    margin: 0;
+    color: #60718d;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.allergen-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    align-items: stretch;
+}
+
+.allergen-card {
+    box-sizing: border-box;
+    display: flex;
+    min-width: 0;
+    min-height: 320px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px;
+    border: 1px solid #e0e7f1;
+    border-radius: 5px;
+    background: #fff;
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+}
+
+.allergen-card:hover {
+    transform: translateY(-5px);
+    border-color: #b8d5fa;
+    box-shadow: 0 18px 40px rgb(16 38 83 / 8%);
+}
+
+.allergen-card-number {
+    color: #7b8ca7;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    line-height: 1.7;
+}
+
+.allergen-icon {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    margin: 27px 0 20px;
+    place-items: center;
+    border: 1px solid #d8e8fc;
+    border-radius: 50%;
+    background: #eff6ff;
+    color: #2178e5;
+    font-size: 24px;
+}
+
+.allergen-card h3 {
+    margin: 0 0 12px;
+    color: #102653;
+    font-size: clamp(20px, 1.8vw, 25px);
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.allergen-card > p {
+    margin: 0 0 24px;
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.allergen-card-label,
+.allergen-card-link {
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: auto;
+    padding-top: 17px;
+    border-top: 1px solid #e5ebf3;
+    color: #155db8;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .9px;
+    line-height: 1.7;
+}
+
+.allergen-card-link a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    color: inherit;
+    text-decoration: none;
+}
+
+.allergen-card-link a span {
+    flex-shrink: 0;
+    font-size: 18px;
+    transition: transform .2s ease;
+}
+
+.allergen-card-link a:hover span {
+    transform: translate(3px, -3px);
+}
+
+.allergen-principles {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+    gap: 50px;
+    margin-top: 28px;
+    padding: 40px;
+    border: 1px solid #dce6f3;
+    border-radius: 5px;
+    background: #eaf1fa;
+}
+
+.allergen-principles .allergen-eyebrow,
+.allergen-contact .allergen-eyebrow {
+    margin-bottom: 12px;
+}
+
+.allergen-principles h2,
+.allergen-contact h2 {
+    font-size: clamp(27px, 3vw, 36px);
+}
+
+.allergen-principles-copy > p,
+.allergen-contact p {
+    max-width: 620px;
+    margin: 16px 0 0;
+    color: #60718d;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.allergen-principles-side {
+    display: flex;
+    flex-direction: column;
+}
+
+.allergen-principle {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 17px 0;
+    border-bottom: 1px solid #d4dfed;
+}
+
+.allergen-principle:first-child {
+    padding-top: 0;
+}
+
+.allergen-principle:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.allergen-principle > span {
+    padding-top: 3px;
+    color: #347fdf;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.allergen-principle h3 {
+    margin: 0 0 5px;
+    color: #102653;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.allergen-principle p {
+    margin: 0;
+    color: #60718d;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.allergen-contact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    margin-top: 20px;
+    padding: 36px;
+    border: 1px solid #e0e7f1;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.allergen-contact-button {
+    flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+    .allergen-section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .allergen-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .allergen-card:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .allergen-principles {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 30px;
+    }
+
+    .allergen-contact {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 18px;
+    }
+}
+
+@media (max-width: 600px) {
+    .allergen-page {
+        padding: 45px 20px 60px;
+    }
+
+    .allergen-hero {
+        padding: 10px 0 58px;
+    }
+
+    .allergen-hero h1 {
+        font-size: clamp(36px, 9.5vw, 50px);
+        letter-spacing: -1.3px;
+    }
+
+    .allergen-hero > p {
+        font-size: 14px;
+    }
+
+    .allergen-hero-actions {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .allergen-section-heading h2 {
+        font-size: 31px;
+    }
+
+    .allergen-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .allergen-card,
+    .allergen-card:last-child {
+        grid-column: auto;
+        min-height: 280px;
+        padding: 25px;
+    }
+
+    .allergen-principles,
+    .allergen-contact {
+        padding: 26px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .allergen-card,
+    .allergen-primary-link span,
+    .allergen-contact-button span,
+    .allergen-card-link a span {
+        transition: none;
+    }
+}
+</style>
+
 {% endblock %}

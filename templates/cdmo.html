@@ -1,52 +1,505 @@
+
 {% extends "base.html" %}
-{% block title %}Mase Nutrition CDMO — Private Label — Mase Nutrition{% endblock %}
+
+{% block title %}CDMO — Desenvolva a sua marca | Mase Nutrition{% endblock %}
+
 {% block content %}
-<section class="page-hero" style="border-top:4px solid var(--tech);">
-  <div class="container">
-    <span class="eyebrow">Mase Nutrition CDMO · Private Label</span>
-    <h1>Sua marca pode ser diferente.</h1>
-    <p class="lede">Muitas empresas que operam com Private Label acabam oferecendo mais do mesmo. Na Mase Nutrition, cada projeto pode nascer com identidade própria.</p>
-    <a class="btn btn-primary" href="{% url 'cdmo_proposta' %}">Quero desenvolver minha marca</a>
-  </div>
+
+<section class="cdmo-page">
+    <div class="cdmo-container">
+
+        <header class="cdmo-hero">
+            <span class="cdmo-eyebrow">MASE NUTRITION · CDMO</span>
+
+            <h1>
+                A sua marca.<br>
+                <span>A nossa ciência.</span>
+            </h1>
+
+            <p>
+                Apoiamos empresas no desenvolvimento e fabrico de
+                suplementos nutricionais, combinando conhecimento
+                técnico, tecnologia e uma abordagem focada na qualidade.
+            </p>
+
+            <div class="cdmo-hero-actions">
+                <a class="cdmo-primary-link"
+                   href="{% url 'cdmo_proposta' %}">
+                    DESENVOLVER A MINHA MARCA <span>↗</span>
+                </a>
+
+                <a class="cdmo-secondary-link"
+                   href="{% url 'contato' %}">
+                    FALAR COM A EQUIPE
+                </a>
+            </div>
+
+            <div class="cdmo-hero-note">
+                <span class="cdmo-note-dot"></span>
+                Desenvolvimento, fabrico e suporte para marcas
+            </div>
+        </header>
+
+        <section class="cdmo-services">
+            <div class="cdmo-section-heading">
+                <div>
+                    <span class="cdmo-eyebrow">A NOSSA ABORDAGEM</span>
+                    <h2>Da ideia à sua marca.</h2>
+                </div>
+
+                <p>
+                    Conheça as principais áreas de apoio ao
+                    desenvolvimento da sua linha de suplementos.
+                </p>
+            </div>
+
+            <div class="cdmo-grid">
+
+                <article class="cdmo-card">
+                    <span class="cdmo-card-number">01 / DESENVOLVIMENTO</span>
+
+                    <div class="cdmo-icon">✳</div>
+
+                    <h3>Desenvolvimento de produto</h3>
+
+                    <p>
+                        Apoio no desenvolvimento de soluções nutricionais
+                        alinhadas com o posicionamento e os objetivos
+                        de cada marca.
+                    </p>
+
+                    <span class="cdmo-card-label">
+                        CONCEITO E DESENVOLVIMENTO
+                    </span>
+                </article>
+
+                <article class="cdmo-card">
+                    <span class="cdmo-card-number">02 / FABRICO</span>
+
+                    <div class="cdmo-icon">◈</div>
+
+                    <h3>Produção e tecnologia</h3>
+
+                    <p>
+                        Conheça a nossa abordagem ao fabrico de
+                        suplementos e ao acompanhamento dos processos
+                        de produção.
+                    </p>
+
+                    <span class="cdmo-card-label">
+                        TECNOLOGIA E PROCESSOS
+                    </span>
+                </article>
+
+                <article class="cdmo-card">
+                    <span class="cdmo-card-number">03 / QUALIDADE</span>
+
+                    <div class="cdmo-icon">✓</div>
+
+                    <h3>Foco na qualidade</h3>
+
+                    <p>
+                        Uma abordagem orientada para a qualidade,
+                        a segurança e o controlo de alergénicos
+                        ao longo dos processos.
+                    </p>
+
+                    <span class="cdmo-card-label">
+                        SEGURANÇA E CONTROLE
+                    </span>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="cdmo-process">
+            <div class="cdmo-process-copy">
+                <span class="cdmo-eyebrow">PARCERIAS B2B</span>
+
+                <h2>Vamos dar forma à sua ideia?</h2>
+
+                <p>
+                    Conte-nos mais sobre o seu projeto. A nossa equipa
+                    poderá analisar o seu pedido e encaminhá-lo para
+                    uma conversa sobre as suas necessidades.
+                </p>
+            </div>
+
+            <a class="cdmo-contact-button"
+               href="{% url 'cdmo_proposta' %}">
+                FALAR SOBRE O MEU PROJETO <span>↗</span>
+            </a>
+        </section>
+
+        <section class="cdmo-contact-strip">
+            <div>
+                <span class="cdmo-eyebrow">TEM ALGUMA QUESTÃO?</span>
+                <h2>Estamos aqui para ajudar.</h2>
+                <p>
+                    Entre em contacto connosco para obter mais
+                    informações sobre a Mase Nutrition.
+                </p>
+            </div>
+
+            <a class="cdmo-secondary-button"
+               href="{% url 'contato' %}">
+                CONTACTAR A EQUIPE <span>↗</span>
+            </a>
+        </section>
+
+    </div>
 </section>
 
-<section class="section">
-  <div class="container">
-    <div class="pilares">
-      <div class="pilar" data-reveal><h3>Customização</h3><p>Desenvolvimento de formulações alinhadas ao posicionamento do cliente.</p></div>
-      <div class="pilar" data-reveal><h3>Exclusividade</h3><p>Projetos desenvolvidos para criar diferenciação.</p></div>
-      <div class="pilar" data-reveal><h3>Segurança</h3><p>Controle de matérias-primas, processos e qualidade.</p></div>
-      <div class="pilar" data-reveal><h3>Estabilidade de suprimentos</h3><p>Gestão estruturada da cadeia de fornecimento.</p></div>
-      <div class="pilar" data-reveal><h3>Allergen Free</h3><p>Plataforma produtiva com rigoroso controle de alergênicos.</p></div>
-    </div>
-  </div>
-</section>
+<style>
+.cdmo-page {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 76px 24px 90px;
+    background: #f3f6fb;
+    color: #102653;
+}
 
-<section class="section section-alt">
-  <div class="container">
-    <div class="section-head" data-reveal>
-      <span class="eyebrow">Como funciona</span>
-      <h2 class="title-lg">Da ideia à entrega</h2>
-    </div>
-    <div class="flow">
-      <div class="flow-step" data-reveal><span class="n"></span><strong>Ideia</strong></div>
-      <div class="flow-step" data-reveal><span class="n"></span><strong>Briefing</strong></div>
-      <div class="flow-step" data-reveal><span class="n"></span><strong>Formulação</strong></div>
-      <div class="flow-step" data-reveal><span class="n"></span><strong>P&amp;D</strong></div>
-      <div class="flow-step" data-reveal><span class="n"></span><strong>Testes</strong></div>
-      <div class="flow-step" data-reveal><span class="n"></span><strong>Regulatório</strong></div>
-      <div class="flow-step" data-reveal><span class="n"></span><strong>Produção</strong></div>
-      <div class="flow-step" data-reveal><span class="n"></span><strong>Embalagem</strong></div>
-      <div class="flow-step" data-reveal><span class="n"></span><strong>Entrega</strong></div>
-    </div>
-  </div>
-</section>
+.cdmo-container {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+}
 
-<section class="cta-band">
-  <div class="container">
-    <h2>Quero desenvolver minha marca</h2>
-    <p>Conte sobre o seu projeto. O formulário qualifica a sua demanda e nos ajuda a direcionar você ao consultor certo.</p>
-    <a class="btn btn-light" href="{% url 'cdmo_proposta' %}">Quero desenvolver minha marca</a>
-  </div>
-</section>
+.cdmo-hero {
+    padding: 22px 0 76px;
+}
+
+.cdmo-eyebrow {
+    display: block;
+    margin-bottom: 20px;
+    color: #1978e8;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    line-height: 1.8;
+}
+
+.cdmo-hero h1 {
+    margin: 0 0 24px;
+    color: #102653;
+    font-size: clamp(42px, 5.5vw, 72px);
+    font-weight: 400;
+    letter-spacing: -2px;
+    line-height: 1.12;
+}
+
+.cdmo-hero h1 span {
+    color: #347fdf;
+}
+
+.cdmo-hero > p {
+    max-width: 740px;
+    margin: 0 0 30px;
+    color: #60718d;
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+.cdmo-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 28px;
+}
+
+.cdmo-primary-link,
+.cdmo-secondary-link,
+.cdmo-contact-button,
+.cdmo-secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 14px 0;
+    border-bottom: 1px solid #155db8;
+    color: #155db8;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    line-height: 1.7;
+    text-decoration: none;
+}
+
+.cdmo-primary-link span,
+.cdmo-contact-button span,
+.cdmo-secondary-button span {
+    font-size: 20px;
+    transition: transform .2s ease;
+}
+
+.cdmo-primary-link:hover span,
+.cdmo-contact-button:hover span,
+.cdmo-secondary-button:hover span {
+    transform: translate(3px, -3px);
+}
+
+.cdmo-secondary-link {
+    border-bottom-color: #cbd7e8;
+    color: #526985;
+}
+
+.cdmo-hero-note {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 42px;
+    color: #71819a;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.cdmo-note-dot {
+    width: 8px;
+    height: 8px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #347fdf;
+    box-shadow: 0 0 0 5px #e1edfc;
+}
+
+.cdmo-section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 36px;
+    margin-bottom: 34px;
+}
+
+.cdmo-section-heading .cdmo-eyebrow {
+    margin-bottom: 12px;
+}
+
+.cdmo-section-heading h2,
+.cdmo-process h2,
+.cdmo-contact-strip h2 {
+    margin: 0;
+    color: #102653;
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 400;
+    letter-spacing: -1px;
+    line-height: 1.2;
+}
+
+.cdmo-section-heading > p {
+    max-width: 390px;
+    margin: 0;
+    color: #60718d;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.cdmo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    align-items: stretch;
+}
+
+.cdmo-card {
+    box-sizing: border-box;
+    display: flex;
+    min-width: 0;
+    min-height: 330px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px;
+    border: 1px solid #e0e7f1;
+    border-radius: 5px;
+    background: #fff;
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+}
+
+.cdmo-card:hover {
+    transform: translateY(-5px);
+    border-color: #b8d5fa;
+    box-shadow: 0 18px 40px rgb(16 38 83 / 8%);
+}
+
+.cdmo-card-number {
+    color: #7b8ca7;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    line-height: 1.7;
+}
+
+.cdmo-icon {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    margin: 27px 0 20px;
+    place-items: center;
+    border: 1px solid #d8e8fc;
+    border-radius: 50%;
+    background: #eff6ff;
+    color: #2178e5;
+    font-size: 24px;
+}
+
+.cdmo-card h3 {
+    margin: 0 0 12px;
+    color: #102653;
+    font-size: clamp(20px, 1.8vw, 25px);
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.cdmo-card > p {
+    margin: 0 0 24px;
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.cdmo-card-label {
+    margin-top: auto;
+    padding-top: 17px;
+    border-top: 1px solid #e5ebf3;
+    width: 100%;
+    box-sizing: border-box;
+    color: #155db8;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .9px;
+    line-height: 1.7;
+}
+
+.cdmo-process {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    margin-top: 28px;
+    padding: 36px;
+    border: 1px solid #dce6f3;
+    border-radius: 5px;
+    background: #eaf1fa;
+}
+
+.cdmo-process .cdmo-eyebrow,
+.cdmo-contact-strip .cdmo-eyebrow {
+    margin-bottom: 12px;
+}
+
+.cdmo-process h2,
+.cdmo-contact-strip h2 {
+    font-size: clamp(27px, 3vw, 36px);
+}
+
+.cdmo-process p,
+.cdmo-contact-strip p {
+    max-width: 650px;
+    margin: 12px 0 0;
+    color: #60718d;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.cdmo-contact-button {
+    flex-shrink: 0;
+}
+
+.cdmo-contact-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    margin-top: 20px;
+    padding: 36px;
+    border: 1px solid #e0e7f1;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.cdmo-secondary-button {
+    flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+    .cdmo-section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .cdmo-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .cdmo-card:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .cdmo-process,
+    .cdmo-contact-strip {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 18px;
+    }
+}
+
+@media (max-width: 600px) {
+    .cdmo-page {
+        padding: 45px 20px 60px;
+    }
+
+    .cdmo-hero {
+        padding: 10px 0 58px;
+    }
+
+    .cdmo-hero h1 {
+        font-size: clamp(38px, 10vw, 52px);
+        letter-spacing: -1.3px;
+    }
+
+    .cdmo-hero > p {
+        font-size: 14px;
+    }
+
+    .cdmo-hero-actions {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .cdmo-section-heading h2 {
+        font-size: 31px;
+    }
+
+    .cdmo-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .cdmo-card,
+    .cdmo-card:last-child {
+        grid-column: auto;
+        min-height: 280px;
+        padding: 25px;
+    }
+
+    .cdmo-process,
+    .cdmo-contact-strip {
+        padding: 26px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cdmo-card,
+    .cdmo-primary-link span,
+    .cdmo-contact-button span,
+    .cdmo-secondary-button span {
+        transition: none;
+    }
+}
+</style>
+
 {% endblock %}

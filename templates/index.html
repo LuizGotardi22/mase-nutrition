@@ -50,87 +50,1128 @@
   </div>
 </section>
 
-<section class="unidades" id="unidades">
-  <article class="unidade unidade-clinical">
-    <span class="eyebrow">Mase Nutrition Clinical Care</span>
-    <h2>Clinical Care</h2>
-    <p class="sub">Nutrição especializada para diferentes necessidades clínicas.</p>
-    <p class="txt">Para pacientes com restrição e/ou alergia alimentar e para aqueles que buscam qualidade de vida. Produtos e soluções nutricionais desenvolvidos com segurança, ciência e controle de alergênicos.</p>
-    <a class="arrow-link" href="{% url 'clinical_care' %}">Conhecer Clinical Care →</a>
-  </article>
 
-  <article class="unidade unidade-cdmo">
-    <span class="eyebrow">Mase Nutrition CDMO</span>
-    <h2>CDMO</h2>
-    <p class="sub">Sua marca. Nossa ciência, tecnologia e estrutura isenta de alergênicos.</p>
-    <p class="txt">Desenvolvimento, fabricação e suporte completo para empresas que desejam criar a sua própria linha de suplementos com rótulo limpo.</p>
-    <a class="arrow-link" href="{% url 'cdmo' %}">Desenvolva a sua marca →</a>
-  </article>
+<section class="mase-businesses">
+    <!-- CLINICAL CARE -->
+    <article class="mase-panel mase-clinical">
+        <div class="clinical-content">
+            <span class="mase-eyebrow">
+                MASE NUTRITION · CLINICAL CARE
+            </span>
+
+            <h2>CLINICAL<br><span>CARE</span></h2>
+
+            <p class="mase-lead">
+                Nutrição especializada para diferentes necessidades clínicas.
+            </p>
+
+            <p class="mase-description">
+                Para pessoas com restrições e/ou alergias alimentares e
+                para quem procura qualidade de vida. Soluções nutricionais
+                desenvolvidas com foco na segurança, ciência e controlo
+                de alergénicos.
+            </p>
+
+            <a class="mase-link" href="{% url 'clinical_care' %}">
+                CONHECER CLINICAL CARE <span>↗</span>
+            </a>
+        </div>
+
+        <div class="clinical-features">
+            <div class="clinical-feature">
+                <div class="feature-icon">✓</div>
+                <div>
+                    <strong>SEGURANÇA</strong>
+                    <p>Controlo rigoroso de alergénicos.</p>
+                </div>
+            </div>
+
+            <div class="clinical-feature">
+                <div class="feature-icon">✳</div>
+                <div>
+                    <strong>CIÊNCIA</strong>
+                    <p>Soluções orientadas pela ciência.</p>
+                </div>
+            </div>
+
+            <div class="clinical-feature">
+                <div class="feature-icon">♡</div>
+                <div>
+                    <strong>QUALIDADE DE VIDA</strong>
+                    <p>Nutrição pensada para cada necessidade.</p>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <!-- CDMO -->
+    <article class="mase-panel mase-cdmo">
+        <div class="cdmo-orbit orbit-one"></div>
+        <div class="cdmo-orbit orbit-two"></div>
+        <div class="cdmo-molecule molecule-one"></div>
+        <div class="cdmo-molecule molecule-two"></div>
+        <div class="cdmo-molecule molecule-three"></div>
+
+        <div class="cdmo-content">
+            <span class="mase-eyebrow">
+                MASE NUTRITION · CDMO
+            </span>
+
+            <h2>CDMO</h2>
+
+            <p class="mase-lead">
+                A tua marca. A nossa ciência, tecnologia e estrutura
+                especializada.
+            </p>
+
+            <p class="mase-description">
+                Desenvolvimento, fabrico e suporte para empresas que
+                desejam criar a sua própria linha de suplementos com
+                uma abordagem focada na qualidade.
+            </p>
+
+            <a class="mase-link" href="{% url 'cdmo' %}">
+                DESENVOLVE A TUA MARCA <span>↗</span>
+            </a>
+        </div>
+    </article>
 </section>
 
-<section class="section section-alt">
-  <div class="container">
-    <div class="section-head" data-reveal>
-      <span class="eyebrow">O nosso compromisso</span>
-      <h2 class="title-lg">Ciência, segurança e qualidade</h2>
-      <p>Desenvolvemos soluções nutricionais com foco na rastreabilidade, no controlo de alergénicos e na qualidade dos processos.</p>
+<style>
+.mase-businesses {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 570px;
+    font-family: inherit;
+    overflow: hidden;
+}
+
+.mase-panel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: clamp(36px, 5vw, 82px);
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.mase-clinical {
+    background:
+        radial-gradient(ellipse at 0% 100%, #e2efff 0%, transparent 48%),
+        #f7f9fc;
+    color: #10264f;
+}
+
+.clinical-content,
+.cdmo-content {
+    position: relative;
+    z-index: 2;
+    max-width: 520px;
+}
+
+.mase-eyebrow {
+    display: inline-block;
+    margin-bottom: 24px;
+    color: #1678e9;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    line-height: 1.8;
+}
+
+.mase-panel h2 {
+    margin: 0 0 24px;
+    font-size: clamp(48px, 5vw, 82px);
+    font-weight: 500;
+    letter-spacing: -3px;
+    line-height: .98;
+}
+
+.mase-clinical h2 span {
+    color: #2582ef;
+}
+
+.mase-lead {
+    max-width: 460px;
+    margin: 0 0 20px;
+    font-size: clamp(18px, 1.6vw, 25px);
+    line-height: 1.45;
+}
+
+.mase-description {
+    max-width: 490px;
+    margin: 0 0 38px;
+    color: #60718e;
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+.mase-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid currentColor;
+    color: #126fe0;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+    transition: gap .25s ease, opacity .25s ease;
+}
+
+.mase-link span {
+    font-size: 23px;
+    font-weight: 400;
+}
+
+.mase-link:hover {
+    gap: 23px;
+    opacity: .8;
+}
+
+.clinical-features {
+    position: absolute;
+    z-index: 1;
+    right: 28px;
+    top: 50%;
+    display: grid;
+    gap: 30px;
+    width: 220px;
+    transform: translateY(-50%);
+}
+
+.clinical-feature {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.feature-icon {
+    display: grid;
+    flex: 0 0 52px;
+    width: 52px;
+    height: 52px;
+    place-items: center;
+    border: 1px solid #d3e5fb;
+    border-radius: 50%;
+    background: #eaf3ff;
+    color: #1678e9;
+    font-size: 25px;
+}
+
+.clinical-feature strong {
+    color: #19365e;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+}
+
+.clinical-feature p {
+    margin: 6px 0 0;
+    color: #71819c;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.mase-cdmo {
+    background:
+        radial-gradient(ellipse at 100% 45%, #13558b 0%, transparent 48%),
+        linear-gradient(125deg, #07152e 0%, #0d2356 65%, #06152e 100%);
+    color: #fff;
+}
+
+.mase-cdmo .mase-eyebrow {
+    color: #8bc9ff;
+}
+
+.mase-cdmo .mase-lead {
+    max-width: 430px;
+    color: #e0edff;
+}
+
+.mase-cdmo .mase-description {
+    color: #b8c9e2;
+}
+
+.mase-cdmo .mase-link {
+    color: #fff;
+}
+
+.cdmo-orbit {
+    position: absolute;
+    z-index: -1;
+    width: 520px;
+    height: 520px;
+    border: 1px solid rgb(142 205 255 / 17%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.orbit-one {
+    top: -100px;
+    right: -180px;
+}
+
+.orbit-two {
+    top: 140px;
+    right: -300px;
+    width: 420px;
+    height: 420px;
+}
+
+.cdmo-molecule {
+    position: absolute;
+    z-index: -1;
+    border: 1px solid rgb(173 225 255 / 75%);
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 30% 25%,
+            #ffffff 0%, #a8e4ff 5%, #318ac7 20%,
+            #0d3869 58%, #06162d 78%);
+    box-shadow:
+        inset -10px -12px 25px rgb(0 0 0 / 35%),
+        0 0 35px rgb(50 170 255 / 25%);
+    opacity: .82;
+}
+
+.molecule-one {
+    top: 18%;
+    right: 8%;
+    width: 120px;
+    height: 120px;
+}
+
+.molecule-two {
+    right: -25px;
+    bottom: 12%;
+    width: 180px;
+    height: 180px;
+}
+
+.molecule-three {
+    right: 29%;
+    bottom: 20%;
+    width: 54px;
+    height: 54px;
+}
+
+@media (max-width: 1100px) {
+    .clinical-features {
+        display: none;
+    }
+
+    .mase-panel {
+        padding: 48px 34px;
+    }
+}
+
+@media (max-width: 700px) {
+    .mase-businesses {
+        grid-template-columns: 1fr;
+    }
+
+    .mase-panel {
+        min-height: 480px;
+        padding: 48px 26px;
+    }
+
+    .mase-panel h2 {
+        font-size: clamp(52px, 13vw, 76px);
+    }
+
+    .mase-description {
+        font-size: 14px;
+    }
+
+    .mase-cdmo {
+        min-height: 440px;
+    }
+
+    .molecule-one {
+        right: 5%;
+        width: 90px;
+        height: 90px;
+    }
+}
+
+
+/* CORREÇÕES DO DESIGN CLINICAL CARE + CDMO */
+
+.mase-clinical {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(170px, .8fr);
+    align-items: center;
+    gap: 28px;
+}
+
+.mase-clinical .clinical-content {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+}
+
+.mase-clinical h2 {
+    font-size: clamp(42px, 4vw, 68px);
+    letter-spacing: -2px;
+    overflow-wrap: anywhere;
+}
+
+.mase-clinical .mase-lead {
+    font-size: clamp(17px, 1.4vw, 22px);
+}
+
+.mase-clinical .mase-description {
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.mase-clinical .clinical-features {
+    position: relative;
+    inset: auto;
+    display: grid;
+    width: 100%;
+    gap: 25px;
+    transform: none;
+}
+
+.mase-clinical .clinical-feature {
+    min-width: 0;
+    align-items: flex-start;
+}
+
+.mase-clinical .clinical-feature > div:last-child {
+    min-width: 0;
+}
+
+.mase-cdmo h2 {
+    color: #ffffff !important;
+}
+
+.mase-cdmo .cdmo-content {
+    width: 100%;
+    max-width: 520px;
+}
+
+.mase-cdmo .mase-lead,
+.mase-cdmo .mase-description {
+    position: relative;
+    z-index: 2;
+}
+
+@media (max-width: 1100px) {
+    .mase-clinical {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .mase-clinical .clinical-features {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .mase-clinical .clinical-feature {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 700px) {
+    .mase-businesses {
+        grid-template-columns: minmax(0, 1fr);
+        width: 100%;
+    }
+
+    .mase-panel {
+        box-sizing: border-box;
+        min-width: 0;
+        padding: 42px 24px;
+    }
+
+    .mase-clinical h2 {
+        font-size: clamp(42px, 12vw, 62px);
+    }
+
+    .mase-clinical .clinical-features {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .mase-clinical .clinical-feature {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .mase-panel h2 {
+        overflow-wrap: anywhere;
+    }
+
+    .mase-eyebrow {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+    .cdmo-molecule {
+        opacity: .45;
+    }
+}
+
+</style>
+
+
+
+<section class="mase-commitment">
+    <div class="commitment-inner">
+
+        <header class="commitment-header">
+            <span class="commitment-eyebrow">O NOSSO COMPROMISSO</span>
+            <h2>Ciência, segurança <span>e qualidade.</span></h2>
+            <p>
+                Desenvolvemos soluções nutricionais com foco na
+                rastreabilidade, no controlo de alergénicos e na
+                qualidade dos processos.
+            </p>
+        </header>
+
+        <div class="commitment-grid">
+
+            <a class="commitment-card" href="{% url 'allergen_free' %}">
+                <span class="commitment-number">01 / QUALIDADE</span>
+                <div class="commitment-icon">✳</div>
+                <h3>Allergen Free</h3>
+                <p>
+                    Uma abordagem orientada para o controlo de
+                    alergénicos e a segurança alimentar.
+                </p>
+                <span class="commitment-link">
+                    CONHECER ALLERGEN FREE <span>↗</span>
+                </span>
+            </a>
+
+            <a class="commitment-card" href="{% url 'science' %}">
+                <span class="commitment-number">02 / CONHECIMENTO</span>
+                <div class="commitment-icon">⌘</div>
+                <h3>Mase Nutrition Science</h3>
+                <p>
+                    Conhecimento científico e informação
+                    sobre nutrição especializada.
+                </p>
+                <span class="commitment-link">
+                    EXPLORAR CONTEÚDOS <span>↗</span>
+                </span>
+            </a>
+
+            <a class="commitment-card" href="{% url 'quem_somos' %}">
+                <span class="commitment-number">03 / IDENTIDADE</span>
+                <div class="commitment-icon">◈</div>
+                <h3>Quem somos</h3>
+                <p>
+                    Conheça a nossa empresa, a nossa abordagem
+                    e os princípios que orientam o nosso trabalho.
+                </p>
+                <span class="commitment-link">
+                    CONHECER A MASE NUTRITION <span>↗</span>
+                </span>
+            </a>
+
+        </div>
     </div>
-
-    <div class="product-grid">
-      <article data-reveal>
-        <h3>Allergen Free</h3>
-        <p>Uma abordagem orientada para o controlo de alergénicos e a segurança alimentar.</p>
-        <a class="arrow-link" href="{% url 'allergen_free' %}">Conhecer Allergen Free →</a>
-      </article>
-
-      <article data-reveal>
-        <h3>Mase Nutrition Science</h3>
-        <p>Conhecimento científico e informação sobre nutrição especializada.</p>
-        <a class="arrow-link" href="{% url 'science' %}">Explorar conteúdos →</a>
-      </article>
-
-      <article data-reveal>
-        <h3>Quem somos</h3>
-        <p>Conheça a nossa empresa, a nossa abordagem e os nossos princípios.</p>
-        <a class="arrow-link" href="{% url 'quem_somos' %}">Conhecer a Mase Nutrition →</a>
-      </article>
-    </div>
-  </div>
 </section>
 
-<section class="section">
-  <div class="container">
-    <div class="section-head" data-reveal>
-      <span class="eyebrow">Como podemos ajudar</span>
-      <h2 class="title-lg">Encontre o seu caminho na Mase Nutrition</h2>
-      <p>Conheça as nossas áreas de atuação e entre em contacto com a equipa.</p>
+<style>
+.mase-commitment {
+    box-sizing: border-box;
+    width: 100%;
+    padding: clamp(64px, 8vw, 112px) 24px;
+    background: #f3f6fb;
+    color: #102653;
+}
+
+.commitment-inner {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+.commitment-header {
+    max-width: 760px;
+    margin-bottom: 54px;
+}
+
+.commitment-eyebrow {
+    display: block;
+    margin-bottom: 20px;
+    color: #1978e8;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.commitment-header h2 {
+    margin: 0 0 22px;
+    color: #102653;
+    font-family: inherit;
+    font-size: clamp(34px, 4vw, 58px);
+    font-weight: 400;
+    letter-spacing: -1.5px;
+    line-height: 1.15;
+}
+
+.commitment-header h2 span {
+    color: #347fdf;
+}
+
+.commitment-header > p {
+    max-width: 680px;
+    margin: 0;
+    color: #60718d;
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+.commitment-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    align-items: stretch;
+}
+
+.commitment-card {
+    box-sizing: border-box;
+    display: flex;
+    min-width: 0;
+    min-height: 310px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px;
+    border: 1px solid #e0e7f1;
+    border-radius: 5px;
+    background: #fff;
+    color: inherit;
+    text-decoration: none;
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+}
+
+.commitment-card:hover {
+    transform: translateY(-5px);
+    border-color: #b8d5fa;
+    box-shadow: 0 18px 40px rgb(16 38 83 / 8%);
+}
+
+.commitment-number {
+    color: #7b8ca7;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+}
+
+.commitment-icon {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    margin: 28px 0 22px;
+    place-items: center;
+    border: 1px solid #d8e8fc;
+    border-radius: 50%;
+    background: #eff6ff;
+    color: #2178e5;
+    font-size: 25px;
+}
+
+.commitment-card h3 {
+    margin: 0 0 14px;
+    color: #102653;
+    font-size: clamp(19px, 1.6vw, 24px);
+    font-weight: 500;
+    line-height: 1.35;
+}
+
+.commitment-card > p {
+    margin: 0 0 28px;
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.85;
+}
+
+.commitment-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: auto;
+    padding-top: 18px;
+    border-top: 1px solid #e5ebf3;
+    color: #155db8;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    line-height: 1.7;
+}
+
+.commitment-link > span {
+    flex-shrink: 0;
+    font-size: 19px;
+    transition: transform .2s ease;
+}
+
+.commitment-card:hover .commitment-link > span {
+    transform: translate(3px, -3px);
+}
+
+@media (max-width: 900px) {
+    .commitment-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .commitment-card:last-child {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 600px) {
+    .mase-commitment {
+        padding: 58px 20px;
+    }
+
+    .commitment-header {
+        margin-bottom: 32px;
+    }
+
+    .commitment-header h2 {
+        font-size: 36px;
+        letter-spacing: -1px;
+    }
+
+    .commitment-header > p {
+        font-size: 14px;
+    }
+
+    .commitment-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .commitment-card,
+    .commitment-card:last-child {
+        grid-column: auto;
+        min-height: 280px;
+        padding: 25px;
+    }
+}
+</style>
+
+
+<section class="mase-pathways">
+    <div class="pathways-inner">
+
+        <header class="pathways-header">
+            <span class="pathways-eyebrow">COMO PODEMOS AJUDAR</span>
+            <h2>Encontre o seu caminho<br><span>na Mase Nutrition.</span></h2>
+            <p>
+                Conheça as nossas áreas de atuação e entre em contacto
+                com a equipa certa para si.
+            </p>
+        </header>
+
+        <div class="pathways-grid">
+
+            <a class="pathway-card" href="{% url 'profissionais' %}">
+                <span class="pathway-number">01 / CLINICAL CARE</span>
+                <div class="pathway-icon">✳</div>
+                <h3>Profissionais de saúde</h3>
+                <p>
+                    Conheça as nossas soluções de nutrição especializada
+                    e a informação disponível para profissionais.
+                </p>
+                <span class="pathway-link">
+                    CONHECER A ÁREA <span>↗</span>
+                </span>
+            </a>
+
+            <a class="pathway-card" href="{% url 'cdmo' %}">
+                <span class="pathway-number">02 / PARCERIAS</span>
+                <div class="pathway-icon">◈</div>
+                <h3>Desenvolva a sua marca</h3>
+                <p>
+                    Descubra como podemos apoiar o desenvolvimento
+                    e fabrico da sua linha de suplementos.
+                </p>
+                <span class="pathway-link">
+                    CONHECER CDMO <span>↗</span>
+                </span>
+            </a>
+
+            <a class="pathway-card" href="{% url 'contato' %}">
+                <span class="pathway-number">03 / DISTRIBUIÇÃO</span>
+                <div class="pathway-icon">⌁</div>
+                <h3>Distribua a Mase Nutrition</h3>
+                <p>
+                    Entre em contacto connosco para conhecer
+                    oportunidades de distribuição e parceria.
+                </p>
+                <span class="pathway-link">
+                    FALAR COM A EQUIPE <span>↗</span>
+                </span>
+            </a>
+
+            <a class="pathway-card" href="{% url 'contato' %}">
+                <span class="pathway-number">04 / CONTACTO</span>
+                <div class="pathway-icon">↗</div>
+                <h3>Tem uma dúvida?</h3>
+                <p>
+                    Estamos disponíveis para esclarecer questões
+                    e encaminhar o seu pedido.
+                </p>
+                <span class="pathway-link">
+                    FALAR COM A EQUIPE <span>↗</span>
+                </span>
+            </a>
+
+        </div>
     </div>
-
-    <div class="perfis">
-      <a class="perfil" href="{% url 'profissionais' %}" data-reveal>
-        <span class="n">01</span>
-        <strong>Profissionais de saúde</strong>
-        <span class="go">Conhecer a área →</span>
-      </a>
-
-      <a class="perfil" href="{% url 'cdmo' %}" data-reveal>
-        <span class="n">02</span>
-        <strong>Quero desenvolver a minha marca</strong>
-        <span class="go">Conhecer CDMO →</span>
-      </a>
-
-      <a class="perfil" href="{% url 'contato' %}?assunto=distribuidor" data-reveal>
-        <span class="n">03</span>
-        <strong>Quero distribuir a Mase Nutrition</strong>
-        <span class="go">Falar com a equipa →</span>
-      </a>
-
-      <a class="perfil" href="{% url 'contato' %}" data-reveal>
-        <span class="n">04</span>
-        <strong>Tenho uma dúvida</strong>
-        <span class="go">Contactar a equipa →</span>
-      </a>
-    </div>
-  </div>
 </section>
+
+<style>
+.mase-pathways {
+    box-sizing: border-box;
+    width: 100%;
+    padding: clamp(64px, 8vw, 112px) 24px;
+    background: #f3f6fb;
+    color: #102653;
+}
+
+.pathways-inner {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+.pathways-header {
+    max-width: 800px;
+    margin-bottom: 48px;
+}
+
+.pathways-eyebrow {
+    display: block;
+    margin-bottom: 20px;
+    color: #1978e8;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.pathways-header h2 {
+    margin: 0 0 22px;
+    color: #102653;
+    font-family: inherit;
+    font-size: clamp(34px, 4vw, 58px);
+    font-weight: 400;
+    letter-spacing: -1.5px;
+    line-height: 1.15;
+}
+
+.pathways-header h2 span {
+    color: #347fdf;
+}
+
+.pathways-header > p {
+    max-width: 680px;
+    margin: 0;
+    color: #60718d;
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+.pathways-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    align-items: stretch;
+}
+
+.pathway-card {
+    box-sizing: border-box;
+    display: flex;
+    min-width: 0;
+    min-height: 330px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 26px 24px;
+    border: 1px solid #e0e7f1;
+    border-radius: 5px;
+    background: #fff;
+    color: inherit;
+    text-decoration: none;
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+}
+
+.pathway-card:hover {
+    transform: translateY(-5px);
+    border-color: #b8d5fa;
+    box-shadow: 0 18px 40px rgb(16 38 83 / 8%);
+}
+
+.pathway-number {
+    color: #7b8ca7;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    line-height: 1.7;
+}
+
+.pathway-icon {
+    display: grid;
+    width: 46px;
+    height: 46px;
+    margin: 26px 0 20px;
+    place-items: center;
+    border: 1px solid #d8e8fc;
+    border-radius: 50%;
+    background: #eff6ff;
+    color: #2178e5;
+    font-size: 23px;
+}
+
+.pathway-card h3 {
+    margin: 0 0 12px;
+    color: #102653;
+    font-size: clamp(18px, 1.35vw, 22px);
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.pathway-card > p {
+    margin: 0 0 24px;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.pathway-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid #e5ebf3;
+    color: #155db8;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .9px;
+    line-height: 1.7;
+}
+
+.pathway-link > span {
+    flex-shrink: 0;
+    font-size: 18px;
+    transition: transform .2s ease;
+}
+
+.pathway-card:hover .pathway-link > span {
+    transform: translate(3px, -3px);
+}
+
+@media (max-width: 1050px) {
+    .pathways-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .pathway-card {
+        min-height: 300px;
+    }
+
+    .pathway-card h3 {
+        font-size: 21px;
+    }
+}
+
+@media (max-width: 600px) {
+    .mase-pathways {
+        padding: 58px 20px;
+    }
+
+    .pathways-header {
+        margin-bottom: 32px;
+    }
+
+    .pathways-header h2 {
+        font-size: 36px;
+        letter-spacing: -1px;
+    }
+
+    .pathways-header > p {
+        font-size: 14px;
+    }
+
+    .pathways-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .pathway-card {
+        min-height: 280px;
+        padding: 25px;
+    }
+
+    .pathway-card h3 {
+        font-size: 22px;
+    }
+}
+
+
+/* === INTEGRAÇÃO VISUAL: CLINICAL CARE + CDMO === */
+
+.mase-businesses {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    padding: 18px;
+    background: #edf2f9;
+    overflow: hidden;
+    box-sizing: border-box;
+    align-items: stretch;
+}
+
+.mase-panel {
+    box-sizing: border-box;
+    min-width: 0;
+    min-height: 590px;
+    padding: clamp(36px, 4vw, 68px);
+    border-radius: 10px;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Clinical Care: transição suave do branco para o azul */
+.mase-clinical {
+    background:
+        radial-gradient(
+            ellipse at 100% 50%,
+            rgb(211 231 255 / 85%) 0%,
+            transparent 48%
+        ),
+        linear-gradient(135deg, #ffffff 0%, #f4f8ff 100%);
+    border: 1px solid #e2eaf5;
+}
+
+/* CDMO: o azul começa mais claro junto à Clinical Care */
+.mase-cdmo {
+    background:
+        radial-gradient(
+            ellipse at 0% 50%,
+            rgb(36 91 155 / 55%) 0%,
+            transparent 52%
+        ),
+        radial-gradient(
+            ellipse at 100% 45%,
+            #13558b 0%,
+            transparent 48%
+        ),
+        linear-gradient(125deg, #102c59 0%, #0d2356 60%, #06152e 100%);
+    border: 1px solid rgb(151 192 237 / 18%);
+}
+
+/* Equilíbrio entre conteúdo e elementos gráficos */
+.mase-clinical .clinical-content,
+.mase-cdmo .cdmo-content {
+    max-width: 100%;
+    min-width: 0;
+}
+
+.mase-clinical h2 {
+    font-size: clamp(42px, 4vw, 66px);
+    line-height: .98;
+}
+
+.mase-cdmo h2 {
+    font-size: clamp(56px, 5vw, 82px);
+}
+
+/* Evita que os elementos decorativos dominem o texto */
+.mase-cdmo .cdmo-orbit,
+.mase-cdmo .cdmo-molecule {
+    pointer-events: none;
+}
+
+.mase-cdmo .cdmo-molecule {
+    opacity: .62;
+}
+
+/* Tablets */
+@media (max-width: 1100px) {
+    .mase-businesses {
+        gap: 12px;
+        padding: 12px;
+    }
+
+    .mase-panel {
+        min-height: 560px;
+        padding: 36px 28px;
+    }
+
+    .mase-clinical {
+        grid-template-columns: 1fr;
+        gap: 26px;
+    }
+
+    .mase-clinical .clinical-features {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .mase-clinical .clinical-feature {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+/* Telemóveis */
+@media (max-width: 700px) {
+    .mase-businesses {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+        padding: 12px;
+    }
+
+    .mase-panel {
+        min-height: auto;
+        padding: 36px 24px;
+        border-radius: 9px;
+    }
+
+    .mase-clinical h2 {
+        font-size: clamp(44px, 12vw, 62px);
+    }
+
+    .mase-clinical .clinical-features {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .mase-cdmo {
+        min-height: 440px;
+    }
+
+    .mase-cdmo h2 {
+        font-size: 62px;
+    }
+
+    .mase-cdmo .cdmo-molecule {
+        opacity: .35;
+    }
+}
+
+</style>
+
 {% endblock %}
