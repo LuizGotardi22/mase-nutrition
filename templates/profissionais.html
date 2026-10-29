@@ -1,59 +1,87 @@
+
 {% extends "base.html" %}
-{% block title %}Profissionais de saúde — Mase Nutrition{% endblock %}
+
 {% block content %}
-<section class="page-hero">
-  <div class="container">
-    <span class="eyebrow">Área do profissional</span>
-    <h1>Mase Nutrition para profissionais de saúde</h1>
-    <p class="lede">Ciência, informação técnica e suporte para quem prescreve e acompanha pacientes.</p>
-    {% if parceiro and parceiro.status == 'aprovado' %}
-    <a class="btn btn-primary" href="{% url 'profissionais_area' %}">Acessar a área do profissional</a>
-    {% elif parceiro %}
-    <a class="btn btn-primary" href="{% url 'parceiro_painel' %}">Acompanhar o meu cadastro</a>
-    {% else %}
-    <a class="btn btn-primary" href="{% url 'parceiro_cadastro' %}">Cadastre-se como profissional de saúde</a>
-    {% endif %}
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">Mase Nutrition</span>
+    <h1>Profissionais de saúde.<em>Ciência e confiança.</em></h1>
+    <p class="lede">
+      Conheça a abordagem da Mase Nutrition à nutrição especializada,
+      ao controlo de alergénicos e ao desenvolvimento de soluções nutricionais.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="{% url 'clinical_care' %}">
+        Conhecer Clinical Care
+      </a>
+      <a class="btn btn-outline" href="{% url 'contato' %}">
+        Contactar a equipa
+      </a>
+    </div>
   </div>
 </section>
 
 <section class="section">
   <div class="container">
     <div class="section-head" data-reveal>
-      <span class="eyebrow">Para quem é</span>
-      <h2 class="title-lg">Profissionais que acompanham pacientes com necessidades nutricionais específicas</h2>
+      <span class="eyebrow">A nossa abordagem</span>
+      <h2 class="title-lg">Informação para profissionais</h2>
+      <p>
+        Valorizamos a informação técnica, a rastreabilidade e a qualidade
+        no desenvolvimento de soluções de nutrição especializada.
+      </p>
     </div>
-    <ul class="lista-espec" data-reveal>
-      <li>Nutricionistas clínicos</li><li>Alergistas e imunologistas</li><li>Nutrólogos</li>
-      <li>Gastroenterologistas</li><li>Pediatras e alergopediatras</li><li>Endocrinologistas</li>
-      <li>Bariátricos</li><li>Oncologistas</li><li>Geriatras</li>
-      <li>Hospitais e clínicas (CNPJ)</li>
-    </ul>
+
+    <div class="product-grid">
+      <article data-reveal>
+        <h3>Clinical Care</h3>
+        <p>
+          Conheça as soluções nutricionais desenvolvidas para diferentes
+          necessidades clínicas.
+        </p>
+        <a class="arrow-link" href="{% url 'clinical_care' %}">
+          Explorar Clinical Care →
+        </a>
+      </article>
+
+      <article data-reveal>
+        <h3>Allergen Free</h3>
+        <p>
+          Saiba mais sobre o controlo de alergénicos e a abordagem
+          de segurança alimentar da Mase Nutrition.
+        </p>
+        <a class="arrow-link" href="{% url 'allergen_free' %}">
+          Conhecer Allergen Free →
+        </a>
+      </article>
+
+      <article data-reveal>
+        <h3>Mase Nutrition Science</h3>
+        <p>
+          Consulte os conteúdos científicos e informativos publicados
+          pela Mase Nutrition.
+        </p>
+        <a class="arrow-link" href="{% url 'science' %}">
+          Explorar conteúdos →
+        </a>
+      </article>
+    </div>
   </div>
 </section>
 
 <section class="section section-alt">
   <div class="container">
     <div class="section-head" data-reveal>
-      <span class="eyebrow">Conteúdo exclusivo</span>
-      <h2 class="title-lg">O que você encontra na área do profissional</h2>
-      <p>O acesso é liberado após a conferência do registro no conselho profissional (CRM ou CRN).</p>
+      <span class="eyebrow">Contato institucional</span>
+      <h2 class="title-lg">Estamos disponíveis para conversar</h2>
+      <p>
+        Para informações sobre a empresa, as suas soluções ou a sua
+        abordagem científica, entre em contato com a nossa equipe.
+      </p>
+      <a class="btn btn-primary" href="{% url 'contato' %}">
+        Falar com a equipa
+      </a>
     </div>
-    <ul class="conteudos" data-reveal>
-      <li>Literatura científica</li><li>Fichas técnicas</li><li>Informações nutricionais</li>
-      <li>Materiais para pacientes</li><li>Webinars</li><li>Eventos</li>
-      <li>Aulas</li><li>Protocolos educacionais, quando apropriados</li><li>Contato com a área científica</li>
-    </ul>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="section-head" data-reveal>
-      <span class="eyebrow">Indicação e recompra</span>
-      <h2 class="title-lg">Cada compra fica vinculada ao profissional que indicou</h2>
-      <p>Você recebe um cupom próprio. O paciente informa o cupom na compra e o vínculo é mantido, inclusive no Programa Mase Nutrition Contínua.</p>
-    </div>
-    <a class="arrow-link" href="{% url 'mase_continua' %}">Conheça o Mase Nutrition Contínua →</a>
   </div>
 </section>
 {% endblock %}

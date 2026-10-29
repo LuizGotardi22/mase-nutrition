@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 {% block content %}
 <section class="hero">
@@ -10,6 +11,7 @@
       <a class="btn btn-outline" href="#unidades">Nossas soluções</a>
     </div>
   </div>
+
   <div class="hero-visual" role="img" aria-label="Rede molecular estilizada representando ciência e nutrição">
     <svg viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <g fill="none" stroke="rgba(255,255,255,0.20)" stroke-width="1.2">
@@ -24,22 +26,29 @@
         <path class="rede" style="--len:500" d="M210 400 L100 330 M340 330 L360 180"/>
       </g>
       <g class="no" fill="#FFFFFF">
-        <circle cx="90" cy="640" r="5" opacity=".7"/><circle cx="230" cy="540" r="8" opacity=".9"/>
-        <circle cx="360" cy="610" r="5" opacity=".7"/><circle cx="500" cy="500" r="9" opacity=".95"/>
-        <circle cx="640" cy="590" r="6" opacity=".8"/><circle cx="720" cy="520" r="4" opacity=".6"/>
-        <circle cx="210" cy="400" r="6" opacity=".8"/><circle cx="340" cy="330" r="7" opacity=".85"/>
-        <circle cx="420" cy="220" r="5" opacity=".7"/><circle cx="560" cy="140" r="6" opacity=".7"/>
-        <circle cx="700" cy="220" r="5" opacity=".6"/><circle cx="700" cy="380" r="5" opacity=".6"/>
-        <circle cx="560" cy="460" r="6" opacity=".8"/><circle cx="420" cy="380" r="5" opacity=".6"/>
+        <circle cx="90" cy="640" r="5" opacity=".7"/>
+        <circle cx="230" cy="540" r="8" opacity=".9"/>
+        <circle cx="360" cy="610" r="5" opacity=".7"/>
+        <circle cx="500" cy="500" r="9" opacity=".95"/>
+        <circle cx="640" cy="590" r="6" opacity=".8"/>
+        <circle cx="720" cy="520" r="4" opacity=".6"/>
+        <circle cx="210" cy="400" r="6" opacity=".8"/>
+        <circle cx="340" cy="330" r="7" opacity=".85"/>
+        <circle cx="420" cy="220" r="5" opacity=".7"/>
+        <circle cx="560" cy="140" r="6" opacity=".7"/>
+        <circle cx="700" cy="220" r="5" opacity=".6"/>
+        <circle cx="700" cy="380" r="5" opacity=".6"/>
+        <circle cx="560" cy="460" r="6" opacity=".8"/>
+        <circle cx="420" cy="380" r="5" opacity=".6"/>
         <circle cx="560" cy="300" r="10" fill="#7FD1B0" opacity=".9"/>
-        <circle cx="400" cy="720" r="4" opacity=".5"/><circle cx="690" cy="700" r="4" opacity=".5"/>
-        <circle cx="100" cy="330" r="4" opacity=".5"/><circle cx="360" cy="180" r="4" opacity=".5"/>
+        <circle cx="400" cy="720" r="4" opacity=".5"/>
+        <circle cx="690" cy="700" r="4" opacity=".5"/>
+        <circle cx="100" cy="330" r="4" opacity=".5"/>
+        <circle cx="360" cy="180" r="4" opacity=".5"/>
       </g>
     </svg>
   </div>
 </section>
-
-
 
 <section class="unidades" id="unidades">
   <article class="unidade unidade-clinical">
@@ -49,35 +58,43 @@
     <p class="txt">Para pacientes com restrição e/ou alergia alimentar e para aqueles que buscam qualidade de vida. Produtos e soluções nutricionais desenvolvidos com segurança, ciência e controle de alergênicos.</p>
     <a class="arrow-link" href="{% url 'clinical_care' %}">Conhecer Clinical Care →</a>
   </article>
+
   <article class="unidade unidade-cdmo">
     <span class="eyebrow">Mase Nutrition CDMO</span>
     <h2>CDMO</h2>
-    <p class="sub">Sua marca. Nossa ciência, tecnologia, estrutura isenta de alergênicos.</p>
-    <p class="txt">Desenvolvimento, fabricação e suporte completo para empresas que desejam criar sua própria linha de suplementos com rótulo limpo.</p>
-    <a class="arrow-link" href="{% url 'cdmo' %}">Desenvolva sua marca →</a>
+    <p class="sub">Sua marca. Nossa ciência, tecnologia e estrutura isenta de alergênicos.</p>
+    <p class="txt">Desenvolvimento, fabricação e suporte completo para empresas que desejam criar a sua própria linha de suplementos com rótulo limpo.</p>
+    <a class="arrow-link" href="{% url 'cdmo' %}">Desenvolva a sua marca →</a>
   </article>
 </section>
-
-<div class="beneficios-strip">
-  <div class="container beneficios-row">
-    <div class="beneficio"><span class="ico">✓</span> Compra 100% segura</div>
-    <div class="beneficio"><span class="ico">✓</span> Pagamento via Pix</div>
-    <div class="beneficio"><span class="ico">✓</span> Frete calculado pelo seu CEP</div>
-    <div class="beneficio"><span class="ico">✓</span> Vinculado ao seu profissional de saúde</div>
-  </div>
-</div>
 
 <section class="section section-alt">
   <div class="container">
     <div class="section-head" data-reveal>
-      <span class="eyebrow">Loja Mase Nutrition</span>
-      <h2 class="title-lg">Mais vendidos</h2>
-      <p>Produtos com a segurança Allergen Free, prontos para comprar com Pix.</p>
+      <span class="eyebrow">O nosso compromisso</span>
+      <h2 class="title-lg">Ciência, segurança e qualidade</h2>
+      <p>Desenvolvemos soluções nutricionais com foco na rastreabilidade, no controlo de alergénicos e na qualidade dos processos.</p>
     </div>
+
     <div class="product-grid">
-      {% for p in destaques %}<div data-reveal>{% include "_produto_card.html" %}</div>{% empty %}<p class="fine">Os produtos aparecem aqui assim que forem cadastrados.</p>{% endfor %}
+      <article data-reveal>
+        <h3>Allergen Free</h3>
+        <p>Uma abordagem orientada para o controlo de alergénicos e a segurança alimentar.</p>
+        <a class="arrow-link" href="{% url 'allergen_free' %}">Conhecer Allergen Free →</a>
+      </article>
+
+      <article data-reveal>
+        <h3>Mase Nutrition Science</h3>
+        <p>Conhecimento científico e informação sobre nutrição especializada.</p>
+        <a class="arrow-link" href="{% url 'science' %}">Explorar conteúdos →</a>
+      </article>
+
+      <article data-reveal>
+        <h3>Quem somos</h3>
+        <p>Conheça a nossa empresa, a nossa abordagem e os nossos princípios.</p>
+        <a class="arrow-link" href="{% url 'quem_somos' %}">Conhecer a Mase Nutrition →</a>
+      </article>
     </div>
-    <div style="margin-top:40px;"><a class="arrow-link" href="{% url 'loja' %}">Ver todos os produtos →</a></div>
   </div>
 </section>
 
@@ -86,12 +103,33 @@
     <div class="section-head" data-reveal>
       <span class="eyebrow">Como podemos ajudar</span>
       <h2 class="title-lg">Encontre o seu caminho na Mase Nutrition</h2>
+      <p>Conheça as nossas áreas de atuação e entre em contacto com a equipa.</p>
     </div>
+
     <div class="perfis">
-      <a class="perfil" href="{% url 'loja' %}" data-reveal><span class="n">01</span><strong>Sou consumidor</strong><span class="go">Ir para a loja →</span></a>
-      <a class="perfil" href="{% url 'profissionais' %}" data-reveal><span class="n">02</span><strong>Sou profissional de saúde</strong><span class="go">Área do profissional →</span></a>
-      <a class="perfil" href="{% url 'cdmo' %}" data-reveal><span class="n">03</span><strong>Quero desenvolver minha marca</strong><span class="go">CDMO →</span></a>
-      <a class="perfil" href="{% url 'contato' %}?assunto=distribuidor" data-reveal><span class="n">04</span><strong>Quero distribuir a Mase Nutrition</strong><span class="go">Falar com a equipe →</span></a>
+      <a class="perfil" href="{% url 'profissionais' %}" data-reveal>
+        <span class="n">01</span>
+        <strong>Profissionais de saúde</strong>
+        <span class="go">Conhecer a área →</span>
+      </a>
+
+      <a class="perfil" href="{% url 'cdmo' %}" data-reveal>
+        <span class="n">02</span>
+        <strong>Quero desenvolver a minha marca</strong>
+        <span class="go">Conhecer CDMO →</span>
+      </a>
+
+      <a class="perfil" href="{% url 'contato' %}?assunto=distribuidor" data-reveal>
+        <span class="n">03</span>
+        <strong>Quero distribuir a Mase Nutrition</strong>
+        <span class="go">Falar com a equipa →</span>
+      </a>
+
+      <a class="perfil" href="{% url 'contato' %}" data-reveal>
+        <span class="n">04</span>
+        <strong>Tenho uma dúvida</strong>
+        <span class="go">Contactar a equipa →</span>
+      </a>
     </div>
   </div>
 </section>

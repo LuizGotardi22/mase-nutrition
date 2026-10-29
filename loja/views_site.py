@@ -69,22 +69,35 @@ def cdmo_proposta(request):
 
 
 # ---------- Contato por interesse ----------
+
 def contato(request):
-    assunto = request.GET.get("assunto", "")
-    inicial = {"assunto": assunto} if assunto in dict(Lead.Tipo.choices) else {}
-    form = ContatoForm(request.POST or None, initial=inicial)
+    form = ContatoForm(request.POST or None)
+
     if request.method == "POST" and form.is_valid():
         d = form.cleaned_data
+
         leads.registrar_lead(
-            tipo=d["assunto"], nome=d["nome"], empresa=d["empresa"], email=d["email"],
-            telefone=d["telefone"], mensagem=d["mensagem"], consentimento=True,
+            tipo=d.get("assunto", ""),
+            nome=d["nome"],
+            empresa=d["empresa"],
+            email=d["email"],
+            telefone=d["telefone"],
+            mensagem=d["mensagem"],
+            consentimento=True,
         )
-        messages.success(request, "Mensagem enviada! Encaminhamos para o responsável e retornaremos em breve.")
+
+        messages.success(
+            request,
+            "Mensagem enviada! Encaminhamos para o responsável e retornaremos em breve."
+        )
         return redirect("contato")
+
     return render(
-        request, "contato.html",
-        {"form": form, "assunto_atual": form["assunto"].value(), "opcoes": Lead.Tipo.choices},
+        request,
+        "contato.html",
+        {"form": form},
     )
+
 
 
 # ---------- Profissionais de saúde ----------

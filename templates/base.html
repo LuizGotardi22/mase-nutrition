@@ -16,31 +16,6 @@
   <div class="container header-top">
     <a href="{% url 'index' %}" class="logo" aria-label="Mase Nutrition — página inicial"><img src="{% static 'logo.png' %}" alt="Mase Nutrition" class="logo-img"></a>
     <div class="header-actions">
-      <div class="account-menu">
-        <button type="button" class="icon-link account-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Minha conta">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-          <span class="account-label">Minha Conta</span>
-        </button>
-        <div class="account-panel">
-          {% if user.is_authenticated %}
-          <span class="account-hello">Olá, {{ user.first_name|default:user.username }}</span>
-          <a href="{% url 'minha_conta' %}">Minha conta e pedidos</a>
-          {% if not user.parceiro %}<a href="{% url 'parceiro_cadastro' %}">Sou profissional de saúde</a>{% else %}<a href="{% url 'parceiro_painel' %}">Painel do profissional</a>{% endif %}
-          <form method="post" action="{% url 'sair' %}">
-            {% csrf_token %}
-            <button type="submit">Sair</button>
-          </form>
-          {% else %}
-          <a href="{% url 'entrada' %}">Entrar</a>
-          <a href="{% url 'criar_conta' %}">Criar conta</a>
-          <a class="account-prof" href="{% url 'entrada' %}?next={% url 'parceiro_cadastro' %}">Login profissionais</a>
-          {% endif %}
-        </div>
-      </div>
-      <a class="icon-link" href="{% url 'carrinho' %}" aria-label="Carrinho ({{ carrinho_qtd }} item(ns))">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
-        {% if carrinho_qtd %}<span class="cart-count">{{ carrinho_qtd }}</span>{% endif %}
-      </a>
       <a class="btn btn-primary btn-sm" href="{% url 'contato' %}">Fale conosco</a>
       <button class="nav-toggle" aria-label="Abrir menu" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
@@ -56,7 +31,6 @@
         <a href="{% url 'allergen_free' %}"{% if n == 'allergen_free' %} class="ativo"{% endif %}>Allergen Free</a>
         <a href="{% url 'profissionais' %}"{% if n == 'profissionais' or n == 'profissionais_area' or n == 'parceiro_cadastro' or n == 'parceiro_painel' %} class="ativo"{% endif %}>Profissionais de saúde</a>
         <a href="{% url 'science' %}"{% if n == 'science' or n == 'science_artigo' %} class="ativo"{% endif %}>Mase Nutrition Science</a>
-        <a href="{% url 'loja' %}"{% if n == 'loja' or n == 'produto' or n == 'carrinho' or n == 'checkout' or n == 'mase_continua' %} class="ativo"{% endif %}>Loja</a>
         <a href="{% url 'contato' %}" class="nav-cta">Fale conosco</a>
       </nav>
     </div>
@@ -93,18 +67,9 @@
         </ul>
       </div>
       <div>
-        <h4>Minha conta</h4>
-        <ul>
-          <li><a href="{% if user.is_authenticated %}{% url 'minha_conta' %}{% else %}{% url 'entrada' %}{% endif %}">Minha conta e pedidos</a></li>
-          <li><a href="{% url 'mase_continua' %}">Programa Mase Nutrition Contínua</a></li>
-          <li><a href="{% url 'parceiro_cadastro' %}">Login profissionais</a></li>
-          <li><a href="{% url 'loja' %}">Loja</a></li>
-        </ul>
-      </div>
-      <div>
         <h4>Atendimento</h4>
         <ul>
-          <li><a href="{% url 'contato' %}">Trocas e devoluções</a></li>
+          <li><a href="{% url 'contato' %}">Fale conosco</a></li>
           <li><a href="{% url 'contato' %}">Perguntas frequentes</a></li>
           <li><a href="{% url 'contato' %}">Política de privacidade</a></li>
         </ul>
@@ -120,14 +85,9 @@
       </div>
     </div>
 
-    <div class="footer-pay">
-      <span>Pagamento</span>
-      <span class="pay-badge">Pix</span>
-    </div>
-
     <div class="footer-bottom">
       <span>© 2026 Mase Nutrition. Todos os direitos reservados.</span>
-      <span>CNPJ 00.000.000/0001-00</span>
+      <span></span>
     </div>
   </div>
 </footer>
